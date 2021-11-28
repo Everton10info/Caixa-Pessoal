@@ -1,19 +1,25 @@
+import 'dart:developer';
+
+import 'package:cash_book/models/transaction_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CardTransaction extends StatelessWidget {
-  const CardTransaction({ Key? key }) : super(key: key);
-
+ var transaction = Get.put(Transaction());
+    late List<CardTransaction>? listCardTransactions=[];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Card(
-            elevation: 4,
-            child: ListTile(
-              title: Text('EVERTON'),
-              //tileColor: Colors.blueGrey[50],
-            ),
+    log(transaction.nameTransaction);
+    return Card(
+          elevation: 4,
+          child: ListTile(
+            
+            // ignore: unnecessary_cast
+            title: Text(transaction.nameTransaction ),
+           
+            
+            tileColor: Colors.blueGrey[50],
           ),
-      
-    );
+        );
   }
 }

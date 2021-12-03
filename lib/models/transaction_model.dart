@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+
 
 class Transaction {
    int id = 0;
@@ -6,6 +6,8 @@ class Transaction {
    String data = '';
    bool tipoTransaction = true;
    double value = 0.0;
+
+  static var obs;
 
    Transaction({
      id,
@@ -15,5 +17,9 @@ class Transaction {
      value,
   });
 }
+
+
+  
+
 
 

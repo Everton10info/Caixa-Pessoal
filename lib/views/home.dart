@@ -1,3 +1,5 @@
+import 'package:cash_book/routes/routes.dart';
+import 'package:cash_book/views/list_transaction_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +24,9 @@ class MyHome extends StatelessWidget {
         ),
         
       ),
-      floatingActionButton: FloatingActionButton.extended(onPressed: (){}, label: Text('voooufgfdgdf'),)
+      floatingActionButton: FloatingActionButton.extended(onPressed: (){
+      Get.toNamed('/list-transaction');
+      }, label: Text('voooufgfdgdf'),)
     );
   }
 }

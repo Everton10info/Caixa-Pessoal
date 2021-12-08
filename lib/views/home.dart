@@ -13,6 +13,7 @@ class MyHome extends StatelessWidget {
         elevation: 3,
         title: Text("Cash Book"),
       ),
+      
       backgroundColor: Colors.blueGrey[100],
       body: Container(
         decoration: BoxDecoration(
@@ -26,7 +27,10 @@ class MyHome extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(onPressed: (){
       Get.toNamed('/list-transaction');
-      }, label: Text('voooufgfdgdf'),)
+      }, label: Text('voooufgfdgdf'),
+      
+      
+      )
     );
   }
 }

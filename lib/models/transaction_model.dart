@@ -1,12 +1,13 @@
 import 'dart:math';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:intl/intl.dart';
 
 class Transaction {
-  int id = 0;
-  String nameTransaction = 'curso flutter';
-  String date = DateFormat('yyyy-mm-dd').format(DateTime.now());
-  String typeTransaction = 'input';
-  double value = 0.0;
+  int? id = 11;
+  String? nameTransaction = 'DESU NO COMANDO';
+  DateTime? date;
+  String? typeTransaction = 'output';
+  double? value = 22.3;
 
   Transaction({
     id,
@@ -15,23 +16,6 @@ class Transaction {
     typeTransaction,
     value,
   });
-
- /*  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'nameTransaction': nameTransaction,
-      'date': date,
-      'typeTransaction': typeTransaction,
-      'value': value
-    };
-  }
-
-  factory Transaction.fromMap(Map<String, dynamic> map) {
-    return Transaction(
-        id: map['id'],
-        nameTransaction: map['nameTransaction'],
-        date: map['date'],
-        typeTransaction: map['typeTransaction'],
-        value: map['value']);
-  }  */
 }
+
+ 

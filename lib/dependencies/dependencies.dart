@@ -9,7 +9,7 @@ class HomeBindings implements Bindings {
   void dependencies() {
     Get.lazyPut<CardTransaction>(() => CardTransaction());
     Get.lazyPut<Transaction>(() => Transaction());
-    Get.lazyPut<ListTransactionController>(() => ListTransactionController());    
+    Get.lazyPut<ListTrController>(() => ListTrController());    
     Get.lazyPut<CardsAll>(() => CardsAll());
   }
 }

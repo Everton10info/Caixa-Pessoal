@@ -1,3 +1,4 @@
+import 'package:cash_book/componets/dialogForm.dart';
 import 'package:cash_book/routes/routes.dart';
 import 'package:cash_book/views/list_transaction_view.dart';
 import 'package:flutter/material.dart';
@@ -11,26 +12,43 @@ class MyHome extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 3,
-        title: Text("Cash Book"),
+        title: Center(
+          child: Text(
+            "Cash Book",
+          ),
+          
+        ),
       ),
-      
       backgroundColor: Colors.blueGrey[100],
       body: Container(
         decoration: BoxDecoration(
-          //borderRadius: BorderRadius.all(Radius.circular(10.0)),
           image: DecorationImage(
             image: AssetImage('assets/images/illustration.jpeg'),
             fit: BoxFit.cover,
           ),
         ),
-        
       ),
-      floatingActionButton: FloatingActionButton.extended(onPressed: (){
-      Get.toNamed('/list-transaction');
-      }, label: Text('voooufgfdgdf'),
-      
-      
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return DialogFrom();
+              });
+        },
+      ),
+      drawer: Drawer(elevation: 2,
+      child: ListView(padding: EdgeInsets.all(9),
+      children: [
+        ListTile(
+          title: Text('Listas'),
+          onTap: (){
+            Get.to(ListTransactionsView());
+          },
+        )
+      ],),
       )
+      ,
     );
   }
 }

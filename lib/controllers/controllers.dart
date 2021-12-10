@@ -6,13 +6,6 @@ import 'package:get/state_manager.dart';
 
 class ListTrController extends GetxController {
   Transaction transaction = Get.find<Transaction>();
- 
-
-  
- 
-
-
-  
     
   List transactionAll = [].obs;
   List transactionInput = [].obs;
@@ -26,7 +19,6 @@ class ListTrController extends GetxController {
  return transactionAll.add(tr) ;  
  
   }
-
 
 
 

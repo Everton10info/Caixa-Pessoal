@@ -28,7 +28,8 @@ class ListTransactionsView extends StatelessWidget {
                   child: Card(
                     child: Column(
                       children: [
-                      Text(listT.transactionAll[index].nameTransaction.toString())
+                      Text(listT.transactionAll[index].nameTransaction.toString()),
+                      Text(listT.transactionAll[index].value.toString())
                       ],
                     ),
                   ),

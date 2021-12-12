@@ -4,10 +4,10 @@ import 'package:intl/intl.dart';
 
 class Transaction {
   int? id = 11;
-  String? nameTransaction = 'DESU NO COMANDO';
+  String? nameTransaction ;
   DateTime? date;
   String? typeTransaction = 'output';
-  double? value = 22.3;
+  double? value ;
 
   Transaction({
     id,

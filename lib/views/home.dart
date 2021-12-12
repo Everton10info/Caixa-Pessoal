@@ -33,7 +33,7 @@ class MyHome extends StatelessWidget {
           showDialog(
               context: context,
               builder: (BuildContext context) {
-                return DialogFrom();
+                return Dialog(child: DialogFrom());
               });
         },
       ),

@@ -1,41 +1,74 @@
-
+import 'package:cash_book/componets/dialogForm.dart';
 import 'package:cash_book/controllers/controllers.dart';
 import 'package:cash_book/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
+// ignore: must_be_immutable
 class ListTransactionsView extends StatelessWidget {
-  var listT = Get.find<ListTrController>();
-  var transaction = Get.find<Transaction>();
+  final listTrController = Get.find<ListTrController>();
 
   @override
   Widget build(BuildContext context) {
-    listT.newTransaction(transaction, listT.transactionAll);
-
     return Scaffold(
       appBar: AppBar(
         elevation: 3,
       ),
       body: Container(
-        child: ListView.builder(
-            itemCount: listT.transactionAll.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                height: 60,
-                child: Card(
-                  elevation: 4,
-                  child: Card(
+          child: Obx(
+        () => ListView.builder(
+          itemCount: listTrController.transactionAll.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Card(
+            margin:EdgeInsetsDirectional.all(2),
+                elevation: 5,
+                borderOnForeground: true,
+                color: Colors.blue,
+                child: SizedBox(
+                  child: Container(
+                 
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                      Text(listT.transactionAll[index].nameTransaction.toString()),
-                      Text(listT.transactionAll[index].value.toString())
+                      
+                        Text(listTrController.transactionAll[index].nameTransaction.toString()),
+                        Divider(),
+                        Text(listTrController.transactionAll[index].value.toString()),
                       ],
                     ),
                   ),
                 ),
-              );
-            }),
+              /*   child: Text(
+                    listTrController.transactionAll[index].nameTransaction.toString()), */
+              ),
+            );
+          },
+        ),
+      )),
+      drawer: Drawer(
+        elevation: 2,
+        child: ListView(
+          padding: EdgeInsets.all(9),
+          children: [
+            ListTile(
+              selectedTileColor: Colors.blueGrey,
+              title: Text('Listas'),
+              onTap: () {
+                Get.to(ListTransactionsView());
+              },
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return Dialog(child: DialogFrom());
+              });
+        },
       ),
     );
   }

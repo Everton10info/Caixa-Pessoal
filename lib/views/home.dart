@@ -1,8 +1,9 @@
 import 'package:cash_book/componets/dialogForm.dart';
-import 'package:cash_book/controllers/controllers.dart';
+import 'package:cash_book/componets/myDrawer.dart';
+import 'package:cash_book/controllers/controllersList.dart';
 import 'package:cash_book/models/transaction_model.dart';
 
-import 'package:cash_book/views/list_transaction_view.dart';
+import 'package:cash_book/views/list_transaction_all.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,22 +40,7 @@ class MyHome extends StatelessWidget {
               });
         },
       ),
-      drawer: Drawer(
-        elevation: 2,
-        child: ListView(
-          padding: EdgeInsets.all(9),
-          children: [
-            ListTile(
-              title: Text('Listas'),
-              onTap: () {
-                Get.back();
-               Get.to(ListTransactionsView());
-               
-              },
-            )
-          ],
-        ),
-      ),
+      drawer: MyDrawer(),
     );
   }
 }

@@ -3,7 +3,7 @@ class Transaction {
   int? id = 11;
   String? nameTransaction ;
   DateTime? date;
-  String? typeTransaction = 'output';
+  String? typeTransaction= 'input';
   double? value ;
 
   Transaction({

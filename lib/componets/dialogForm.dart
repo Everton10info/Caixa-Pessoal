@@ -41,9 +41,9 @@ class DialogFrom extends StatelessWidget {
                 value: listTrController.receita.value,
                 onChanged: (bool? valor) {
                   listTrController.receita.value = valor!;
+                  listTrController.despesa.value =false ;
                   if (listTrController.receita == true) {
                     transaction.typeTransaction = 'input';
-                    debugPrint('print input!!!!!!!!!!!!!!');
                   }
                 },
               ),
@@ -53,6 +53,7 @@ class DialogFrom extends StatelessWidget {
                 value: listTrController.despesa.value,
                 onChanged: (bool? valor) {
                   listTrController.despesa.value = valor!;
+                  listTrController.receita.value= false ;
                   if (listTrController.despesa == true) {
                     transaction.typeTransaction = 'output';
                   }
@@ -62,18 +63,8 @@ class DialogFrom extends StatelessWidget {
                 onPressed: () {
                   transaction.nameTransaction = controllerName.text;
                   transaction.value = double.parse(controllerValue.text);
-                  listTrController.transactionAll.add(transaction);
-                 if(transaction.typeTransaction == 'input'){
-                   debugPrint('condição input');
-                   listTrController.transactionInput.add(transaction);  
-
-                  }
-                  if(transaction.typeTransaction == 'output'){
-                    listTrController.transactionOutput.add(transaction);  
-                  } 
-
-                  Get.back();
-                  Get.to(ListTransactionsView());
+                  listTrController.buttonFunctionAdd(transaction);
+                  Get.to(()=>ListTransactionsView());
                 },
                 icon: Icon(Icons.add_task_outlined),
                 label: Text('Adicinar trasação'),

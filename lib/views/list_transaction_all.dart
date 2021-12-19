@@ -9,7 +9,7 @@ import 'home.dart';
 // ignore: must_be_immutable
 class ListTransactionsView extends StatelessWidget {
   final listTrController = Get.find<ListTrController>();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,23 +23,45 @@ class ListTransactionsView extends StatelessWidget {
           itemBuilder: (context, index) {
             return ListTile(
               title: Card(
-                margin: EdgeInsetsDirectional.all(2),
                 elevation: 5,
-                borderOnForeground: true,
-                color: Colors.blue,
-                child: SizedBox(
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(listTrController
-                            .transactionAll[index].nameTransaction
-                            .toString()),
-                        Divider(),
-                        Text(listTrController.transactionAll[index].value
-                            .toString()),
-                      ],
-                    ),
+                child: Container(
+                  alignment: Alignment.center,
+                  //color: Colors.greenAccent,
+                  height: Get.height * 0.13,
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            listTrController
+                                .transactionAll[index].nameTransaction
+                                .toString(),
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 16,
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Valor : R\$ ${listTrController.transactionAll[index].value}'
+                                    .toString(),
+                                style:
+                                    TextStyle(color: Colors.blue, fontSize: 16),
+                              ),
+                              IconButton(
+                                alignment: Alignment.centerRight,
+                                onPressed: () {},
+                                icon: Icon(Icons.delete_forever_outlined),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                          Text('${listTrController.transactionAll[index].date}'),
+                    ],
                   ),
                 ),
               ),

@@ -19,7 +19,7 @@ class ListTransactionsOutputs extends StatelessWidget {
       body: Container(
           child: Obx(
         () => ListView.builder(
-          itemCount: listTrController.transactionInput.length,
+          itemCount: listTrController.transactionOutput.length,
           itemBuilder: (context, index) {
             return ListTile(
               title: Card(

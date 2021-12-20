@@ -24,15 +24,16 @@ class DialogFrom extends StatelessWidget {
                 controller: controllerName,
                 decoration: InputDecoration(
                   border: UnderlineInputBorder(),
-                  hintText: 'Enter a search term',
+                  hintText: 'Nome da transação',
                 ),
               ),
               Divider(),
               TextFormField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
                 controller: controllerValue,
                 decoration: InputDecoration(
                   border: UnderlineInputBorder(),
-                  hintText: 'Enter a search term',
+                  hintText: 'Valor da transação',
                 ),
               ),
               CheckboxListTile(
@@ -44,7 +45,7 @@ class DialogFrom extends StatelessWidget {
                   listTrController.despesa.value =false ;
                   if (listTrController.receita == true) {
                     transaction.typeTransaction = 'input';
-                  }
+                  }else{transaction.typeTransaction ='';}
                 },
               ),
               CheckboxListTile(
@@ -56,7 +57,7 @@ class DialogFrom extends StatelessWidget {
                   listTrController.receita.value= false ;
                   if (listTrController.despesa == true) {
                     transaction.typeTransaction = 'output';
-                  }
+                  }else{transaction.typeTransaction ='';}
                 },
               ),
               TextButton.icon(

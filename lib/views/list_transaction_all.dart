@@ -31,20 +31,27 @@ class ListTransactionsView extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                   child: Column(
                     children: [
+                      
                       Row(
+                        
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            listTrController
-                                .transactionAll[index].nameTransaction
-                                .toString(),
-                            style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 16,
+                          SizedBox(
+                            width: 80,
+                            child: Text(
+                              
+                              listTrController
+                                  .transactionAll[index].nameTransaction
+                                  .toString(),
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 16,
+                              ),
+                              
                             ),
                           ),
-                          Row(
-                            children: [
+                          
+                            
                               Text(
                                 'Valor : R\$ ${listTrController.transactionAll[index].value}'
                                     .toString(),
@@ -57,8 +64,8 @@ class ListTransactionsView extends StatelessWidget {
                                 icon: Icon(Icons.delete_forever_outlined),
                               ),
                             ],
-                          ),
-                        ],
+                          
+                        
                       ),
                           Text('${listTrController.transactionAll[index].date}'),
                     ],

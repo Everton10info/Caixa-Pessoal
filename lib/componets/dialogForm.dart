@@ -65,6 +65,7 @@ class DialogFrom extends StatelessWidget {
                   transaction.nameTransaction = controllerName.text;
                   transaction.value = double.parse(controllerValue.text);
                   listTrController.buttonFunctionAdd(transaction);
+
                   Get.to(()=>ListTransactionsView());
                 },
                 icon: Icon(Icons.add_task_outlined),

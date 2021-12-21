@@ -1,6 +1,7 @@
 import 'package:cash_book/componets/dialogForm.dart';
 import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
+import 'package:cash_book/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +11,7 @@ import 'list_transaction_all.dart';
 // ignore: must_be_immutable
 class ListTransactionsInput extends StatelessWidget {
   final listTrController = Get.find<ListTrController>();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

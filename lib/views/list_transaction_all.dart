@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cash_book/componets/dialogForm.dart';
 import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
+import 'package:cash_book/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +12,7 @@ import 'home.dart';
 // ignore: must_be_immutable
 class ListTransactionsView extends StatelessWidget {
   final listTrController = Get.find<ListTrController>();
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +63,16 @@ class ListTransactionsView extends StatelessWidget {
                               ),
                               IconButton(
                                 alignment: Alignment.centerRight,
-                                onPressed: () {},
+                                onPressed: () {
+                            int id= listTrController.transactionAll[index].id;
+                        
+                             listTrController.transactionAll.removeWhere((tr)=>tr.id == id);
+                             listTrController.transactionInput.removeWhere((tr)=>tr.id == id);
+                             listTrController.transactionOutput.removeWhere((tr)=>tr.id == id);
+                              
+
+                              
+                                },
                                 icon: Icon(Icons.delete_forever_outlined),
                               ),
                             ],

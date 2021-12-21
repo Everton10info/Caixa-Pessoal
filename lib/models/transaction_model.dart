@@ -1,6 +1,8 @@
 
+import 'dart:math';
+
 class Transaction {
-  int? id = 11;
+  int? id = Random().nextInt(90);
   String? nameTransaction ;
   DateTime? date = DateTime.now();
   String? typeTransaction= 'input';

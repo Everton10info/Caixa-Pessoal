@@ -1,8 +1,11 @@
-import 'package:cash_book/models/transaction_model.dart';
+
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
+
 class ListTrController extends GetxController {
+
+
   late RxList transactionAll = [].obs;
   late RxList transactionInput = [].obs;
   late RxList transactionOutput = [].obs;
@@ -14,14 +17,17 @@ class ListTrController extends GetxController {
     transactionAll.add(transaction);
     if (transaction.typeTransaction == 'input') {
       transactionInput.add(transaction);
-    } else if (transaction.typeTransaction == 'output') {
+    } else {
       transactionOutput.add(transaction);
     }
+
 
     Get.back();
   }
 
-  removeTrasaction(transaction){
-    transaction.Delete();
+  removeTrasaction(tr,id){
+tr.removeWhere((tr)=> tr == id);
+   
+    
   }
 }

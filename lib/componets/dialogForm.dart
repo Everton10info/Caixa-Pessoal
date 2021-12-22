@@ -45,6 +45,7 @@ class DialogFrom extends StatelessWidget {
                   listTrController.despesa.value =false ;
                   if (listTrController.receita == true) {
                     transaction.typeTransaction = 'input';
+                   
                   }else{transaction.typeTransaction ='';}
                 },
               ),
@@ -64,9 +65,12 @@ class DialogFrom extends StatelessWidget {
                 onPressed: () {
                   transaction.nameTransaction = controllerName.text;
                   transaction.value = double.parse(controllerValue.text);
-                  listTrController.buttonFunctionAdd(transaction);
+                  listTrController.buttonFunctionAdd(transaction,transaction.value);
+                  listTrController.transactionAll.add(transaction);
+                 
 
                   Get.to(()=>ListTransactionsView());
+              
                 },
                 icon: Icon(Icons.add_task_outlined),
                 label: Text('Adicinar trasação'),

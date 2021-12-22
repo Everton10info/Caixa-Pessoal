@@ -3,16 +3,13 @@ import 'dart:io';
 import 'package:cash_book/componets/dialogForm.dart';
 import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
-import 'package:cash_book/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'home.dart';
 
 // ignore: must_be_immutable
 class ListTransactionsView extends StatelessWidget {
   final listTrController = Get.find<ListTrController>();
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,15 +31,12 @@ class ListTransactionsView extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                   child: Column(
                     children: [
-                      
                       Row(
-                        
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
                             width: 80,
                             child: Text(
-                              
                               listTrController
                                   .transactionAll[index].nameTransaction
                                   .toString(),
@@ -50,36 +44,27 @@ class ListTransactionsView extends StatelessWidget {
                                 color: Colors.red,
                                 fontSize: 16,
                               ),
-                              
                             ),
                           ),
-                          
+                          Text(
+                            'Valor : R\$ ${listTrController.transactionAll[index].value}'
+                                .toString(),
+                            style: TextStyle(color: Colors.blue, fontSize: 16),
+                          ),
+                          IconButton(
+                            alignment: Alignment.centerRight,
+                            onPressed: () {
+                              int id =
+                                  listTrController.transactionAll[index].id;
                             
-                              Text(
-                                'Valor : R\$ ${listTrController.transactionAll[index].value}'
-                                    .toString(),
-                                style:
-                                    TextStyle(color: Colors.blue, fontSize: 16),
-                              ),
-                              IconButton(
-                                alignment: Alignment.centerRight,
-                                onPressed: () {
-                            int id= listTrController.transactionAll[index].id;
-                        
-                             listTrController.transactionAll.removeWhere((tr)=>tr.id == id);
-                             listTrController.transactionInput.removeWhere((tr)=>tr.id == id);
-                             listTrController.transactionOutput.removeWhere((tr)=>tr.id == id);
-                              
-
-                              
-                                },
-                                icon: Icon(Icons.delete_forever_outlined),
-                              ),
-                            ],
-                          
-                        
+                              listTrController.transactionAll
+                              .removeWhere((tr) => tr.id == id);
+                            },
+                            icon: Icon(Icons.delete_forever_outlined),
+                          ),
+                        ],
                       ),
-                          Text('${listTrController.transactionAll[index].date}'),
+                      Text('${listTrController.transactionAll[index].date}'),
                     ],
                   ),
                 ),

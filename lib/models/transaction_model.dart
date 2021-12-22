@@ -5,7 +5,7 @@ class Transaction {
   int? id = Random().nextInt(90);
   String? nameTransaction ;
   DateTime? date = DateTime.now();
-  String? typeTransaction= 'input';
+  String? typeTransaction;
   double? value ;
 
   Transaction({

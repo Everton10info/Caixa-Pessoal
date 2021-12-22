@@ -14,6 +14,7 @@ class ListTransactionsOutputs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Total: ${listTrController.totalOutput}'),
         elevation: 3,
       ),
       body: Container(
@@ -23,23 +24,49 @@ class ListTransactionsOutputs extends StatelessWidget {
           itemBuilder: (context, index) {
             return ListTile(
               title: Card(
-                margin: EdgeInsetsDirectional.all(2),
                 elevation: 5,
-                borderOnForeground: true,
-                color: Colors.blue,
-                child: SizedBox(
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(listTrController
-                            .transactionOutput[index].nameTransaction
-                            .toString()),
-                        Divider(),
-                        Text(listTrController.transactionOutput[index].value
-                            .toString()),
-                      ],
-                    ),
+                child: Container(
+                  alignment: Alignment.center,
+                  //color: Colors.greenAccent,
+                  height: Get.height * 0.13,
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 80,
+                            child: Text(
+                              listTrController
+                                  .transactionOutput[index].nameTransaction
+                                  .toString(),
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Valor : R\$ ${listTrController.transactionOutput[index].value}'
+                                .toString(),
+                            style: TextStyle(color: Colors.blue, fontSize: 16),
+                          ),
+                          IconButton(
+                            alignment: Alignment.centerRight,
+                            onPressed: () {
+                              int id =
+                                  listTrController.transactionOutput[index].id;
+                              double v =
+                                  listTrController.transactionOutput[index].value;
+                              listTrController.removeTrasactionOutput(id, v);
+                            },
+                            icon: Icon(Icons.delete_forever_outlined),
+                          ),
+                        ],
+                      ),
+                      Text('${listTrController.transactionOutput[index].date}'),
+                    ],
                   ),
                 ),
               ),

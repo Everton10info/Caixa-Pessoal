@@ -3,7 +3,6 @@ import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
 import 'package:cash_book/models/transaction_model.dart';
 
-import 'package:cash_book/views/list_transaction_all.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,6 +31,7 @@ class MyHome extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+         child: Icon(Icons.add_business),
         onPressed: () {
           showDialog(
               context: context,

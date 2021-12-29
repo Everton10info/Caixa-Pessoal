@@ -20,19 +20,15 @@ class AppPage {
         page: () => ListTransactionsView(),
         transition: Transition.fade,
         binding: HomeBindings()),
-
-         GetPage(
+    GetPage(
         name: Routes.LIST_INPUTS,
         page: () => ListTransactionsInput(),
         transition: Transition.fade,
         binding: HomeBindings()),
-
-        GetPage(
+    GetPage(
         name: Routes.LIST_OUTPUTS,
         page: () => ListTransactionsOutputs(),
         transition: Transition.fade,
-        binding: HomeBindings()), 
+        binding: HomeBindings()),
   ];
-
-
 }

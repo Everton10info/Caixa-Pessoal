@@ -1,12 +1,12 @@
-
 import 'dart:math';
+
 
 class Transaction {
   int? id = Random().nextInt(90);
-  String? nameTransaction ;
+  String? nameTransaction;
   DateTime? date = DateTime.now();
   String? typeTransaction;
-  double? value ;
+  double? value;
 
   Transaction({
     id,
@@ -16,5 +16,3 @@ class Transaction {
     value,
   });
 }
-
- 

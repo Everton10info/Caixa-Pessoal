@@ -3,8 +3,8 @@ import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'home.dart';
-import 'list_transaction_all.dart';
+import 'package:intl/intl.dart';
+
 
 // ignore: must_be_immutable
 class ListTransactionsOutputs extends StatelessWidget {
@@ -14,7 +14,9 @@ class ListTransactionsOutputs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Total: ${listTrController.totalOutput}'),
+        title: Obx(() {
+          return Text(listTrController.totalOutput.obs.toString());
+        }),
         elevation: 3,
       ),
       body: Container(
@@ -57,15 +59,16 @@ class ListTransactionsOutputs extends StatelessWidget {
                             onPressed: () {
                               int id =
                                   listTrController.transactionOutput[index].id;
-                              double v =
-                                  listTrController.transactionOutput[index].value;
+                              double v = listTrController
+                                  .transactionOutput[index].value;
                               listTrController.removeTrasactionOutput(id, v);
                             },
                             icon: Icon(Icons.delete_forever_outlined),
                           ),
                         ],
                       ),
-                      Text('${listTrController.transactionOutput[index].date}'),
+                      Text(
+                          '${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].date)}'),
                     ],
                   ),
                 ),

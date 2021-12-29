@@ -3,6 +3,7 @@ import 'package:cash_book/models/transaction_model.dart';
 import 'package:cash_book/views/list_transaction_all.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class DialogFrom extends StatelessWidget {
@@ -21,6 +22,9 @@ class DialogFrom extends StatelessWidget {
           () => Column(
             children: [
               TextFormField(
+                inputFormatters: [
+        LengthLimitingTextInputFormatter(22),
+      ],
                 controller: controllerName,
                 decoration: InputDecoration(
                   border: UnderlineInputBorder(),
@@ -42,11 +46,12 @@ class DialogFrom extends StatelessWidget {
                 value: listTrController.receita.value,
                 onChanged: (bool? valor) {
                   listTrController.receita.value = valor!;
-                  listTrController.despesa.value =false ;
+                  listTrController.despesa.value = false;
                   if (listTrController.receita == true) {
                     transaction.typeTransaction = 'input';
-                   
-                  }else{transaction.typeTransaction ='';}
+                  } else {
+                    transaction.typeTransaction = '';
+                  }
                 },
               ),
               CheckboxListTile(
@@ -55,25 +60,26 @@ class DialogFrom extends StatelessWidget {
                 value: listTrController.despesa.value,
                 onChanged: (bool? valor) {
                   listTrController.despesa.value = valor!;
-                  listTrController.receita.value= false ;
+                  listTrController.receita.value = false;
                   if (listTrController.despesa == true) {
                     transaction.typeTransaction = 'output';
-                  }else{transaction.typeTransaction ='';}
+                  } else {
+                    transaction.typeTransaction = '';
+                  }
                 },
               ),
               TextButton.icon(
-                onPressed: () {
+                onPressed: () async{
                   transaction.nameTransaction = controllerName.text;
                   transaction.value = double.parse(controllerValue.text);
-                  listTrController.buttonFunctionAdd(transaction,transaction.value);
                   listTrController.transactionAll.add(transaction);
-                 
+                  listTrController.buttonFunctionAdd(
+                      transaction, transaction.value);
 
-                  Get.to(()=>ListTransactionsView());
-              
+                  await Get.to(() => ListTransactionsView());
                 },
                 icon: Icon(Icons.add_task_outlined),
-                label: Text('Adicinar trasação'),
+                label: Text('Adicinar transação financeira'),
               ),
             ],
           ),

@@ -46,6 +46,7 @@ class MyDrawer extends StatelessWidget {
             selectedTileColor: Colors.blueGrey,
             title: Text('HOME'),
             onTap: () {
+              Get.back();
               Get.to(
                 () => MyHome(),
               );

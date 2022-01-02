@@ -15,70 +15,115 @@ class ListTransactionsOutputs extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Obx(() {
-          return Text(listTrController.totalOutput.obs.toString());
+          return Text('Total: R\$ '+listTrController.totalOutput.obs.toString());
         }),
         elevation: 3,
       ),
-      body: Container(
-          child: Obx(
-        () => ListView.builder(
-          itemCount: listTrController.transactionOutput.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Card(
-                elevation: 5,
-                child: Container(
-                  alignment: Alignment.center,
-                  //color: Colors.greenAccent,
-                  height: Get.height * 0.13,
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: 80,
-                            child: Text(
-                              listTrController
-                                  .transactionOutput[index].nameTransaction
-                                  .toString(),
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 16,
+     body: Container(
+        color: Colors.blueGrey[300],
+        child: Obx(
+          () => ListView.builder(
+            itemCount: listTrController.transactionOutput.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Card(
+                  elevation: 13,
+                  child: Container(
+                    padding: const EdgeInsets.all(5.0),
+                    height: Get.height * 0.15,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              child: Text(
+                                listTrController
+                                    .transactionOutput[index].nameTransaction
+                                    .toString()
+                                    .toUpperCase(),
+                                style: TextStyle(
+                                  color: Colors.blue[900],
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ),
-                          ),
-                          Text(
-                            'Valor : R\$ ${listTrController.transactionOutput[index].value}'
-                                .toString(),
-                            style: TextStyle(color: Colors.blue, fontSize: 16),
-                          ),
-                          IconButton(
-                            alignment: Alignment.centerRight,
-                            onPressed: () {
-                              int id =
-                                  listTrController.transactionOutput[index].id;
-                              double v = listTrController
-                                  .transactionOutput[index].value;
-                              listTrController.removeTrasactionOutput(id, v);
-                            },
-                            icon: Icon(Icons.delete_forever_outlined),
-                          ),
-                        ],
-                      ),
-                      Text(
-                          '${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].date)}'),
-                    ],
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              child: Text(
+                                ' R\$ ' +
+                                    listTrController.transactionOutput[index].value
+                                        .toStringAsFixed(2),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            IconButton(
+                              alignment: Alignment.centerRight,
+                              onPressed: () {
+                                int id =
+                                    listTrController.transactionOutput[index].id;
+                                double v = listTrController
+                                    .transactionOutput[index].value;
+                                if (listTrController.transactionOutput[index]
+                                        .typeTransaction ==
+                                    'output') {
+                                  listTrController.removeTrasactionOutput(
+                                      id, v);
+                                } else if (listTrController
+                                        .transactionOutput[index]
+                                        .typeTransaction ==
+                                    'input') {
+                                  listTrController.removeTrasactionInput(id, v);
+                                }
+                              },
+                              icon: Icon(
+                                Icons.delete_sweep_rounded,
+                                size: 34,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          height: 22,
+                          color: Colors.blue[400],
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  child: Text(
+                                    'Lançado em : ${DateFormat('dd/MM/yyyy').format(listTrController.transactionOutput[index].date)}',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
-      )),
+      ),
       drawer: MyDrawer(),
       floatingActionButton: FloatingActionButton(
+         child: Icon(Icons.add_business),
         onPressed: () {
           showDialog(
               context: context,

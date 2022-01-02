@@ -12,47 +12,54 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       elevation: 2,
-      child: ListView(
-        padding: EdgeInsets.all(9),
-        children: [
-          ListTile(
-            selectedTileColor: Colors.blueGrey,
-            title: Text('Listas'),
-            onTap: () {
-              Get.to(
-                () => ListTransactionsView(),
-              );
-            },
-          ),
-          ListTile(
-            selectedTileColor: Colors.blueGrey,
-            title: Text('Listas de Entradas'),
-            onTap: () {
-              Get.to(
-                () => ListTransactionsInput(),
-              );
-            },
-          ),
-          ListTile(
-            selectedTileColor: Colors.blueGrey,
-            title: Text('Listas de Despesas'),
-            onTap: () {
-              Get.to(
-                () => ListTransactionsOutputs(),
-              );
-            },
-          ),
-          ListTile(
-            selectedTileColor: Colors.blueGrey,
-            title: Text('HOME'),
-            onTap: () {
-              Get.back();
-              Get.to(
-                () => MyHome(),
-              );
-            },
-          ),
-        ],
+      child: Container(
+        color: Colors.blueGrey[300],
+        child: ListView(
+          padding: EdgeInsets.all(9),
+          children: [
+            ListTile(
+              selectedTileColor: Colors.blueGrey,
+              title: Text('Listas', style: TextStyle(color: Colors.white, fontSize: 17,
+                                  fontWeight: FontWeight.w700 ),),
+              onTap: () {
+                Get.to(
+                  () => ListTransactionsView(),
+                );
+              },
+            ),
+            ListTile(
+              selectedTileColor: Colors.blueGrey,
+              title: Text('Listas de Entradas',style: TextStyle(color: Colors.white, fontSize: 17,
+                                  fontWeight: FontWeight.w700 ),),
+              onTap: () {
+                Get.to(
+                  () => ListTransactionsInput(),
+                );
+              },
+            ),
+            ListTile(
+              selectedTileColor: Colors.blueGrey,
+              title: Text('Listas de Despesas',style: TextStyle(color: Colors.white, fontSize: 17,
+                                  fontWeight: FontWeight.w700 ),),
+              onTap: () {
+                Get.to(
+                  () => ListTransactionsOutputs(),
+                );
+              },
+            ),
+            ListTile(
+              selectedTileColor: Colors.blueGrey,
+              title: Text('HOME',style: TextStyle(color: Colors.white, fontSize: 17,
+                                  fontWeight: FontWeight.w700 ),),
+              onTap: () {
+                Get.back();
+                Get.to(
+                  () => MyHome(),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

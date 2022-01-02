@@ -13,6 +13,7 @@ class DialogFrom extends StatelessWidget {
     TextEditingController controllerValue = TextEditingController();
     final listTrController = Get.find<ListTrController>();
     final transaction = Transaction();
+    transaction.typeTransaction = '';
 
     return Padding(
       padding: const EdgeInsets.all(10),
@@ -23,7 +24,7 @@ class DialogFrom extends StatelessWidget {
             children: [
               TextFormField(
                 inputFormatters: [
-        LengthLimitingTextInputFormatter(22),
+        LengthLimitingTextInputFormatter(28),
       ],
                 controller: controllerName,
                 decoration: InputDecoration(
@@ -33,6 +34,9 @@ class DialogFrom extends StatelessWidget {
               ),
               Divider(),
               TextFormField(
+                        inputFormatters: [
+        LengthLimitingTextInputFormatter(7),
+      ],
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 controller: controllerValue,
                 decoration: InputDecoration(
@@ -70,11 +74,12 @@ class DialogFrom extends StatelessWidget {
               ),
               TextButton.icon(
                 onPressed: () async{
+                  
                   transaction.nameTransaction = controllerName.text;
                   transaction.value = double.parse(controllerValue.text);
-                  listTrController.transactionAll.add(transaction);
                   listTrController.buttonFunctionAdd(
                       transaction, transaction.value);
+                  listTrController.transactionAll.add(transaction);
 
                   await Get.to(() => ListTransactionsView());
                 },

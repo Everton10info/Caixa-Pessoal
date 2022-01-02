@@ -15,13 +15,17 @@ class MyHome extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 3,
-        title: Center(
-          child: Text(
-            "Cash Book",
-          ),
+        title: Container(
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+            children:[ Text("LIVRO CAIXA",
+            style:TextStyle(),
+              
+            ),
+            ]),
         ),
       ),
-      backgroundColor: Colors.blueGrey[100],
+      backgroundColor: Colors.blueGrey[400],
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

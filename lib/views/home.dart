@@ -12,8 +12,10 @@ class MyHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
+        
         elevation: 3,
         title: Container(
           child: Row(
@@ -29,13 +31,15 @@ class MyHome extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/illustration.jpeg'),
+            image: AssetImage('assets/images/img3.gif'),
             fit: BoxFit.cover,
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        
          child: Icon(Icons.add_business),
+         focusElevation: 50,
         onPressed: () {
           showDialog(
               context: context,

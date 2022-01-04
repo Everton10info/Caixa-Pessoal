@@ -1,6 +1,7 @@
 import 'package:cash_book/componets/dialogForm.dart';
 import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -11,6 +12,8 @@ class ListTransactionsInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+       listTrController.sumTotal.value =
+        listTrController.totalInput.value - listTrController.totalOutput.value;
     return Scaffold(
       appBar: AppBar(
         title: Obx(() {
@@ -43,7 +46,7 @@ class ListTransactionsInput extends StatelessWidget {
                                     .toString()
                                     .toUpperCase(),
                                 style: TextStyle(
-                                  color: Colors.blue[900],
+                                  color: Colors.blue[50],
                                   fontSize: 17,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -55,16 +58,23 @@ class ListTransactionsInput extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
+                              decoration: BoxDecoration(
+                              color: Colors.cyan[50],
+                                borderRadius: BorderRadius.circular(13)
+                              ),
                               alignment: Alignment.center,
-                              child: Text(
-                                ' R\$ ' +
-                                    listTrController.transactionInput[index].value
-                                        .toStringAsFixed(2),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Text(
+                                  ' R\$ ' +
+                                      listTrController.transactionInput[index].value
+                                          .toStringAsFixed(2),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.deepOrange[600],
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                               ),
                             ),

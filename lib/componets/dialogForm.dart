@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cash_book/controllers/controllersList.dart';
 import 'package:cash_book/models/transaction_model.dart';
 import 'package:cash_book/views/list_transaction_all.dart';
@@ -7,36 +9,52 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class DialogFrom extends StatelessWidget {
+  final formKey = GlobalKey<FormState>();
+  final trKey = GlobalKey<FormFieldState>();
+  final valueKey = GlobalKey<FormFieldState>();
+  final listTrController = Get.find<ListTrController>();
+
   @override
   Widget build(BuildContext context) {
     TextEditingController controllerName = TextEditingController();
     TextEditingController controllerValue = TextEditingController();
     final listTrController = Get.find<ListTrController>();
     final transaction = Transaction();
-    transaction.typeTransaction = '';
 
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Container(
-        height: Get.height * 0.4,
+        height: Get.height * 0.5,
         child: Obx(
           () => Column(
             children: [
               TextFormField(
+                key: trKey,
+                validator: (String? value) {
+                  if (value!.length < 3) {
+                    return 'Nome inválido';
+                  }
+                },
                 inputFormatters: [
-        LengthLimitingTextInputFormatter(28),
-      ],
+                  LengthLimitingTextInputFormatter(28),
+                ],
                 controller: controllerName,
                 decoration: InputDecoration(
                   border: UnderlineInputBorder(),
                   hintText: 'Nome da transação',
                 ),
               ),
-              Divider(),
+              // Divider(),
               TextFormField(
-                        inputFormatters: [
-        LengthLimitingTextInputFormatter(7),
-      ],
+                key: valueKey,
+                validator: (String? value) {
+                  if (value!.length < 1) {
+                    return 'Valor inválido';
+                  }
+                },
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(7),
+                ],
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 controller: controllerValue,
                 decoration: InputDecoration(
@@ -72,19 +90,27 @@ class DialogFrom extends StatelessWidget {
                   }
                 },
               ),
-              TextButton.icon(
-                onPressed: () async{
-                  
-                  transaction.nameTransaction = controllerName.text;
-                  transaction.value = double.parse(controllerValue.text);
-                  listTrController.buttonFunctionAdd(
-                      transaction, transaction.value);
-                  listTrController.transactionAll.add(transaction);
+              Container(
+                child: TextButton.icon(
+                  onPressed: () async {
+                    trKey.currentState?.validate();
+                    valueKey.currentState?.validate();
+                    if (transaction.typeTransaction == '' &&
+                        transaction.typeTransaction == '') {
+                      Get.snackbar('Escolha uma opção ', 'RECEITA OU DESPESA?');
+                    } else {
+                      transaction.nameTransaction = controllerName.text;
+                      transaction.value = double.parse(controllerValue.text);
+                      listTrController.buttonFunctionAdd(
+                          transaction, transaction.value);
+                      listTrController.transactionAll.add(transaction);
 
-                  await Get.to(() => ListTransactionsView());
-                },
-                icon: Icon(Icons.add_task_outlined),
-                label: Text('Adicinar transação financeira'),
+                      await Get.to(() => ListTransactionsView());
+                    }
+                  },
+                  icon: Icon(Icons.add_task_outlined),
+                  label: Text('Adicinar movimentação'),
+                ),
               ),
             ],
           ),

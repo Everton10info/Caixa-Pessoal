@@ -15,9 +15,13 @@ class ListTransactionsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    listTrController.sumTotal.value =
+        listTrController.totalInput.value - listTrController.totalOutput.value;
     return Scaffold(
       appBar: AppBar(
-        title: Text('ENTRADAS E SAÍDAS'),
+        title: Obx(() {
+          return Text('Total: R\$'+ listTrController.sumTotal.obs.toString());
+        }),
         elevation: 3,
       ),
       body: Container(
@@ -47,7 +51,7 @@ class ListTransactionsView extends StatelessWidget {
                                 style: TextStyle(
                                   color: Colors.blue[900],
                                   fontSize: 17,
-                                  fontWeight: FontWeight.w700,
+                                  //fontWeight: FontWeight.w700,
                                 ),
                               ),
                             ),
@@ -57,16 +61,23 @@ class ListTransactionsView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
+                              decoration: BoxDecoration(
+                              color: Colors.cyan[50],
+                                borderRadius: BorderRadius.circular(13)
+                              ),
                               alignment: Alignment.center,
-                              child: Text(
-                                ' R\$ ' +
-                                    listTrController.transactionAll[index].value
-                                        .toStringAsFixed(2),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Text(
+                                  ' R\$ ' +
+                                      listTrController.transactionAll[index].value
+                                          .toStringAsFixed(2),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.deepOrange[600],
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                               ),
                             ),

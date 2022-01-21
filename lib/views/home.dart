@@ -1,30 +1,27 @@
 import 'package:cash_book/componets/dialogForm.dart';
 import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
-import 'package:cash_book/models/transaction_model.dart';
+import 'package:cash_book/helperDatabase/transactionHelpers.dart.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MyHome extends StatelessWidget {
   final ListTrController listTrController = Get.put(ListTrController());
-  final Transaction transaction = Get.put(Transaction());
+  // final TransactionM transaction = Get.put(TransactionM());
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
-        
         elevation: 3,
         title: Container(
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-            children:[ Text("LIVRO CAIXA",
-            style:TextStyle(),
-              
+          child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+            Text(
+              "LIVRO CAIXA",
+              style: TextStyle(),
             ),
-            ]),
+          ]),
         ),
       ),
       backgroundColor: Colors.blueGrey[400],
@@ -37,9 +34,8 @@ class MyHome extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        
-         child: Icon(Icons.add_business),
-         focusElevation: 50,
+        child: Icon(Icons.add_business),
+        focusElevation: 50,
         onPressed: () {
           showDialog(
               context: context,

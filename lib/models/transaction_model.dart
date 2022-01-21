@@ -1,18 +1,29 @@
-import 'dart:math';
+class TransactionM {
+  int? id;
+  String nameTransaction;
+  DateTime date = DateTime.now() ;
+  String typeTransaction ;
+  double valor;
 
-
-class Transaction {
-  int? id = Random().nextInt(90);
-  String? nameTransaction;
-  DateTime? date = DateTime.now();
-  String? typeTransaction;
-  double? value;
-
-  Transaction({
+  TransactionM({
     id,
-    nameTransaction,
+    required this.nameTransaction,
     date,
-    typeTransaction,
-    value,
+    required this.typeTransaction,
+    required this.valor,
   });
+
+  Map<String, dynamic> toMap() => {
+        'id': id,
+        'nameTransaction': nameTransaction,
+        'date': date.toString(),
+        'typeTransaction': typeTransaction,
+        'valor': valor
+      };
+  factory TransactionM.fromJson(Map<String, dynamic> json) => new TransactionM(
+      id: json['id'],
+      nameTransaction: json['nameTransaction'],
+      date: json["date"],
+      typeTransaction: json['typeTransaction'],
+      valor: json['valor']);
 }

@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:cash_book/controllers/controllersList.dart';
+import 'package:cash_book/helperDatabase/transactionHelpers.dart.dart';
 import 'package:cash_book/models/transaction_model.dart';
 import 'package:cash_book/views/list_transaction_all.dart';
 
@@ -13,13 +15,17 @@ class DialogFrom extends StatelessWidget {
   final trKey = GlobalKey<FormFieldState>();
   final valueKey = GlobalKey<FormFieldState>();
   final listTrController = Get.find<ListTrController>();
+  
+  TextEditingController controllerName = TextEditingController();
+  TextEditingController controllerValue = TextEditingController();
+  final RxString typeTransaction = ''.obs;
+  final RxString nameTransaction = ''.obs;
+  final RxDouble valor = 0.0.obs;
+  final RxString date = ''.obs;
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controllerName = TextEditingController();
-    TextEditingController controllerValue = TextEditingController();
-    final listTrController = Get.find<ListTrController>();
-    final transaction = Transaction();
+    //var transaction = TransactionM();
 
     return Padding(
       padding: const EdgeInsets.all(10),
@@ -70,9 +76,9 @@ class DialogFrom extends StatelessWidget {
                   listTrController.receita.value = valor!;
                   listTrController.despesa.value = false;
                   if (listTrController.receita == true) {
-                    transaction.typeTransaction = 'input';
+                    typeTransaction.value = 'input';
                   } else {
-                    transaction.typeTransaction = '';
+                    typeTransaction.value = '';
                   }
                 },
               ),
@@ -84,27 +90,37 @@ class DialogFrom extends StatelessWidget {
                   listTrController.despesa.value = valor!;
                   listTrController.receita.value = false;
                   if (listTrController.despesa == true) {
-                    transaction.typeTransaction = 'output';
+                    typeTransaction.value = 'output';
                   } else {
-                    transaction.typeTransaction = '';
+                    typeTransaction.value = '';
                   }
                 },
               ),
+
               Container(
                 child: TextButton.icon(
                   onPressed: () async {
                     trKey.currentState?.validate();
                     valueKey.currentState?.validate();
-                    if (transaction.typeTransaction == '' &&
-                        transaction.typeTransaction == '') {
+                    if (typeTransaction == '' && typeTransaction == '') {
                       Get.snackbar('Escolha uma opção ', 'RECEITA OU DESPESA?');
                     } else {
-                      transaction.nameTransaction = controllerName.text;
-                      transaction.value = double.parse(controllerValue.text);
-                      listTrController.buttonFunctionAdd(
-                          transaction, transaction.value);
-                      listTrController.transactionAll.add(transaction);
+                      nameTransaction.value = controllerName.text;
+                      valor.value = double.parse(controllerValue.text);
+                     
+                      Rx<TransactionM> transaction = Rx(TransactionM(
+                          nameTransaction: nameTransaction.value,
+                          typeTransaction: typeTransaction.value,
+                          
+                          //date: date,
+                          valor: valor.value));
+                          print(typeTransaction.value);
+                      listTrController.addTransaction(transaction);
+                      listTrController.listAll();
+                     listTrController.inputs();
+                     listTrController.outputs();
 
+                      
                       await Get.to(() => ListTransactionsView());
                     }
                   },
@@ -118,4 +134,6 @@ class DialogFrom extends StatelessWidget {
       ),
     );
   }
+
+  
 }

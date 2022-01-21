@@ -5,23 +5,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-
 // ignore: must_be_immutable
 class ListTransactionsOutputs extends StatelessWidget {
   final listTrController = Get.find<ListTrController>();
 
   @override
   Widget build(BuildContext context) {
-       listTrController.sumTotal.value =
+    listTrController.sumTotal.value =
         listTrController.totalInput.value - listTrController.totalOutput.value;
     return Scaffold(
       appBar: AppBar(
         title: Obx(() {
-          return Text('Total: R\$ '+listTrController.totalOutput.obs.toString());
+          return Text(
+              'Total: R\$ ' + listTrController.totalOutput.obs.toString());
         }),
         elevation: 3,
       ),
-     body: Container(
+      body: Container(
         color: Colors.blueGrey[300],
         child: Obx(
           () => ListView.builder(
@@ -57,17 +57,17 @@ class ListTransactionsOutputs extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                           Container(
+                            Container(
                               decoration: BoxDecoration(
-                              color: Colors.cyan[50],
-                                borderRadius: BorderRadius.circular(13)
-                              ),
+                                  color: Colors.cyan[50],
+                                  borderRadius: BorderRadius.circular(13)),
                               alignment: Alignment.center,
                               child: Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Text(
                                   ' R\$ ' +
-                                      listTrController.transactionOutput[index].value
+                                      listTrController
+                                          .transactionOutput[index].valor
                                           .toStringAsFixed(2),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -81,20 +81,20 @@ class ListTransactionsOutputs extends StatelessWidget {
                             IconButton(
                               alignment: Alignment.centerRight,
                               onPressed: () {
-                                int id =
-                                    listTrController.transactionOutput[index].id;
+                                //int id = listTrController
+                                   // .transactionOutput[index].id;
                                 double v = listTrController
-                                    .transactionOutput[index].value;
+                                    .transactionOutput[index].valor;
                                 if (listTrController.transactionOutput[index]
                                         .typeTransaction ==
                                     'output') {
-                                  listTrController.removeTrasactionOutput(
-                                      id, v);
+                                 // listTrController.removeTrasactionOutput(
+                                     // id, v);
                                 } else if (listTrController
                                         .transactionOutput[index]
                                         .typeTransaction ==
                                     'input') {
-                                  listTrController.removeTrasactionInput(id, v);
+                                  //listTrController.removeTrasactionInput(id, v);
                                 }
                               },
                               icon: Icon(
@@ -132,7 +132,7 @@ class ListTransactionsOutputs extends StatelessWidget {
       ),
       drawer: MyDrawer(),
       floatingActionButton: FloatingActionButton(
-         child: Icon(Icons.add_business),
+        child: Icon(Icons.add_business),
         onPressed: () {
           showDialog(
               context: context,

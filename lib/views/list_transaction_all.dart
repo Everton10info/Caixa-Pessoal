@@ -6,7 +6,6 @@ import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
@@ -20,7 +19,7 @@ class ListTransactionsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Obx(() {
-          return Text('Total: R\$'+ listTrController.sumTotal.obs.toString());
+          return Text('Total: R\$' + listTrController.sumTotal.obs.toString());
         }),
         elevation: 3,
       ),
@@ -49,7 +48,7 @@ class ListTransactionsView extends StatelessWidget {
                                     .toString()
                                     .toUpperCase(),
                                 style: TextStyle(
-                                  color: Colors.blue[900],
+                                  color: Colors.white,
                                   fontSize: 17,
                                   //fontWeight: FontWeight.w700,
                                 ),
@@ -62,15 +61,15 @@ class ListTransactionsView extends StatelessWidget {
                           children: [
                             Container(
                               decoration: BoxDecoration(
-                              color: Colors.cyan[50],
-                                borderRadius: BorderRadius.circular(13)
-                              ),
+                                  color: Colors.cyan[50],
+                                  borderRadius: BorderRadius.circular(13)),
                               alignment: Alignment.center,
                               child: Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Text(
                                   ' R\$ ' +
-                                      listTrController.transactionAll[index].value
+                                      listTrController
+                                          .transactionAll[index].valor
                                           .toStringAsFixed(2),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -84,20 +83,20 @@ class ListTransactionsView extends StatelessWidget {
                             IconButton(
                               alignment: Alignment.centerRight,
                               onPressed: () {
-                                int id =
+                                int? id =
                                     listTrController.transactionAll[index].id;
                                 double v = listTrController
-                                    .transactionAll[index].value;
+                                    .transactionAll[index].valor;
                                 if (listTrController.transactionAll[index]
                                         .typeTransaction ==
                                     'output') {
-                                  listTrController.removeTrasactionOutput(
-                                      id, v);
+                                  //  listTrController.removeTrasactionOutput(
+                                  //  id, v);
                                 } else if (listTrController
                                         .transactionAll[index]
                                         .typeTransaction ==
                                     'input') {
-                                  listTrController.removeTrasactionInput(id, v);
+                                  //  listTrController.removeTrasactionInput(id, v);
                                 }
                               },
                               icon: Icon(
@@ -115,7 +114,7 @@ class ListTransactionsView extends StatelessWidget {
                               children: [
                                 Container(
                                   child: Text(
-                                    'Lançado em : ${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].date)}',
+                                    ' Lançado em :${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].date)} ',
                                     style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,

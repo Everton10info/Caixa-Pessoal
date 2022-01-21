@@ -1,8 +1,9 @@
 import '../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+
 void main() => runApp(GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // Define the default brightness and colors.
         brightness: Brightness.dark,

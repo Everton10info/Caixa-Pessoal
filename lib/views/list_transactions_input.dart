@@ -12,12 +12,13 @@ class ListTransactionsInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-       listTrController.sumTotal.value =
+    listTrController.sumTotal.value =
         listTrController.totalInput.value - listTrController.totalOutput.value;
     return Scaffold(
       appBar: AppBar(
         title: Obx(() {
-          return Text('Total: R\$ '+listTrController.totalInput.obs.toString());
+          return Text(
+              'Total: R\$ ' + listTrController.totalInput.obs.toString());
         }),
         elevation: 3,
       ),
@@ -59,16 +60,15 @@ class ListTransactionsInput extends StatelessWidget {
                           children: [
                             Container(
                               decoration: BoxDecoration(
-                              color: Colors.cyan[50],
-                                borderRadius: BorderRadius.circular(13)
-                              ),
+                                  color: Colors.cyan[50],
+                                  borderRadius: BorderRadius.circular(13)),
                               alignment: Alignment.center,
                               child: Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Text(
                                   ' R\$ ' +
-                                      listTrController.transactionInput[index].value
-                                          .toStringAsFixed(2),
+                                      listTrController
+                                          .transactionInput[index].valor.toStringAsFixed(2),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.deepOrange[600],
@@ -81,20 +81,20 @@ class ListTransactionsInput extends StatelessWidget {
                             IconButton(
                               alignment: Alignment.centerRight,
                               onPressed: () {
-                                int id =
+                                int? id =
                                     listTrController.transactionInput[index].id;
                                 double v = listTrController
-                                    .transactionInput[index].value;
+                                    .transactionInput[index].valor;
                                 if (listTrController.transactionInput[index]
                                         .typeTransaction ==
                                     'output') {
-                                  listTrController.removeTrasactionOutput(
-                                      id, v);
+                                  //listTrController.removeTrasactionOutput(
+                                     // id, v);
                                 } else if (listTrController
                                         .transactionInput[index]
                                         .typeTransaction ==
                                     'input') {
-                                  listTrController.removeTrasactionInput(id, v);
+                                  //l//istTrController.removeTrasactionInput(id, v);
                                 }
                               },
                               icon: Icon(
@@ -112,7 +112,7 @@ class ListTransactionsInput extends StatelessWidget {
                               children: [
                                 Container(
                                   child: Text(
-                                    'Lançado em : ${DateFormat('dd/MM/yyyy').format(listTrController.transactionInput[index].date)}',
+                                    '', //'Lançado em : ${DateFormat('dd/MM/yyyy').format(listTrController.transactionInput[index].date)}',
                                     style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,
@@ -132,7 +132,7 @@ class ListTransactionsInput extends StatelessWidget {
       ),
       drawer: MyDrawer(),
       floatingActionButton: FloatingActionButton(
-         child: Icon(Icons.add_business),
+        child: Icon(Icons.add_business),
         onPressed: () {
           showDialog(
               context: context,

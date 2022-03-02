@@ -24,3 +24,5 @@ void main() => runApp(GetMaterialApp(
       initialRoute: AppPage.INITIAL,
       getPages: AppPage.routes,
     ));
+
+ 

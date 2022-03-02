@@ -1,32 +1,26 @@
-import 'dart:convert';
-import 'dart:math';
-
 import 'package:cash_book/controllers/controllersList.dart';
-import 'package:cash_book/helperDatabase/transactionHelpers.dart.dart';
 import 'package:cash_book/models/transaction_model.dart';
 import 'package:cash_book/views/list_transaction_all.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class DialogFrom extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   final trKey = GlobalKey<FormFieldState>();
   final valueKey = GlobalKey<FormFieldState>();
   final listTrController = Get.find<ListTrController>();
-  
+
   TextEditingController controllerName = TextEditingController();
   TextEditingController controllerValue = TextEditingController();
   final RxString typeTransaction = ''.obs;
   final RxString nameTransaction = ''.obs;
   final RxDouble valor = 0.0.obs;
-  final RxString date = ''.obs;
+     var id;
 
   @override
   Widget build(BuildContext context) {
-    //var transaction = TransactionM();
-
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Container(
@@ -75,53 +69,58 @@ class DialogFrom extends StatelessWidget {
                 onChanged: (bool? valor) {
                   listTrController.receita.value = valor!;
                   listTrController.despesa.value = false;
-                  if (listTrController.receita == true) {
-                    typeTransaction.value = 'input';
-                  } else {
-                    typeTransaction.value = '';
-                  }
+                  listTrController.receita.value
+                      ? typeTransaction.value = 'input'
+                      : typeTransaction.value = '';
                 },
               ),
               CheckboxListTile(
-                title: Text('Despesa?'),
-                activeColor: Colors.blue,
-                value: listTrController.despesa.value,
-                onChanged: (bool? valor) {
-                  listTrController.despesa.value = valor!;
-                  listTrController.receita.value = false;
-                  if (listTrController.despesa == true) {
-                    typeTransaction.value = 'output';
-                  } else {
-                    typeTransaction.value = '';
-                  }
-                },
-              ),
+                  title: Text('Despesa?'),
+                  activeColor: Colors.blue,
+                  value: listTrController.despesa.value,
+                  onChanged: (bool? valor) {
+                    listTrController.despesa.value = valor!;
+                    listTrController.receita.value = false;
+
+                    listTrController.despesa.value
+                        ? typeTransaction.value = 'output'
+                        : typeTransaction.value = '';
+                  }),
 
               Container(
                 child: TextButton.icon(
                   onPressed: () async {
                     trKey.currentState?.validate();
                     valueKey.currentState?.validate();
-                    if (typeTransaction == '' && typeTransaction == '') {
+                    if (typeTransaction == '') {
                       Get.snackbar('Escolha uma opção ', 'RECEITA OU DESPESA?');
                     } else {
                       nameTransaction.value = controllerName.text;
-                      valor.value = double.parse(controllerValue.text);
-                     
-                      Rx<TransactionM> transaction = Rx(TransactionM(
+                      var valorTemp= double.parse(controllerValue.text);
+                      if(typeTransaction == 'input'){
+                        valor.value = valorTemp;
+                      }
+                      if(typeTransaction == 'output'){
+                        valor.value = valorTemp * (-1);
+                      }
+
+                   
+                      Rx<TransactionM> transaction = Rx(
+                        TransactionM(
                           nameTransaction: nameTransaction.value,
                           typeTransaction: typeTransaction.value,
-                          
-                          //date: date,
-                          valor: valor.value));
-                          print(typeTransaction.value);
+                          id: id,
+                          valor: valor.value,
+                        ),
+                      );
+
                       listTrController.addTransaction(transaction);
                       listTrController.listAll();
-                     listTrController.inputs();
-                     listTrController.outputs();
+                     
 
-                      
                       await Get.to(() => ListTransactionsView());
+
+                      Get.back();
                     }
                   },
                   icon: Icon(Icons.add_task_outlined),
@@ -134,6 +133,4 @@ class DialogFrom extends StatelessWidget {
       ),
     );
   }
-
-  
 }

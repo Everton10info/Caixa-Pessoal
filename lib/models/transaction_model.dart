@@ -1,12 +1,14 @@
+
+
 class TransactionM {
   int? id;
   String nameTransaction;
-  DateTime date = DateTime.now() ;
-  String typeTransaction ;
+  DateTime date = DateTime.now();
+  String typeTransaction;
   double valor;
 
   TransactionM({
-    id,
+    required this.id,
     required this.nameTransaction,
     date,
     required this.typeTransaction,

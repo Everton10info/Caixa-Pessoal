@@ -22,10 +22,5 @@ class TransactionM {
         'typeTransaction': typeTransaction,
         'valor': valor
       };
-  factory TransactionM.fromJson(Map<String, dynamic> json) => new TransactionM(
-      id: json['id'],
-      nameTransaction: json['nameTransaction'],
-      date: json["date"],
-      typeTransaction: json['typeTransaction'],
-      valor: json['valor']);
+ 
 }

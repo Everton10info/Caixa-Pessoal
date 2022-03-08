@@ -1,16 +1,17 @@
 import 'package:cash_book/componets/dialogForm.dart';
 import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MyHome extends StatelessWidget {
-  final ListTrController listTrController = Get.put(ListTrController());
+  MyHome(){
+    listTrController.getTransactions();
+  }
+  final listTrController = Get.find<ListTrController>();
 
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
       appBar: AppBar(
         elevation: 3,

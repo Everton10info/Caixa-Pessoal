@@ -66,46 +66,36 @@ class TransactionsHelpers {
     );
   }
 
-  /* Future sumInput() async {
+ Future<double?> sumTotal() async {
     final db = await database;
-    String sql = "SELECT SUM($valor) FROM $nametable WHERE $typeTransaction == 'input'";
-    var valueInput = await db!.rawQuery(sql);
-    var listValueInput = valueInput[0].values;
-    debugPrint('inputess --------------$listValueInput');
-    var inp = listValueInput.toString();
-    var valorTotal = '';
-     valorTotal = inp.substring(1, inp.length - 1);
-    debugPrint('${valorTotal.runtimeType}----$valorTotal ');
+    String sql = "SELECT SUM($valor) FROM $nametable ";
+    var value = await db!.rawQuery(sql);
+   var valueString = value[0].values.toString();
+   String? valueTotal = valueString.substring(1,valueString.length -1);
+    double? doubleTotal = double.tryParse(valueTotal);
+    return doubleTotal; 
+  } 
 
-    try {
-    listTrController.totalInput.value = double.parse(valorTotal);
-    debugPrint('inpuuuuuuu--------------------u ------${listTrController.totalInput}');
-      listTrController.sumTotal.value= listTrController.totalInput.value - listTrController.totalOutput.value;
-    } catch (e) {
- debugPrint('iinpuuuu-no');
-      
-
-    }
-  } */
-/* 
-  Future sumOutput(totalOutput) async {
+  Future<double?> outputTotal() async {
     final db = await database;
-    String sql = "SELECT SUM($valor) FROM $nametable WHERE $typeTransaction == 'output'";
-    var valueOutput = await db!.rawQuery(sql);
-    var listValueOutput = valueOutput[0].values;
-    debugPrint('outeputess --------------$listValueOutput');
-    var out = listValueOutput.toString();
-    var valorTotal = '';
-   valorTotal = out.substring(1, out.length - 1);
-   try {
-    debugPrint('${valorTotal.runtimeType}----$valorTotal ');
-    totalOutput.value = double.parse(valorTotal);
-    listTrController.sumTotal.value= listTrController.totalInput.value - listTrController.totalOutput.value;
-   } catch (e) {
-    debugPrint('inppppu--------------------u ------${listTrController.totalOutput}');
-   } 
+    String sql = "SELECT SUM($valor) FROM $nametable WHERE typeTransaction == 'output' ";
+    var value = await db!.rawQuery(sql);
+   var valueString = value[0].values.toString();
+   String? valueTotal = valueString.substring(1,valueString.length -1);
+    double? doubleTotal = double.tryParse(valueTotal);
+    return doubleTotal; 
+  } 
 
-  }*/
+   Future<double?> inputTotal() async {
+    final db = await database;
+    String sql = "SELECT SUM($valor) FROM $nametable WHERE typeTransaction == 'input' ";
+    var value = await db!.rawQuery(sql);
+   var valueString = value[0].values.toString();
+   String? valueTotal = valueString.substring(1,valueString.length -1);
+    double? doubleTotal = double.tryParse(valueTotal);
+    return doubleTotal; 
+  } 
+
 
   Future list() async {
     Database? db = await this.database;
@@ -115,7 +105,7 @@ class TransactionsHelpers {
     return list;
   }
 
-  /* Future listInput() async {
+Future listInputDb() async {
     Database? db = await this.database;
     String sql = "SELECT * FROM $nametable WHERE $typeTransaction = 'input' ";
     List list = await db!.rawQuery(sql);
@@ -124,11 +114,11 @@ class TransactionsHelpers {
     return list;
   }
 
-  Future listOutput() async {
+  Future listOutputDb() async {
     Database? db = await this.database;
     String sql = "SELECT * FROM $nametable WHERE $typeTransaction = 'output' ";
     List list = await db!.rawQuery(sql);
-    //print('outpu --$list');
+    print('outpu --$list');
     return list;
-  } */
+  } 
 }

@@ -1,8 +1,9 @@
+
 import '../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() => runApp(GetMaterialApp(
+void main() async => runApp (GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // Define the default brightness and colors.
@@ -24,5 +25,7 @@ void main() => runApp(GetMaterialApp(
       initialRoute: AppPage.INITIAL,
       getPages: AppPage.routes,
     ));
+     
 
  
+   

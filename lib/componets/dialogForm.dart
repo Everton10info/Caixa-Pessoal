@@ -5,19 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+enum Types { input, output }
+
 // ignore: must_be_immutable
 class DialogFrom extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   final trKey = GlobalKey<FormFieldState>();
   final valueKey = GlobalKey<FormFieldState>();
   final listTrController = Get.find<ListTrController>();
-
   TextEditingController controllerName = TextEditingController();
   TextEditingController controllerValue = TextEditingController();
   final RxString typeTransaction = ''.obs;
   final RxString nameTransaction = ''.obs;
   final RxDouble valor = 0.0.obs;
-     var id;
+  var id;
+  RxBool receita = false.obs;
+  RxBool despesa = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -62,27 +65,31 @@ class DialogFrom extends StatelessWidget {
                   hintText: 'Valor da transação',
                 ),
               ),
+
               CheckboxListTile(
+                selected: false,
                 title: Text('Receita?'),
                 activeColor: Colors.blue,
-                value: listTrController.receita.value,
-                onChanged: (bool? valor) {
-                  listTrController.receita.value = valor!;
-                  listTrController.despesa.value = false;
-                  listTrController.receita.value
+                value: receita.value,
+                onChanged: (bool? value) {
+                 receita.value = value!;
+                 despesa.value = false;
+                receita.value
                       ? typeTransaction.value = 'input'
                       : typeTransaction.value = '';
+                  value = false;
                 },
               ),
               CheckboxListTile(
+                  selected: false,
                   title: Text('Despesa?'),
                   activeColor: Colors.blue,
-                  value: listTrController.despesa.value,
-                  onChanged: (bool? valor) {
-                    listTrController.despesa.value = valor!;
-                    listTrController.receita.value = false;
+                  value: despesa.value,
+                  onChanged: (bool? value) {
+                   despesa.value = value!;
+                   receita.value = false;
 
-                    listTrController.despesa.value
+                 despesa.value
                         ? typeTransaction.value = 'output'
                         : typeTransaction.value = '';
                   }),
@@ -96,15 +103,14 @@ class DialogFrom extends StatelessWidget {
                       Get.snackbar('Escolha uma opção ', 'RECEITA OU DESPESA?');
                     } else {
                       nameTransaction.value = controllerName.text;
-                      var valorTemp= double.parse(controllerValue.text);
-                      if(typeTransaction == 'input'){
+                      var valorTemp = double.parse(controllerValue.text);
+                      if (typeTransaction == 'input') {
                         valor.value = valorTemp;
                       }
-                      if(typeTransaction == 'output'){
+                      if (typeTransaction == 'output') {
                         valor.value = valorTemp * (-1);
                       }
 
-                   
                       Rx<TransactionM> transaction = Rx(
                         TransactionM(
                           nameTransaction: nameTransaction.value,
@@ -115,9 +121,10 @@ class DialogFrom extends StatelessWidget {
                       );
 
                       listTrController.addTransaction(transaction);
-                      listTrController.listAll();
-                     
 
+                      listTrController.getTransactions();
+                      // await listTrController. populand()
+                      ;
                       await Get.to(() => ListTransactionsView());
 
                       Get.back();

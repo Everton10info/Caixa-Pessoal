@@ -7,5 +7,6 @@ class HomeBindings implements Bindings {
   void dependencies() {
     Get.lazyPut<ListTrController>(() => ListTrController());
 
+
   }
 }

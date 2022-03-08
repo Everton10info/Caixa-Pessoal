@@ -19,7 +19,7 @@ class ListTransactionsInput extends StatelessWidget {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          title: Text('Total: R\$: ${listTrController.totalInput.value}'),
+          title: Text('Total: R\$: ${listTrController.totalInput.value.toStringAsFixed(2)}'),
           elevation: 3,
         ),
         body: Container(

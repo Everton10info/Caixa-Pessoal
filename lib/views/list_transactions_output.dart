@@ -19,7 +19,7 @@ ListTransactionsOutputs(){
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          title: Text('Total: R\$: ${listTrController.totalOutput.value}'),
+          title: Text('Total: R\$: ${listTrController.totalOutput.value.toStringAsFixed(2)}'),
           elevation: 3,
         ),
         body: Container(

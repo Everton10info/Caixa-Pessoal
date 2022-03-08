@@ -17,7 +17,7 @@ class ListTransactionsView extends StatelessWidget {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          title: Text('Total: R\$: ${listTrController.sumTotal.value}'),
+          title: Text('Total: R\$: ${listTrController.sumTotal.value.toStringAsFixed(2)}'),
           elevation: 3,
         ),
         body: Container(

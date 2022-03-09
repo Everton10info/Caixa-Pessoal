@@ -4,6 +4,8 @@ import 'package:cash_book/views/list_transaction_all.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+
 
 enum Types { input, output }
 
@@ -15,6 +17,7 @@ class DialogFrom extends StatelessWidget {
   final listTrController = Get.find<ListTrController>();
   TextEditingController controllerName = TextEditingController();
   TextEditingController controllerValue = TextEditingController();
+var setDate = DateTime.now();
   final RxString typeTransaction = ''.obs;
   final RxString nameTransaction = ''.obs;
   final RxDouble valor = 0.0.obs;
@@ -93,7 +96,22 @@ class DialogFrom extends StatelessWidget {
                         ? typeTransaction.value = 'output'
                         : typeTransaction.value = '';
                   }),
-
+          TextButton(
+    onPressed: () {
+        DatePicker.showDatePicker(context,
+                              showTitleActions: true,
+                              minTime: DateTime(2021, 1, 1),
+                              maxTime: DateTime(2023, 1, 1),
+                            //print('change $date');
+                           onConfirm: (date) {
+                            print('confirm $date');
+                            setDate = date;                            
+                          },  locale: LocaleType.pt);
+    },
+    child: Text(
+        'Data de vencimento ou recebimento',
+        style: TextStyle(color: Colors.blue),
+    )),
               Container(
                 child: TextButton.icon(
                   onPressed: () async {
@@ -116,6 +134,7 @@ class DialogFrom extends StatelessWidget {
                           nameTransaction: nameTransaction.value,
                           typeTransaction: typeTransaction.value,
                           id: id,
+                          dueDate: setDate,
                           valor: valor.value,
                         ),
                       );
@@ -133,6 +152,7 @@ class DialogFrom extends StatelessWidget {
                   icon: Icon(Icons.add_task_outlined),
                   label: Text('Adicinar movimentação'),
                 ),
+                
               ),
             ],
           ),

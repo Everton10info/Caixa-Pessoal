@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:cash_book/controllers/controllersList.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:cash_book/models/transaction_model.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
@@ -18,6 +18,7 @@ class TransactionsHelpers {
   String id = 'id';
   String nameTransaction = 'nameTransaction';
   String date = 'date';
+  String dueDate = 'dueDate';
   String typeTransaction = 'typeTransaction';
   String valor = 'valor';
 
@@ -46,6 +47,7 @@ class TransactionsHelpers {
         '$id INTEGER PRIMARY KEY AUTOINCREMENT,'
         '$nameTransaction TEXT,'
         '$date DATATIME,'
+        '$dueDate DATATIME,'
         '$typeTransaction TEXT,'
         '$valor DOUBLE)');
   }

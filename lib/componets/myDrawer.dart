@@ -13,7 +13,7 @@ class MyDrawer extends StatelessWidget {
     return Drawer(
       elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10),
         child: Container(
           color: Colors.blueGrey[300],
           child: ListView(

@@ -96,7 +96,7 @@ class ListTransactionsView extends StatelessWidget {
                             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                               Container(
                                 child: Text(
-                                  ' Lançado em :${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].date)} ',
+                                  ' Lançado em :${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].dueDate)} ',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.white,

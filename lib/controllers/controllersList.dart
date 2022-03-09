@@ -35,6 +35,7 @@ class ListTrController extends GetxController {
           id: transactionHellperAll[i]['id'],
           nameTransaction: transactionHellperAll[i]['nameTransaction'],
           typeTransaction: transactionHellperAll[i]['typeTransaction'],
+           dueDate: DateTime.parse(transactionHellperAll[i]['dueDate']),
           valor: transactionHellperAll[i]['valor'],
         );
       });
@@ -54,6 +55,7 @@ class ListTrController extends GetxController {
           id: transactionHellperInput[i]['id'],
           nameTransaction: transactionHellperInput[i]['nameTransaction'],
           typeTransaction: transactionHellperInput[i]['typeTransaction'],
+           dueDate: DateTime.parse(transactionHellperAll[i]['dueDate']),
           valor: transactionHellperInput[i]['valor'],
         );
       });
@@ -73,6 +75,7 @@ class ListTrController extends GetxController {
           id: transactionHellperOutput[i]['id'],
           nameTransaction: transactionHellperOutput[i]['nameTransaction'],
           typeTransaction: transactionHellperOutput[i]['typeTransaction'],
+          dueDate: DateTime.parse(transactionHellperAll[i]['dueDate']),
           valor: transactionHellperOutput[i]['valor'],
         );
       });

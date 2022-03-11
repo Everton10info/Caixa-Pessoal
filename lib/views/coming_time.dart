@@ -1,33 +1,28 @@
 import 'package:cash_book/componets/dialogForm.dart';
 import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
-import 'package:cash_book/models/transaction_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
-class ListTransactionsInput extends StatelessWidget {
-
-  ListTransactionsInput(){
- 
-;   // listTrController.populand();
-  }
+class ListComingTime extends StatelessWidget {
   final listTrController = Get.find<ListTrController>();
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
+    return 
+       Scaffold(
         appBar: AppBar(
-          title: Text('Total: R\$: ${listTrController.totalInput.value.toStringAsFixed(2)}'),
+          title: Text('CONTAS A VENCER!'),
           elevation: 3,
         ),
         body: Container(
           color: Colors.blueGrey[300],
           child: Obx(
             () => ListView.builder(
-              itemCount: listTrController.transactionInput.length,
+              itemCount: listTrController.transactionTimeEnd.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Card(
@@ -43,13 +38,13 @@ class ListTransactionsInput extends StatelessWidget {
                             children: [
                               Container(
                                 child: Text(
-                                  listTrController.transactionInput[index].nameTransaction
+                                  listTrController.transactionTimeEnd[index].nameTransaction
                                       .toString()
                                       .toUpperCase(),
                                   style: TextStyle(
-                                    color: Colors.blue[50],
+                                    color: Colors.white,
                                     fontSize: 17,
-                                    fontWeight: FontWeight.w700,
+                                    //fontWeight: FontWeight.w700,
                                   ),
                                 ),
                               ),
@@ -67,7 +62,7 @@ class ListTransactionsInput extends StatelessWidget {
                                   padding: const EdgeInsets.all(4.0),
                                   child: Text(
                                     ' R\$ ' +
-                                        listTrController.transactionInput[index].valor
+                                        listTrController.transactionTimeEnd[index].valor
                                             .toStringAsFixed(2),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -82,8 +77,8 @@ class ListTransactionsInput extends StatelessWidget {
                                 alignment: Alignment.centerRight,
                                 onPressed: () {
                                   listTrController.removeTransaction(
-                                      listTrController.transactionInput[index].id!);
-                                  listTrController.transactionInput.removeAt(index);
+                                      listTrController.transactionTimeEnd[index].id!);
+                                  listTrController.transactionTimeEnd.removeAt(index);
                                 },
                                 icon: Icon(
                                   Icons.delete_sweep_rounded,
@@ -94,11 +89,11 @@ class ListTransactionsInput extends StatelessWidget {
                           ),
                           Container(
                             height: 22,
-                            color: Colors.blue[400],
+                            color: Colors.red[400],
                             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                               Container(
                                 child: Text(
-                                  'Lançado em : ${DateFormat('dd/MM/yyyy').format(listTrController.transactionInput[index].date)}',
+                                  ' Vencendo :${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)}   ',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.white,
@@ -121,13 +116,14 @@ class ListTransactionsInput extends StatelessWidget {
           child: Icon(Icons.add_business),
           onPressed: () {
             showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return Dialog(child: DialogFrom());
-                });
+              context: context,
+              builder: (BuildContext context) {
+                return Dialog(child: DialogFrom());
+              },
+            );
           },
         ),
-      ),
+     
     );
   }
 }

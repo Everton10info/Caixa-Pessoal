@@ -8,9 +8,11 @@ class ListTrController extends GetxController {
   RxList<TransactionM> transactionInput = RxList<TransactionM>();
   RxList<TransactionM> transactionOutput = RxList<TransactionM>();
   RxList<TransactionM> transactionAll = RxList<TransactionM>();
+  RxList<TransactionM> transactionTimeEnd = RxList<TransactionM>();
   List<Map<String, dynamic>> transactionHellperAll = [];
   List<Map<String, dynamic>> transactionHellperInput = [];
   List<Map<String, dynamic>> transactionHellperOutput = [];
+  List<Map<String, dynamic>> transactionHellperTimeEnd = [];
 
   RxDouble totalInput = 0.0.obs;
   RxDouble totalOutput = 0.0.obs;
@@ -35,7 +37,7 @@ class ListTrController extends GetxController {
           id: transactionHellperAll[i]['id'],
           nameTransaction: transactionHellperAll[i]['nameTransaction'],
           typeTransaction: transactionHellperAll[i]['typeTransaction'],
-           dueDate: DateTime.parse(transactionHellperAll[i]['dueDate']),
+          dueDate: DateTime.parse(transactionHellperAll[i]['dueDate']),
           valor: transactionHellperAll[i]['valor'],
         );
       });
@@ -55,7 +57,7 @@ class ListTrController extends GetxController {
           id: transactionHellperInput[i]['id'],
           nameTransaction: transactionHellperInput[i]['nameTransaction'],
           typeTransaction: transactionHellperInput[i]['typeTransaction'],
-           dueDate: DateTime.parse(transactionHellperAll[i]['dueDate']),
+          dueDate: DateTime.parse(transactionHellperAll[i]['dueDate']),
           valor: transactionHellperInput[i]['valor'],
         );
       });
@@ -84,6 +86,24 @@ class ListTrController extends GetxController {
     totalOutput.value = await db.outputTotal() ?? 0;
 
     transactionOutput.value = await listOutPut();
+
+    Future<List<TransactionM>> listTimeEnd() async {
+      transactionHellperTimeEnd = await db.listTimeEndDb();
+
+      return List.generate(transactionTimeEnd.length, (i) {
+        return TransactionM(
+          id: transactionHellperTimeEnd[i]['id'],
+          nameTransaction: transactionHellperTimeEnd[i]['nameTransaction'],
+          typeTransaction: transactionHellperTimeEnd[i]['typeTransaction'],
+          dueDate: DateTime.parse(transactionHellperTimeEnd[i]['dueDate']),
+          date: transactionHellperTimeEnd[i]['date'],
+          valor: transactionHellperTimeEnd[i]['valor'],
+        );
+      });
+    }
+
+    transactionTimeEnd.value = await listTimeEnd();
+    print(transactionTimeEnd);
   }
 
   removeTransaction(

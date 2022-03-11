@@ -1,9 +1,11 @@
 
 
+
+
 class TransactionM {
   int? id;
   String nameTransaction;
-  DateTime date = DateTime.now();
+ DateTime date = DateTime.now() ;
   String typeTransaction;
   DateTime dueDate;
   double valor;

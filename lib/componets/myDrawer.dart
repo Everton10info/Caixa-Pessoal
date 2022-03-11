@@ -1,3 +1,4 @@
+import 'package:cash_book/views/coming_time.dart';
 import 'package:cash_book/views/home.dart';
 import 'package:cash_book/views/list_transaction_all.dart';
 import 'package:cash_book/views/list_transactions_input.dart';
@@ -21,8 +22,11 @@ class MyDrawer extends StatelessWidget {
             children: [
               ListTile(
                 selectedTileColor: Colors.blueGrey[800],
-                title: Text('Listas', style: TextStyle(color: Colors.white, fontSize: 17,
-                                    fontWeight: FontWeight.w700 ),),
+                title: Text(
+                  'Listas',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 17, fontWeight: FontWeight.w700),
+                ),
                 onTap: () {
                   Get.to(
                     () => ListTransactionsView(),
@@ -31,8 +35,11 @@ class MyDrawer extends StatelessWidget {
               ),
               ListTile(
                 selectedTileColor: Colors.blueGrey[800],
-                title: Text('Listas de Entradas',style: TextStyle(color: Colors.white, fontSize: 17,
-                                    fontWeight: FontWeight.w700 ),),
+                title: Text(
+                  'Listas de Entradas',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 17, fontWeight: FontWeight.w700),
+                ),
                 onTap: () {
                   Get.to(
                     () => ListTransactionsInput(),
@@ -41,8 +48,11 @@ class MyDrawer extends StatelessWidget {
               ),
               ListTile(
                 selectedTileColor: Colors.blueGrey[800],
-                title: Text('Listas de Despesas',style: TextStyle(color: Colors.white, fontSize: 17,
-                                    fontWeight: FontWeight.w700 ),),
+                title: Text(
+                  'Listas de Despesas',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 17, fontWeight: FontWeight.w700),
+                ),
                 onTap: () {
                   Get.to(
                     () => ListTransactionsOutputs(),
@@ -51,8 +61,25 @@ class MyDrawer extends StatelessWidget {
               ),
               ListTile(
                 selectedTileColor: Colors.blueGrey[800],
-                title: Text('HOME',style: TextStyle(color: Colors.white, fontSize: 17,
-                                    fontWeight: FontWeight.w700 ),),
+                title: Text(
+                  'Contas a vencer',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 17, fontWeight: FontWeight.w700),
+                ),
+                onTap: () {
+                  Get.back();
+                  Get.to(
+                    () => ListComingTime(),
+                  );
+                },
+              ),
+              ListTile(
+                selectedTileColor: Colors.blueGrey[800],
+                title: Text(
+                  'HOME',
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 17, fontWeight: FontWeight.w700),
+                ),
                 onTap: () {
                   Get.back();
                   Get.to(

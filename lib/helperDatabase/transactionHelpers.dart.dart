@@ -123,4 +123,11 @@ Future listInputDb() async {
     print('outpu --$list');
     return list;
   } 
+    Future listTimeEndDb() async {
+    Database? db = await this.database;
+    String sql = "SELECT * FROM $nametable WHERE ($dueDate +4) < $date  AND $typeTransaction = 'output'  ";
+    List list = await db!.rawQuery(sql);
+    print('ENDDDDDDDDDDD --$list');
+    return list;
+  } 
 }

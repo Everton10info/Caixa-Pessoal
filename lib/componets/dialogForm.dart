@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
 
 
 enum Types { input, output }
@@ -22,6 +23,7 @@ var setDate = DateTime.now();
   final RxString nameTransaction = ''.obs;
   final RxDouble valor = 0.0.obs;
   var id;
+
   RxBool receita = false.obs;
   RxBool despesa = false.obs;
 
@@ -100,8 +102,8 @@ var setDate = DateTime.now();
     onPressed: () {
         DatePicker.showDatePicker(context,
                               showTitleActions: true,
-                              minTime: DateTime(2021, 1, 1),
-                              maxTime: DateTime(2023, 1, 1),
+                              minTime: DateTime(2020, 1, 1),
+                              maxTime: DateTime(2025, 1, 1),
                             //print('change $date');
                            onConfirm: (date) {
                             print('confirm $date');
@@ -134,6 +136,7 @@ var setDate = DateTime.now();
                           nameTransaction: nameTransaction.value,
                           typeTransaction: typeTransaction.value,
                           id: id,
+                         
                           dueDate: setDate,
                           valor: valor.value,
                         ),

@@ -1,5 +1,6 @@
 import 'package:cash_book/dependencies/dependencies.dart';
 import 'package:cash_book/routes/routes.dart';
+import 'package:cash_book/views/coming_time.dart';
 import 'package:cash_book/views/home.dart';
 import 'package:cash_book/views/list_transaction_all.dart';
 import 'package:cash_book/views/list_transactions_input.dart';
@@ -28,6 +29,12 @@ class AppPage {
     GetPage(
         name: Routes.LIST_OUTPUTS,
         page: () => ListTransactionsOutputs(),
+        transition: Transition.fade,
+        binding: HomeBindings()),
+
+        GetPage(
+        name: Routes.LIST_TIMEOUTS,
+        page: () => ListComingTime(),
         transition: Transition.fade,
         binding: HomeBindings()),
   ];

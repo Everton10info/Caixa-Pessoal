@@ -44,12 +44,12 @@ class ListTransactionsInput extends StatelessWidget {
                               Container(
                                 child: Text(
                                   listTrController.transactionInput[index].nameTransaction
-                                      .toString()
-                                      .toUpperCase(),
+                                   .toString(),
+                                     
                                   style: TextStyle(
-                                    color: Colors.blue[50],
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                    fontSize: 20, 
+                                    
                                   ),
                                 ),
                               ),

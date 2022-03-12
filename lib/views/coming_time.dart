@@ -39,12 +39,12 @@ class ListComingTime extends StatelessWidget {
                               Container(
                                 child: Text(
                                   listTrController.transactionTimeEnd[index].nameTransaction
-                                      .toString()
-                                      .toUpperCase(),
+                                      .toString(),
+                                     
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 17,
-                                    //fontWeight: FontWeight.w700,
+                                    fontSize: 20, 
+                                    
                                   ),
                                 ),
                               ),
@@ -93,7 +93,7 @@ class ListComingTime extends StatelessWidget {
                             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                               Container(
                                 child: Text(
-                                  ' Vencendo :${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)}   ',
+                                  ' Vencimento! ${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)}   ',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.white,

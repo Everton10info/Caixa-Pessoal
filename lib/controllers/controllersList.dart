@@ -90,20 +90,19 @@ class ListTrController extends GetxController {
     Future<List<TransactionM>> listTimeEnd() async {
       transactionHellperTimeEnd = await db.listTimeEndDb();
 
-      return List.generate(transactionTimeEnd.length, (i) {
+      return List.generate(transactionHellperTimeEnd.length, (i) {
         return TransactionM(
           id: transactionHellperTimeEnd[i]['id'],
           nameTransaction: transactionHellperTimeEnd[i]['nameTransaction'],
           typeTransaction: transactionHellperTimeEnd[i]['typeTransaction'],
           dueDate: DateTime.parse(transactionHellperTimeEnd[i]['dueDate']),
-          date: transactionHellperTimeEnd[i]['date'],
           valor: transactionHellperTimeEnd[i]['valor'],
         );
       });
     }
 
     transactionTimeEnd.value = await listTimeEnd();
-    print(transactionTimeEnd);
+    print('$transactionTimeEnd');
   }
 
   removeTransaction(

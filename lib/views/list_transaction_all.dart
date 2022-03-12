@@ -41,12 +41,12 @@ class ListTransactionsView extends StatelessWidget {
                               Container(
                                 child: Text(
                                   listTrController.transactionAll[index].nameTransaction
-                                      .toString()
-                                      .toUpperCase(),
+                                     .toString(),
+                                     
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 17,
-                                    //fontWeight: FontWeight.w700,
+                                    fontSize: 20, 
+                                    
                                   ),
                                 ),
                               ),

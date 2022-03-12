@@ -8,7 +8,7 @@ void main() async => runApp (GetMaterialApp(
       theme: ThemeData(
         // Define the default brightness and colors.
         brightness: Brightness.dark,
-        primaryColor: Colors.lightBlue[800],
+        primaryColor: Color.fromARGB(255, 0, 71, 112),
 
         // Define the default font family.
         fontFamily: 'Georgia',
@@ -17,7 +17,7 @@ void main() async => runApp (GetMaterialApp(
         // text styling for headlines, titles, bodies of text, and more.
         textTheme: const TextTheme(
           headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          headline6: TextStyle(fontSize: 26.0, fontStyle: FontStyle.italic),
+          headline6: TextStyle(fontSize: 28.0, fontStyle: FontStyle.italic),
           bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),
       ),

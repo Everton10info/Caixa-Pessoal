@@ -43,12 +43,12 @@ ListTransactionsOutputs(){
                               Container(
                                 child: Text(
                                   listTrController.transactionOutput[index].nameTransaction
-                                      .toString()
-                                      .toUpperCase(),
+                                        .toString(),
+                                     
                                   style: TextStyle(
-                                    color: Colors.blue[900],
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                    fontSize: 20, 
+                                    
                                   ),
                                 ),
                               ),

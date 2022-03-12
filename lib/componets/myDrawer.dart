@@ -11,83 +11,87 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Container(
-          color: Colors.blueGrey[300],
-          child: ListView(
-            padding: EdgeInsets.all(9),
-            children: [
-              ListTile(
-                selectedTileColor: Colors.blueGrey[800],
-                title: Text(
-                  'Listas',
-                  style: TextStyle(
-                      color: Colors.white, fontSize: 17, fontWeight: FontWeight.w700),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(5, 15, 5, 10),
+      child: Drawer(
+        
+        elevation: 2,
+        child: Padding(
+          padding: const EdgeInsets.all(5),
+          child: Container(
+            color: Color.fromARGB(255, 192, 206, 211),
+            child: ListView(
+              padding: EdgeInsets.all(2),
+              children: [
+                ListTile(
+                  selectedTileColor: Color.fromARGB(255, 0, 82, 97),
+                  title: Text(
+                    'Listas',
+                    style: TextStyle(
+                        color: Colors.black, fontSize: 23, ),
+                  ),
+                  onTap: () {
+                    Get.to(
+                      () => ListTransactionsView(),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Get.to(
-                    () => ListTransactionsView(),
-                  );
-                },
-              ),
-              ListTile(
-                selectedTileColor: Colors.blueGrey[800],
-                title: Text(
-                  'Listas de Entradas',
-                  style: TextStyle(
-                      color: Colors.white, fontSize: 17, fontWeight: FontWeight.w700),
+                ListTile(
+                  selectedTileColor: Color.fromARGB(255, 0, 82, 97),
+                  title: Text(
+                    'Listas de Entradas',
+                    style: TextStyle(
+                        color: Colors.black, fontSize: 20, ),
+                  ),
+                  onTap: () {
+                    Get.to(
+                      () => ListTransactionsInput(),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Get.to(
-                    () => ListTransactionsInput(),
-                  );
-                },
-              ),
-              ListTile(
-                selectedTileColor: Colors.blueGrey[800],
-                title: Text(
-                  'Listas de Despesas',
-                  style: TextStyle(
-                      color: Colors.white, fontSize: 17, fontWeight: FontWeight.w700),
+                ListTile(
+                  selectedTileColor: Color.fromARGB(255, 0, 82, 97),
+                  title: Text(
+                    'Listas de Despesas',
+                    style: TextStyle(
+                        color: Colors.black, fontSize:20 ),
+                  ),
+                  onTap: () {
+                    Get.to(
+                      () => ListTransactionsOutputs(),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Get.to(
-                    () => ListTransactionsOutputs(),
-                  );
-                },
-              ),
-              ListTile(
-                selectedTileColor: Colors.blueGrey[800],
-                title: Text(
-                  'Contas a vencer',
-                  style: TextStyle(
-                      color: Colors.white, fontSize: 17, fontWeight: FontWeight.w700),
+                ListTile(
+                  selectedTileColor: Color.fromARGB(255, 0, 82, 97),
+                  title: Text(
+                    'Contas a vencer',
+                    style: TextStyle(
+                        color: Colors.black, fontSize: 20, ),
+                  ),
+                  onTap: () {
+                    Get.back();
+                    Get.to(
+                      () => ListComingTime(),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Get.back();
-                  Get.to(
-                    () => ListComingTime(),
-                  );
-                },
-              ),
-              ListTile(
-                selectedTileColor: Colors.blueGrey[800],
-                title: Text(
-                  'HOME',
-                  style: TextStyle(
-                      color: Colors.white, fontSize: 17, fontWeight: FontWeight.w700),
+                ListTile(
+                  selectedTileColor: Color.fromARGB(255, 0, 82, 97),
+                  title: Text(
+                    'HOME',
+                    style: TextStyle(
+                        color: Colors.black, fontSize: 20, ),
+                  ),
+                  onTap: () {
+                    Get.back();
+                    Get.to(
+                      () => MyHome(),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Get.back();
-                  Get.to(
-                    () => MyHome(),
-                  );
-                },
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

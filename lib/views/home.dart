@@ -26,9 +26,10 @@ class MyHome extends StatelessWidget {
       ),
       backgroundColor: Colors.blueGrey[400],
       body: Container(
+        alignment: Alignment.topCenter,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/img3.gif'),
+            image: AssetImage('assets/images/img5.gif'),
             fit: BoxFit.cover,
           ),
         ),

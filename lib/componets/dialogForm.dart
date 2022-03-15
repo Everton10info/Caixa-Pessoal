@@ -39,6 +39,8 @@ var setDate = DateTime.now();
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 TextFormField(
+                   textCapitalization: TextCapitalization.sentences,
+                  
                   key: trKey,
                   validator: (String? value) {
                     if (value!.length < 3) {
@@ -56,6 +58,8 @@ var setDate = DateTime.now();
                 ),
                 // Divider(),
                 TextFormField(
+                  textCapitalization: TextCapitalization.sentences,
+                  
                   key: valueKey,
                   validator: (String? value) {
                     if (value!.length < 1) {
@@ -117,7 +121,7 @@ var setDate = DateTime.now();
         
           'Escolha a data de entrada ou saída!',
        
-          style: TextStyle(color: Color.fromARGB(255, 255, 231, 13)),
+          style: TextStyle(color: Color.fromARGB(255, 228, 231, 9)),
     )),
              
                  TextButton(
@@ -156,7 +160,7 @@ var setDate = DateTime.now();
     
                         Get.back();
                       }
-                    }, child:   Text('Adicinar movimentação',style: TextStyle(color: Colors.deepOrangeAccent),),
+                    }, child:   Text('Adicinar movimentação',style: TextStyle(color: Color.fromARGB(255, 4, 218, 68)),),
                     //icon: Icon(Icons.add_task_outlined),
                   ),
                   

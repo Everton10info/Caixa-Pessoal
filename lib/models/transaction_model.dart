@@ -2,10 +2,12 @@
 
 
 
+import 'package:intl/intl.dart';
+
 class TransactionM {
   int? id;
   String nameTransaction;
- DateTime date = DateTime.now() ;
+  DateTime date = DateTime.now() ;
   String typeTransaction;
   DateTime dueDate;
   double valor;
@@ -22,8 +24,8 @@ class TransactionM {
   Map<String, dynamic> toMap() => {
         'id': id,
         'nameTransaction': nameTransaction,
-        'date': date.toString(),
-        'dueDate': dueDate.toString(),
+        'date': DateFormat('yyyy-MM-dd').format(date),
+        'dueDate': DateFormat('yyyy-MM-dd').format(dueDate),
         'typeTransaction': typeTransaction,
         'valor': valor
       };

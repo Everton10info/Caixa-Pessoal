@@ -2,6 +2,7 @@
 import '../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/services.dart';
 
 void main() async => runApp (GetMaterialApp(
       debugShowCheckedModeBanner: false,
@@ -16,8 +17,8 @@ void main() async => runApp (GetMaterialApp(
         // Define the default `TextTheme`. Use this to specify the default
         // text styling for headlines, titles, bodies of text, and more.
         textTheme: const TextTheme(
-          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          headline6: TextStyle(fontSize: 28.0, fontStyle: FontStyle.italic),
+          headline1: TextStyle(fontSize: 70.0, fontWeight: FontWeight.bold),
+          headline6: TextStyle(fontSize: 26.0, fontStyle: FontStyle.italic),
           bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
         ),
       ),

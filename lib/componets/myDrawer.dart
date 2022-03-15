@@ -12,14 +12,15 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(5, 15, 5, 10),
+      padding: const EdgeInsets.fromLTRB(5, 26, 5, 10),
       child: Drawer(
         
         elevation: 2,
         child: Padding(
           padding: const EdgeInsets.all(5),
           child: Container(
-            color: Color.fromARGB(255, 192, 206, 211),
+            
+            color: Color.fromARGB(255, 245, 254, 255),
             child: ListView(
               padding: EdgeInsets.all(2),
               children: [
@@ -65,7 +66,7 @@ class MyDrawer extends StatelessWidget {
                 ListTile(
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                   title: Text(
-                    'Contas a vencer',
+                    'Vence hoje',
                     style: TextStyle(
                         color: Colors.black, fontSize: 20, ),
                   ),

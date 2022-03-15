@@ -46,8 +46,8 @@ class TransactionsHelpers {
     await db.execute('CREATE TABLE $nametable('
         '$id INTEGER PRIMARY KEY AUTOINCREMENT,'
         '$nameTransaction TEXT,'
-        '$date DATATIME,'
-        '$dueDate DATATIME,'
+        '$date DATA,'
+        '$dueDate DATA,'
         '$typeTransaction TEXT,'
         '$valor DOUBLE)');
   }
@@ -125,7 +125,7 @@ Future listInputDb() async {
   } 
     Future listTimeEndDb() async {
     Database? db = await this.database;
-    String sql = "SELECT * FROM $nametable WHERE $dueDate <= $date  AND $typeTransaction = 'output'  ";
+    String sql = "SELECT * FROM $nametable WHERE $dueDate = $date AND $typeTransaction = 'output'  ";
     List list = await db!.rawQuery(sql);
     print('ENDDDDDDDDDDD --$list');
     return list;

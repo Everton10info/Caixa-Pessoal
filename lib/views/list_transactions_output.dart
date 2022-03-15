@@ -3,6 +3,7 @@ import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
 import 'package:cash_book/models/transaction_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -16,97 +17,136 @@ ListTransactionsOutputs(){
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
+     return Obx(() => Scaffold(
         appBar: AppBar(
           title: Text('Total: R\$: ${listTrController.totalOutput.value.toStringAsFixed(2)}'),
           elevation: 3,
         ),
         body: Container(
-          color: Colors.blueGrey[300],
+          color: Color.fromARGB(255, 228, 243, 228),
           child: Obx(
             () => ListView.builder(
               itemCount: listTrController.transactionOutput.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Card(
-                    elevation: 13,
-                    child: Container(
-                      padding: const EdgeInsets.all(5.0),
-                      height: Get.height * 0.15,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                child: Text(
-                                  listTrController.transactionOutput[index].nameTransaction
-                                        .toString(),
-                                     
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20, 
-                                    
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.cyan[50],
-                                    borderRadius: BorderRadius.circular(13)),
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
+                return Dismissible(
+                  direction: DismissDirection.horizontal,
+                  onDismissed: (direction){
+                      listTrController.removeTransaction(
+                                        listTrController.transactionOutput[index].id!);
+                                    listTrController.transactionOutput.removeAt(index);
+                  },
+                  
+                   background: Container(
+                     height: Get.height * 0.16,
+                color: Colors.transparent,
+                child: Align( 
+                alignment: Alignment.center, 
+                   child: Icon(Icons.delete, color: Colors.red,size: 50,),
+                 ),
+                ),
+                  key: ValueKey(listTrController.transactionOutput[index]),
+                  child: ListTile(
+                    title: Container(
+                     
+              width: Get.width *8,
+                      height: Get.height * 0.16,
+                      
+                
+                      child: Card(
+                       
+                        shape: RoundedRectangleBorder(
+                            borderRadius: const BorderRadius.all(
+                          Radius.circular(18.0),
+                        )),
+                        elevation: 13,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                         
                                   child: Text(
-                                    ' R\$ ' +
-                                        listTrController.transactionOutput[index].valor
-                                            .toStringAsFixed(2),
-                                    textAlign: TextAlign.center,
+                                    '${listTrController.transactionOutput[index].nameTransaction}  ',
+                                    textAlign: TextAlign.justify,
                                     style: TextStyle(
-                                      color: Colors.deepOrange[600],
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w400,
+                                      fontStyle: FontStyle.italic,
+                                      color: Colors.white,
+                                      fontSize: 22,
                                     ),
                                   ),
                                 ),
-                              ),
-                              IconButton(
-                                alignment: Alignment.centerRight,
-                                onPressed: () {
-                                  listTrController.removeTransaction(
-                                      listTrController.transactionOutput[index].id!);
-                                  listTrController.transactionOutput.removeAt(index);
-                                },
-                                icon: Icon(
-                                  Icons.delete_sweep_rounded,
-                                  size: 34,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            height: 22,
-                            color: Colors.blue[400],
-                            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                              Container(
-                                child: Text(
-                                  'Lançado em : ${DateFormat('dd/MM/yyyy').format(listTrController.transactionOutput[index].date)}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.all(5),
+                                  height: Get.height * 0.04,
+                                  decoration: BoxDecoration(
+                                      color: Colors.cyan[50],
+                                      borderRadius: BorderRadius.circular(50)),
+                                  alignment: Alignment.center,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Text(
+                                      ' R\$ ' +
+                                          listTrController.transactionOutput[index].valor
+                                              .toStringAsFixed(2),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.deepOrange[600],
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ]),
-                          ),
-                        ],
+                                IconButton(
+                                  alignment: Alignment.centerRight,
+                                  onPressed: () {
+                                    listTrController.removeTransaction(
+                                        listTrController.transactionOutput[index].id!);
+                                    listTrController.transactionOutput.removeAt(index);
+                                  },
+                                  icon: Icon(
+                                    Icons.delete_sweep_rounded,
+                                    size: 34,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Container(
+                                margin: EdgeInsets.only(left: 2.5, right: 2.5),
+                              height: Get.height * 0.045,
+                              color: Color.fromARGB(255, 0, 170, 192),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      ' Lançamento:\n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionOutput[index].date)} ',
+                                      style: TextStyle(
+                                        fontStyle: FontStyle.italic,
+                                        fontSize: 13,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    Text(
+                                      ' Vencimento: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionOutput[index].dueDate)} ',
+                                      style: TextStyle(
+                                        fontStyle: FontStyle.italic,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color.fromARGB(255, 184, 48, 7),
+                                      ),
+                                    ),
+                                  ]),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

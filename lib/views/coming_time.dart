@@ -3,6 +3,7 @@ import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -12,97 +13,130 @@ class ListComingTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-       Scaffold(
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
+      return Scaffold(
         appBar: AppBar(
-          title: Text('CONTAS A VENCER!'),
+          title: Text('VENCENDO HOJE!'),
           elevation: 3,
         ),
         body: Container(
-          color: Colors.blueGrey[300],
+          color: Color.fromARGB(255, 223, 235, 212),
           child: Obx(
             () => ListView.builder(
               itemCount: listTrController.transactionTimeEnd.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Card(
-                    elevation: 13,
-                    child: Container(
-                      padding: const EdgeInsets.all(5.0),
-                      height: Get.height * 0.15,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                child: Text(
-                                  listTrController.transactionTimeEnd[index].nameTransaction
-                                      .toString(),
-                                     
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20, 
-                                    
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.cyan[50],
-                                    borderRadius: BorderRadius.circular(13)),
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
+                return Dismissible(
+                  direction: DismissDirection.horizontal,
+                  onDismissed: (direction){
+                      listTrController.removeTransaction(
+                                        listTrController.transactionTimeEnd[index].id!);
+                                    listTrController.transactionTimeEnd.removeAt(index);
+                  },
+                  
+                   background: Container(
+                    height: Get.height * 0.16,
+            color: Colors.transparent,
+                child: Align( 
+                   alignment: Alignment.center, 
+                   child: Icon(Icons.delete, color: Colors.red,size: 50,),
+                 ),
+                ),
+                  key: ValueKey(listTrController.transactionTimeEnd[index]),
+                  child: ListTile(
+                    title: Container(
+                    
+                width: Get.width *10,
+                      height: Get.height * 0.16,
+                      
+                
+                      child: Card(
+                       
+                        shape: RoundedRectangleBorder(
+                            borderRadius: const BorderRadius.all(
+                          Radius.circular(16.0),
+                        )),
+                        elevation: 13,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                   margin: EdgeInsets.fromLTRB(0, 4, 2, 0),
                                   child: Text(
-                                    ' R\$ ' +
-                                        listTrController.transactionTimeEnd[index].valor
-                                            .toStringAsFixed(2),
-                                    textAlign: TextAlign.center,
+                                   
+                                    '${listTrController.transactionTimeEnd[index].nameTransaction}  ',
+                                    textAlign: TextAlign.justify,
                                     style: TextStyle(
-                                      color: Colors.deepOrange[600],
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w400,
+                                      fontStyle: FontStyle.italic,
+                                      color: Colors.white,
+                                      fontSize: 22,
                                     ),
                                   ),
                                 ),
-                              ),
-                              IconButton(
-                                alignment: Alignment.centerRight,
-                                onPressed: () {
-                                  listTrController.removeTransaction(
-                                      listTrController.transactionTimeEnd[index].id!);
-                                  listTrController.transactionTimeEnd.removeAt(index);
-                                },
-                                icon: Icon(
-                                  Icons.delete_sweep_rounded,
-                                  size: 34,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            height: 22,
-                            color: Colors.red[400],
-                            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                              Container(
-                                child: Text(
-                                  ' Vencimento! ${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)}   ',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.all(5),
+                                  height: Get.height * 0.04,
+                                  decoration: BoxDecoration(
+                                      color: Colors.cyan[50],
+                                      borderRadius: BorderRadius.circular(50)),
+                                  alignment: Alignment.center,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Text(
+                                      ' R\$ ' +
+                                          listTrController.transactionTimeEnd[index].valor
+                                              .toStringAsFixed(2),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.deepOrange[600],
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ]),
-                          ),
-                        ],
+                                IconButton(
+                                  alignment: Alignment.centerRight,
+                                  onPressed: () {
+                                    listTrController.removeTransaction(
+                                        listTrController.transactionTimeEnd[index].id!);
+                                    listTrController.transactionTimeEnd.removeAt(index);
+                                  },
+                                  icon: Icon(
+                                    Icons.delete_sweep_rounded,
+                                    size: 34,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Container(
+                                margin: EdgeInsets.only(left: 2.5, right: 2.5),
+                              height: Get.height * 0.045,
+                             
+                              color: Color.fromARGB(255, 184, 48, 7),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                   
+                                    Text(
+                                      ' Vencimento !: ${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)} ',
+                                      style: TextStyle(
+                                        fontStyle: FontStyle.italic,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ]),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

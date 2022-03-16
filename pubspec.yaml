@@ -33,6 +33,7 @@ dependencies:
   sqflite: ^2.0.1
   path_provider: ^2.0.8
   flutter_datetime_picker: ^1.5.1
+  google_fonts: ^2.3.1
 
 dev_dependencies:
   flutter_test:

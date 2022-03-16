@@ -66,13 +66,14 @@ class ListTransactionsView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
+                                  margin: EdgeInsets.all(3),
                                   child: Text(
                                     '${listTrController.transactionAll[index].nameTransaction}  ',
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                       fontStyle: FontStyle.italic,
                                       color: Colors.white,
-                                      fontSize: 22,
+                                     
                                     ),
                                   ),
                                 ),

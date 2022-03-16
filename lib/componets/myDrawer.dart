@@ -5,16 +5,18 @@ import 'package:cash_book/views/list_transactions_input.dart';
 import 'package:cash_book/views/list_transactions_output.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:cash_book/controllers/controllersList.dart';
+
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({Key? key}) : super(key: key);
-
+  
+   MyDrawer({Key? key}) : super(key: key);
+ final listTrController = Get.find<ListTrController>();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(5, 26, 5, 10),
-      child: Drawer(
-        
+      child: Drawer(       
         elevation: 2,
         child: Padding(
           padding: const EdgeInsets.all(5),
@@ -64,11 +66,13 @@ class MyDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
+                  
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
+                
                   title: Text(
-                    'Vence hoje',
+                    'Vencendo ! ',
                     style: TextStyle(
-                        color: Colors.black, fontSize: 20, ),
+                        color: listTrController.venceu.value==true ?Colors.red:Colors.black , fontSize: 20, ),
                   ),
                   onTap: () {
                     Get.back();

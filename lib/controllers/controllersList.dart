@@ -13,6 +13,7 @@ class ListTrController extends GetxController {
   List<Map<String, dynamic>> transactionHellperInput = [];
   List<Map<String, dynamic>> transactionHellperOutput = [];
   List<Map<String, dynamic>> transactionHellperTimeEnd = [];
+  RxBool venceu = false.obs;
 
   RxDouble totalInput = 0.0.obs;
   RxDouble totalOutput = 0.0.obs;

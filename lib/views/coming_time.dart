@@ -117,7 +117,7 @@ class ListComingTime extends StatelessWidget {
                             ),
                             Container(
                                 margin: EdgeInsets.only(left: 2.5, right: 2.5),
-                              height: Get.height * 0.045,
+                              height: Get.height * 0.04,
                              
                               color: Color.fromARGB(255, 184, 48, 7),
                               child: Row(
@@ -128,7 +128,7 @@ class ListComingTime extends StatelessWidget {
                                       ' Vencimento !: ${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)} ',
                                       style: TextStyle(
                                         fontStyle: FontStyle.italic,
-                                        fontSize: 15,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),

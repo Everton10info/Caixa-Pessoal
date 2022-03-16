@@ -33,7 +33,7 @@ var setDate = DateTime.now();
       padding: const EdgeInsets.all(6),
       child: SingleChildScrollView(
         child: Container(
-          height: Get.height * 0.6,
+          height: Get.height * 0.5,
           child: Obx(
             () => Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -110,7 +110,7 @@ var setDate = DateTime.now();
           DatePicker.showDatePicker(context,
                                 showTitleActions: true,
                                 minTime: DateTime(2020, 1, 1),
-                                maxTime: DateTime(2025, 1, 1),
+                               // maxTime: DateTime(2025, 1, 1),
                               //print('change $date');
                              onConfirm: (date) {
                               print('confirm $date');
@@ -119,12 +119,13 @@ var setDate = DateTime.now();
     },
     child: Text(
         
-          'Escolha a data de entrada ou saída!',
+          'Data de Vencimento ou Lançamento?  ',
        
           style: TextStyle(color: Color.fromARGB(255, 228, 231, 9)),
     )),
              
                  TextButton(
+                   
                     onPressed: () async {
                       trKey.currentState?.validate();
                       valueKey.currentState?.validate();
@@ -137,6 +138,7 @@ var setDate = DateTime.now();
                           valor.value = valorTemp;
                         }
                         if (typeTransaction == 'output') {
+                          
                           valor.value = valorTemp * (-1);
                         }
     
@@ -160,7 +162,7 @@ var setDate = DateTime.now();
     
                         Get.back();
                       }
-                    }, child:   Text('Adicinar movimentação',style: TextStyle(color: Color.fromARGB(255, 4, 218, 68)),),
+                    }, child:   Text('ADICIONAR TRANSAÇÃO',style: TextStyle(color: Color.fromARGB(255, 54, 253, 114),fontSize: 15,fontWeight: FontWeight.w400),),
                     //icon: Icon(Icons.add_task_outlined),
                   ),
                   

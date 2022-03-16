@@ -126,7 +126,7 @@ ListTransactionsOutputs(){
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      ' Lançamento:\n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionOutput[index].date)} ',
+                                      ' Registrado:\n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionOutput[index].date)} ',
                                       style: TextStyle(
                                         fontStyle: FontStyle.italic,
                                         fontSize: 13,
@@ -157,7 +157,9 @@ ListTransactionsOutputs(){
         ),
         drawer: MyDrawer(),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add_business),
+    backgroundColor: Color.fromARGB(255, 41, 236, 142),
+          child: Icon(Icons.add_task),
+        focusElevation: 50,
           onPressed: () {
             showDialog(
                 context: context,

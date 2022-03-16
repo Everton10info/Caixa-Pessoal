@@ -70,7 +70,7 @@ class MyDrawer extends StatelessWidget {
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                 
                   title: Text(
-                    'Vencendo ! ',
+                    'Vencendo!! ',
                     style: TextStyle(
                         color: listTrController.venceu.value==true ?Colors.red:Colors.black , fontSize: 20, ),
                   ),
@@ -84,7 +84,7 @@ class MyDrawer extends StatelessWidget {
                 ListTile(
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                   title: Text(
-                    'HOME',
+                    'Inicial',
                     style: TextStyle(
                         color: Colors.black, fontSize: 20, ),
                   ),

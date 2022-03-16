@@ -35,7 +35,8 @@ class MyHome extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add_business),
+        backgroundColor: Color.fromARGB(255, 41, 236, 142),
+          child: Icon(Icons.add_task),
         focusElevation: 50,
         onPressed: () {
           showDialog(

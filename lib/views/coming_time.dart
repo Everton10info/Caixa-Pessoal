@@ -128,7 +128,7 @@ class ListComingTime extends StatelessWidget {
                                       ' Vencimento !: ${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)} ',
                                       style: TextStyle(
                                         fontStyle: FontStyle.italic,
-                                        fontSize: 14,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
@@ -147,7 +147,9 @@ class ListComingTime extends StatelessWidget {
         ),
         drawer: MyDrawer(),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add_business),
+            backgroundColor: Color.fromARGB(255, 41, 236, 142),
+          child: Icon(Icons.add_task),
+        focusElevation: 50,
           onPressed: () {
             showDialog(
               context: context,

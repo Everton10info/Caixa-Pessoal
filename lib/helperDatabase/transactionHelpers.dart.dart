@@ -125,11 +125,21 @@ Future listInputDb() async {
   } 
     Future listTimeEndDb() async {
     Database? db = await this.database;
-    String sql = "SELECT * FROM $nametable WHERE $dueDate>= $date AND $typeTransaction = 'output'  ";
+    String sql = "SELECT * FROM $nametable WHERE $dueDate >= $date    AND $typeTransaction = 'output'  ";
     List list = await db!.rawQuery(sql);
     // ignore: unnecessary_null_comparison
     list.isNotEmpty? listTrController.venceu.value = true: listTrController.venceu.value = false;
     print('${listTrController.venceu.value}ttttttttttttttttttttttttttttttttt');
+    print('ENDDDDDDDDDDD --$list');
+    return list;
+  } 
+    Future listTimeInputDb() async {
+    Database? db = await this.database;
+    String sql = "SELECT * FROM $nametable WHERE $dueDate >= $date    AND $typeTransaction = 'output'  ";
+    List list = await db!.rawQuery(sql);
+    // ignore: unnecessary_null_comparison
+    list.isNotEmpty? listTrController.venceu.value = true: listTrController.venceu.value = false;
+    print('${listTrController.venceu.value}iiiiiiiiiiiiiiiiiiiiii');
     print('ENDDDDDDDDDDD --$list');
     return list;
   } 

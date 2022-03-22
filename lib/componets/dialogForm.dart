@@ -156,7 +156,7 @@ var setDate = DateTime.now();
                         listTrController.addTransaction(transaction);
     
                         listTrController.getTransactions();
-                        // await listTrController. populand()
+                      
                         ;
                         await Get.to(() => ListTransactionsView());
     

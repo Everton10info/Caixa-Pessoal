@@ -58,6 +58,16 @@ class TransactionsHelpers {
     var result = await db!.insert(nametable, tr.value.toMap());
     return result;
   }
+  Future<int> updateTr(Rx<TransactionM> up) async {
+   
+    final db = await database;
+    return await db!.update(
+      "$nametable",
+      up.value.toMap(),
+      where: "id = ?",
+      whereArgs: [up.value.id],
+    );
+  }
 
   Future<void> delete(int id) async {
     final db = await database;
@@ -68,36 +78,35 @@ class TransactionsHelpers {
     );
   }
 
- Future<double?> sumTotal() async {
+  Future<double?> sumTotal() async {
     final db = await database;
     String sql = "SELECT SUM($valor) FROM $nametable ";
     var value = await db!.rawQuery(sql);
-   var valueString = value[0].values.toString();
-   String? valueTotal = valueString.substring(1,valueString.length -1);
+    var valueString = value[0].values.toString();
+    String? valueTotal = valueString.substring(1, valueString.length - 1);
     double? doubleTotal = double.tryParse(valueTotal);
-    return doubleTotal; 
-  } 
+    return doubleTotal;
+  }
 
   Future<double?> outputTotal() async {
     final db = await database;
     String sql = "SELECT SUM($valor) FROM $nametable WHERE typeTransaction == 'output' ";
     var value = await db!.rawQuery(sql);
-   var valueString = value[0].values.toString();
-   String? valueTotal = valueString.substring(1,valueString.length -1);
+    var valueString = value[0].values.toString();
+    String? valueTotal = valueString.substring(1, valueString.length - 1);
     double? doubleTotal = double.tryParse(valueTotal);
-    return doubleTotal; 
-  } 
+    return doubleTotal;
+  }
 
-   Future<double?> inputTotal() async {
+  Future<double?> inputTotal() async {
     final db = await database;
     String sql = "SELECT SUM($valor) FROM $nametable WHERE typeTransaction == 'input' ";
     var value = await db!.rawQuery(sql);
-   var valueString = value[0].values.toString();
-   String? valueTotal = valueString.substring(1,valueString.length -1);
+    var valueString = value[0].values.toString();
+    String? valueTotal = valueString.substring(1, valueString.length - 1);
     double? doubleTotal = double.tryParse(valueTotal);
-    return doubleTotal; 
-  } 
-
+    return doubleTotal;
+  }
 
   Future list() async {
     Database? db = await this.database;
@@ -107,7 +116,7 @@ class TransactionsHelpers {
     return list;
   }
 
-Future listInputDb() async {
+  Future listInputDb() async {
     Database? db = await this.database;
     String sql = "SELECT * FROM $nametable WHERE $typeTransaction = 'input' ";
     List list = await db!.rawQuery(sql);
@@ -122,25 +131,33 @@ Future listInputDb() async {
     List list = await db!.rawQuery(sql);
     print('outpu --$list');
     return list;
-  } 
-    Future listTimeEndDb() async {
+  }
+
+  Future listTimeEndDb() async {
     Database? db = await this.database;
-    String sql = "SELECT * FROM $nametable WHERE $dueDate >= $date    AND $typeTransaction = 'output'  ";
+    String sql =
+        "SELECT * FROM $nametable WHERE $dueDate >= $date    AND $typeTransaction = 'output'  ";
     List list = await db!.rawQuery(sql);
     // ignore: unnecessary_null_comparison
-    list.isNotEmpty? listTrController.venceu.value = true: listTrController.venceu.value = false;
+    list.isNotEmpty
+        ? listTrController.venceu.value = true
+        : listTrController.venceu.value = false;
     print('${listTrController.venceu.value}ttttttttttttttttttttttttttttttttt');
     print('ENDDDDDDDDDDD --$list');
     return list;
-  } 
-    Future listTimeInputDb() async {
+  }
+
+  Future listTimeInputDb() async {
     Database? db = await this.database;
-    String sql = "SELECT * FROM $nametable WHERE $dueDate >= $date    AND $typeTransaction = 'output'  ";
+    String sql =
+        "SELECT * FROM $nametable WHERE $dueDate >= $date    AND $typeTransaction = 'output'  ";
     List list = await db!.rawQuery(sql);
     // ignore: unnecessary_null_comparison
-    list.isNotEmpty? listTrController.venceu.value = true: listTrController.venceu.value = false;
-    print('${listTrController.venceu.value}iiiiiiiiiiiiiiiiiiiiii');
-    print('ENDDDDDDDDDDD --$list');
+    list.isNotEmpty
+        ? listTrController.venceu.value = true
+        : listTrController.venceu.value = false;
+  
     return list;
-  } 
+  }
+
 }

@@ -1,4 +1,5 @@
 import 'package:cash_book/models/transaction_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../helperDatabase/transactionHelpers.dart.dart';
 
@@ -14,11 +15,43 @@ class ListTrController extends GetxController {
   List<Map<String, dynamic>> transactionHellperOutput = [];
   List<Map<String, dynamic>> transactionHellperTimeEnd = [];
   RxBool venceu = false.obs;
-
+  
+ var dueEd;
+  var idEd;
+  TextEditingController? controllerValueEdition = TextEditingController();
+  TextEditingController? controllerNameEdition = TextEditingController();
+  TextEditingController? controllerTypeEdition = TextEditingController();
+  TextEditingController? controllerDueEdition = TextEditingController();
+  Rx<TransactionM>? trUpdate;
   RxDouble totalInput = 0.0.obs;
   RxDouble totalOutput = 0.0.obs;
 
   RxDouble sumTotal = 0.0.obs;
+
+   setEdition(String name, String type, DateTime due, double valor, int id)  {
+  
+    trUpdate = Rx(
+      TransactionM(
+        id: id,
+        nameTransaction: name,
+        dueDate: due,
+        typeTransaction: type,
+        valor: valor,
+      ),
+    );
+ 
+  }
+
+   editionUpdate(tr) async {
+     //tr.value.nameTransaction = controllerNameEdition!.text;
+     tr.value.dueDate= dueEd;
+    int result = await db.updateTr(tr);
+    if (!result.isNaN) {
+      print('caregou editado ');
+    }
+    getTransactions();
+     
+  }
 
   void addTransaction(Rx<TransactionM> tr) async {
     int result = await db.insertTransaction(tr);
@@ -47,6 +80,7 @@ class ListTrController extends GetxController {
     sumTotal.value = await db.sumTotal() ?? 0;
 
     transactionAll.value = await listAll();
+    print('${transactionAll}');
 
 // inputs render
 

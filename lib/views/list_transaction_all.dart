@@ -1,9 +1,12 @@
 import 'package:cash_book/componets/dialogForm.dart';
+
 import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
-
+import 'package:cash_book/models/transaction_model.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -65,24 +68,64 @@ class ListTransactionsView extends StatelessWidget {
                               children: [
                                 Container(
                                   margin: EdgeInsets.all(1.5),
-                                  child: Text(
-                                    '${listTrController.transactionAll[index].nameTransaction}  ',
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      color: Colors.white,
+                                  child: InkWell(
+                                    onTap: () {
+                                      listTrController.setEdition(
+                                        listTrController.transactionAll[index].nameTransaction,
+                                        listTrController.transactionAll[index].typeTransaction,
+                                        listTrController.transactionAll[index].dueDate,
+                                        listTrController.transactionAll[index].valor,
+                                        listTrController.transactionAll[index].id!,
+                                      );
+
+                                      showDialog(
+                                         barrierColor:  Colors.blueGrey.withOpacity(0.5),
+                                        context: context,
+                                        builder: (_) => AlertDialog(
+                                          backgroundColor: Colors.black12.withOpacity(0.3),
+                                          content: Container(
+                                            decoration: BoxDecoration(borderRadius:  BorderRadius.all(Radius.circular(85))),
+                                            width: 30,
+                                            height: Get.height * 0.12,
+                                            child: Column(
+                                              children: [
+                                                TextFormField(
+                                                  controller:
+                                                      listTrController.controllerNameEdition =
+                                                          TextEditingController(
+                                                    text: listTrController
+                                                        .transactionAll[index].nameTransaction
+                                                        .toString(),
+                                                  ),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () {
+                                                    listTrController.editionUpdate(
+                                                        listTrController.trUpdate);
+
+                                                    Get.back();
+                                                  },
+                                                  child: Text('save edit'),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        barrierDismissible: true,
+                                      );
+                                    },
+                                    child: Text(
+                                      '${listTrController.transactionAll[index].nameTransaction}  ',
+                                      textAlign: TextAlign.justify,
+                                      style: TextStyle(
+                                        fontStyle: FontStyle.italic,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
                                 IconButton(
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return Dialog(child: DialogFrom());
-                                      },
-                                    );
-                                  },
+                                  onPressed: () {},
                                   icon: Icon(
                                     Icons.edit,
                                     size: 22,
@@ -147,13 +190,86 @@ class ListTransactionsView extends StatelessWidget {
                                     ),
                                     listTrController.transactionAll[index].typeTransaction ==
                                             'input'
-                                        ? Text(
-                                            ' Registrado: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].dueDate)} ',
-                                            style: TextStyle(
-                                              fontStyle: FontStyle.italic,
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.bold,
-                                              color: Color.fromARGB(255, 111, 238, 8),
+                                        ? InkWell(
+                                            onTap: () {
+                                              listTrController.setEdition(
+                                                listTrController
+                                                    .transactionAll[index].nameTransaction,
+                                                listTrController
+                                                    .transactionAll[index].typeTransaction,
+                                                listTrController.transactionAll[index].dueDate,
+                                                listTrController.transactionAll[index].valor,
+                                                listTrController.transactionAll[index].id!,
+                                              );
+
+                                              showDialog(
+                                                barrierColor:  Colors.blueGrey.withOpacity(0.5),
+                                              
+                                                context: context,
+                                                builder: (_) => AlertDialog(
+                                                  backgroundColor: Color.fromARGB(255, 69, 138, 104).withOpacity(0.5),
+                                                  content: Container(
+                                                    decoration: BoxDecoration(borderRadius:  BorderRadius.all(Radius.circular(45))),
+                                                    width: 40,
+                                                    height: Get.height * 0.17,
+                                                    child: Column(
+                                                      children: [
+                                                        TextButton(
+                                                            onPressed: () {
+                                                              DatePicker.showDatePicker(
+                                                                  context,
+                                                                  showTitleActions: true,
+                                                                  minTime:
+                                                                      DateTime(2020, 1, 1),
+                                                
+                                                                  // maxTime: DateTime(2025, 1, 1),
+                                                                  //print('change $date');
+                                                                  currentTime:listTrController.transactionAll[index].dueDate,
+                                                                  onConfirm: (date) {
+                                                                print('confirm $date');
+                                                                listTrController.dueEd= date ;
+                                                              }, locale: LocaleType.pt);
+                                                            },
+                                                            child: Text(
+                                                              'Alterar Vencimento ou Lançamento?  ',
+                                                              style: TextStyle(
+                                                                  color: Color.fromARGB(255, 240, 78, 78)),
+                                                            )),
+                                                        /* TextFormField(
+                                                  controller:
+                                                      listTrController.controllerNameEdition =
+                                                          TextEditingController(
+                                                    text: listTrController
+                                                        .transactionAll[index].nameTransaction
+                                                        .toString(),
+                                                  ),
+                                                ),  */
+
+                                                 
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            listTrController.editionUpdate(
+                                                                listTrController.trUpdate);
+
+                                                            Get.back();
+                                                          },
+                                                          child: Text('Save '),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                barrierDismissible: true,
+                                              );
+                                            },
+                                            child: Text(
+                                              ' Registrado: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].dueDate)} ',
+                                              style: TextStyle(
+                                                fontStyle: FontStyle.italic,
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color.fromARGB(255, 111, 238, 8),
+                                              ),
                                             ),
                                           )
                                         : Text(

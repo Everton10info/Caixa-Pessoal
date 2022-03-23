@@ -1,4 +1,5 @@
 import 'package:cash_book/componets/dialogForm.dart';
+import 'package:cash_book/componets/dialog_edition.dart';
 
 import 'package:cash_book/componets/myDrawer.dart';
 import 'package:cash_book/controllers/controllersList.dart';
@@ -54,66 +55,37 @@ class ListTransactionsView extends StatelessWidget {
                   key: ValueKey(listTrController.transactionAll[index]),
                   child: ListTile(
                     title: Container(
-                      height: Get.height * 0.19,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: const BorderRadius.all(
-                          Radius.circular(18.0),
-                        )),
-                        elevation: 13,
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.all(1.5),
-                                  child: InkWell(
-                                    onTap: () {
-                                      listTrController.setEdition(
-                                        listTrController.transactionAll[index].nameTransaction,
-                                        listTrController.transactionAll[index].typeTransaction,
-                                        listTrController.transactionAll[index].dueDate,
-                                        listTrController.transactionAll[index].valor,
-                                        listTrController.transactionAll[index].id!,
-                                      );
+                      height: Get.height * 0.16,
+                      child: InkWell(
+                        onDoubleTap: () {
+                          listTrController.setEdition(
+                            listTrController.transactionAll[index].nameTransaction,
+                            listTrController.transactionAll[index].typeTransaction,
+                            listTrController.transactionAll[index].dueDate,
+                            listTrController.transactionAll[index].valor,
+                            listTrController.transactionAll[index].id!,
+                          );
 
-                                      showDialog(
-                                         barrierColor:  Colors.blueGrey.withOpacity(0.5),
-                                        context: context,
-                                        builder: (_) => AlertDialog(
-                                          backgroundColor: Colors.black12.withOpacity(0.3),
-                                          content: Container(
-                                            decoration: BoxDecoration(borderRadius:  BorderRadius.all(Radius.circular(85))),
-                                            width: 30,
-                                            height: Get.height * 0.12,
-                                            child: Column(
-                                              children: [
-                                                TextFormField(
-                                                  controller:
-                                                      listTrController.controllerNameEdition =
-                                                          TextEditingController(
-                                                    text: listTrController
-                                                        .transactionAll[index].nameTransaction
-                                                        .toString(),
-                                                  ),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () {
-                                                    listTrController.editionUpdate(
-                                                        listTrController.trUpdate);
-
-                                                    Get.back();
-                                                  },
-                                                  child: Text('save edit'),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        barrierDismissible: true,
-                                      );
-                                    },
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Dialog(child: DialogEdition());
+                            },
+                          );
+                        },
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: const BorderRadius.all(
+                            Radius.circular(18.0),
+                          )),
+                          elevation: 13,
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.all(1.5),
                                     child: Text(
                                       '${listTrController.transactionAll[index].nameTransaction}  ',
                                       textAlign: TextAlign.justify,
@@ -123,146 +95,66 @@ class ListTransactionsView extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.edit,
-                                    size: 22,
-                                    color: Color.fromARGB(255, 8, 208, 235),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.all(5),
-                                  height: Get.height * 0.04,
-                                  decoration: BoxDecoration(
-                                      color: Colors.cyan[50],
-                                      borderRadius: BorderRadius.circular(50)),
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Text(
-                                      ' R\$ ' +
-                                          listTrController.transactionAll[index].valor
-                                              .toStringAsFixed(2),
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.deepOrange[600],
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w400,
+                                  
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.all(5),
+                                    height: Get.height * 0.04,
+                                    decoration: BoxDecoration(
+                                        color: Colors.cyan[50],
+                                        borderRadius: BorderRadius.circular(50)),
+                                    alignment: Alignment.center,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Text(
+                                        ' R\$ ' +
+                                            listTrController.transactionAll[index].valor
+                                                .toStringAsFixed(2),
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.deepOrange[600],
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                IconButton(
-                                  alignment: Alignment.center,
-                                  onPressed: () {
-                                    listTrController.removeTransaction(
-                                        listTrController.transactionAll[index].id!);
-                                    listTrController.transactionAll.removeAt(index);
-                                  },
-                                  icon: Icon(
-                                    Icons.delete_sweep,
-                                    size: 35,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 2.5, right: 2.5),
-                              height: Get.height * 0.045,
-                              color: Color.fromARGB(255, 0, 170, 192),
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      ' Cadastro:\n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].date)} ',
-                                      style: TextStyle(
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: 13,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
+                                  IconButton(
+                                    alignment: Alignment.center,
+                                    onPressed: () {
+                                      listTrController.removeTransaction(
+                                          listTrController.transactionAll[index].id!);
+                                      listTrController.transactionAll.removeAt(index);
+                                    },
+                                    icon: Icon(
+                                      Icons.delete_sweep,
+                                      size: 35,
                                     ),
-                                    listTrController.transactionAll[index].typeTransaction ==
-                                            'input'
-                                        ? InkWell(
-                                            onTap: () {
-                                              listTrController.setEdition(
-                                                listTrController
-                                                    .transactionAll[index].nameTransaction,
-                                                listTrController
-                                                    .transactionAll[index].typeTransaction,
-                                                listTrController.transactionAll[index].dueDate,
-                                                listTrController.transactionAll[index].valor,
-                                                listTrController.transactionAll[index].id!,
-                                              );
-
-                                              showDialog(
-                                                barrierColor:  Colors.blueGrey.withOpacity(0.5),
-                                              
-                                                context: context,
-                                                builder: (_) => AlertDialog(
-                                                  backgroundColor: Color.fromARGB(255, 69, 138, 104).withOpacity(0.5),
-                                                  content: Container(
-                                                    decoration: BoxDecoration(borderRadius:  BorderRadius.all(Radius.circular(45))),
-                                                    width: 40,
-                                                    height: Get.height * 0.17,
-                                                    child: Column(
-                                                      children: [
-                                                        TextButton(
-                                                            onPressed: () {
-                                                              DatePicker.showDatePicker(
-                                                                  context,
-                                                                  showTitleActions: true,
-                                                                  minTime:
-                                                                      DateTime(2020, 1, 1),
-                                                
-                                                                  // maxTime: DateTime(2025, 1, 1),
-                                                                  //print('change $date');
-                                                                  currentTime:listTrController.transactionAll[index].dueDate,
-                                                                  onConfirm: (date) {
-                                                                print('confirm $date');
-                                                                listTrController.dueEd= date ;
-                                                              }, locale: LocaleType.pt);
-                                                            },
-                                                            child: Text(
-                                                              'Alterar Vencimento ou Lançamento?  ',
-                                                              style: TextStyle(
-                                                                  color: Color.fromARGB(255, 240, 78, 78)),
-                                                            )),
-                                                        /* TextFormField(
-                                                  controller:
-                                                      listTrController.controllerNameEdition =
-                                                          TextEditingController(
-                                                    text: listTrController
-                                                        .transactionAll[index].nameTransaction
-                                                        .toString(),
-                                                  ),
-                                                ),  */
-
-                                                 
-                                                        TextButton(
-                                                          onPressed: () {
-                                                            listTrController.editionUpdate(
-                                                                listTrController.trUpdate);
-
-                                                            Get.back();
-                                                          },
-                                                          child: Text('Save '),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                                barrierDismissible: true,
-                                              );
-                                            },
-                                            child: Text(
+                                  ),
+                                ],
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(left: 2.5, right: 2.5),
+                                height: Get.height * 0.045,
+                                color: Color.fromARGB(255, 0, 170, 192),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        ' Cadastro:\n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].date)} ',
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.italic,
+                                            fontSize: 13,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      listTrController.transactionAll[index].typeTransaction ==
+                                              'input'
+                                          ? Text(
                                               ' Registrado: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].dueDate)} ',
                                               style: TextStyle(
                                                 fontStyle: FontStyle.italic,
@@ -270,20 +162,20 @@ class ListTransactionsView extends StatelessWidget {
                                                 fontWeight: FontWeight.bold,
                                                 color: Color.fromARGB(255, 111, 238, 8),
                                               ),
-                                            ),
-                                          )
-                                        : Text(
-                                            ' Vencimento: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].dueDate)} ',
-                                            style: TextStyle(
-                                              fontStyle: FontStyle.italic,
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.bold,
-                                              color: Color.fromARGB(255, 184, 48, 7),
-                                            ),
-                                          )
-                                  ]),
-                            ),
-                          ],
+                                            )
+                                          : Text(
+                                              ' Vencimento: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].dueDate)} ',
+                                              style: TextStyle(
+                                                fontStyle: FontStyle.italic,
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color.fromARGB(255, 184, 48, 7),
+                                              ),
+                                            )
+                                    ]),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

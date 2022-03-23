@@ -78,7 +78,7 @@ var setDate = DateTime.now();
                 ),
     
                 CheckboxListTile(
-                  selected: false,
+                  selected: typeTransaction == "input"? true : false,
                   title: Text('Receita?'),
                   activeColor: Colors.blue,
                   value: receita.value,
@@ -92,7 +92,7 @@ var setDate = DateTime.now();
                   },
                 ),
                 CheckboxListTile(
-                    selected: false,
+                    selected: typeTransaction == "output"? true : false,
                     title: Text('Despesa?'),
                     activeColor: Colors.blue,
                     value: despesa.value,

@@ -150,7 +150,7 @@ class TransactionsHelpers {
   Future listTimeInputDb() async {
     Database? db = await this.database;
     String sql =
-        "SELECT * FROM $nametable WHERE $dueDate >= $date    AND $typeTransaction = 'output'  ";
+        "SELECT * FROM $nametable WHERE $dueDate = $date    AND $typeTransaction = 'output'  ";
     List list = await db!.rawQuery(sql);
     // ignore: unnecessary_null_comparison
     list.isNotEmpty

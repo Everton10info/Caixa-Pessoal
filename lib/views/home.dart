@@ -12,6 +12,7 @@ class MyHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CircularProgressIndicator(backgroundColor: Colors.black26,value: 0.2,semanticsLabel: 'eee',);
     return Scaffold(
       appBar: AppBar(
         elevation: 3,
@@ -24,7 +25,7 @@ class MyHome extends StatelessWidget {
           ]),
         ),
       ),
-      backgroundColor: Colors.blueGrey[400],
+     
       body: Container(
         alignment: Alignment.topCenter,
         decoration: BoxDecoration(

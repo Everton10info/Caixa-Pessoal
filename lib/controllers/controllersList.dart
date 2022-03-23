@@ -15,42 +15,38 @@ class ListTrController extends GetxController {
   List<Map<String, dynamic>> transactionHellperOutput = [];
   List<Map<String, dynamic>> transactionHellperTimeEnd = [];
   RxBool venceu = false.obs;
-  
- var dueEd;
+
+  var dueEd;
   var idEd;
   TextEditingController? controllerValueEdition = TextEditingController();
   TextEditingController? controllerNameEdition = TextEditingController();
   TextEditingController? controllerTypeEdition = TextEditingController();
   TextEditingController? controllerDueEdition = TextEditingController();
-  Rx<TransactionM>? trUpdate;
+  TransactionM? trUpdate;
   RxDouble totalInput = 0.0.obs;
   RxDouble totalOutput = 0.0.obs;
 
   RxDouble sumTotal = 0.0.obs;
 
-   setEdition(String name, String type, DateTime due, double valor, int id)  {
-  
-    trUpdate = Rx(
-      TransactionM(
-        id: id,
-        nameTransaction: name,
-        dueDate: due,
-        typeTransaction: type,
-        valor: valor,
-      ),
+
+
+
+  setEdition(String name, String type, DateTime due, double valor, int id) {
+    trUpdate = TransactionM(
+      id: id,
+      nameTransaction: name,
+      dueDate: due,
+      typeTransaction: type,
+      valor: valor,
     );
- 
   }
 
-   editionUpdate(tr) async {
-     //tr.value.nameTransaction = controllerNameEdition!.text;
-     tr.value.dueDate= dueEd;
+  editionUpdate(tr) async {
     int result = await db.updateTr(tr);
     if (!result.isNaN) {
-      print('caregou editado ');
+      print('carregou editado ');
     }
     getTransactions();
-     
   }
 
   void addTransaction(Rx<TransactionM> tr) async {

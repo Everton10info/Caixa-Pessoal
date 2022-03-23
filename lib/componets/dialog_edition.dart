@@ -41,10 +41,10 @@ class DialogEdition extends StatelessWidget {
                   ],
                   controller: listTrController.controllerNameEdition = TextEditingController(
                     text: listTrController.controllerNameEdition ==
-                            listTrController.trUpdate!.valor.toString()
-                        ? listTrController.trUpdate!.valor.toString()
+                            listTrController.trUpdate!.nameTransaction.toString()
+                        ? listTrController.trUpdate!.nameTransaction.toString()
                         : listTrController.controllerNameEdition!.text == ''
-                            ? listTrController.trUpdate!.valor.toString()
+                            ? listTrController.trUpdate!.nameTransaction.toString()
                             : listTrController.controllerNameEdition!.text,
                   ),
                   decoration: InputDecoration(

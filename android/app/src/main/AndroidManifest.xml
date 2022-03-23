@@ -2,7 +2,7 @@
     package="com.example.cash_book">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
    <application
-        android:label="cash_book"
+        android:label="Livro Caixa"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"

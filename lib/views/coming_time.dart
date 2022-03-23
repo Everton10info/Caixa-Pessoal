@@ -125,7 +125,7 @@ class ListComingTime extends StatelessWidget {
                                   children: [
                                    
                                     Text(
-                                      ' Vencimento !: ${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)} ',
+                                      ' Vencimento : ${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)} ',
                                       style: TextStyle(
                                         fontStyle: FontStyle.italic,
                                         fontSize: 16,

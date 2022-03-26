@@ -16,7 +16,7 @@ class ListComingTime extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
       return Scaffold(
         appBar: AppBar(
-          title: Text('VENCENDO HOJE!'),
+          title: Text('FIM DO PRAZOS!'),
           elevation: 3,
         ),
         body: Container(
@@ -125,7 +125,7 @@ class ListComingTime extends StatelessWidget {
                                   children: [
                                    
                                     Text(
-                                      ' Vencimento : ${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)} ',
+                                      ' Data de vencimento : ${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)} ',
                                       style: TextStyle(
                                         fontStyle: FontStyle.italic,
                                         fontSize: 16,

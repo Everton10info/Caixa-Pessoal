@@ -59,11 +59,11 @@ class ListTransactionsInput extends StatelessWidget {
                       child: InkWell(
                          onDoubleTap: () {
                           listTrController.setEdition(
-                            listTrController.transactionAll[index].nameTransaction,
-                            listTrController.transactionAll[index].typeTransaction,
-                            listTrController.transactionAll[index].dueDate,
-                            listTrController.transactionAll[index].valor,
-                            listTrController.transactionAll[index].id!,
+                            listTrController.transactionInput[index].nameTransaction,
+                            listTrController.transactionInput[index].typeTransaction,
+                            listTrController.transactionInput[index].dueDate,
+                            listTrController.transactionInput[index].valor,
+                            listTrController.transactionInput[index].id!,
                           );
 
                           showDialog(
@@ -155,12 +155,12 @@ class ListTransactionsInput extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        ' Vencimento: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionInput[index].dueDate)} ',
+                                        ' Entrada: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionInput[index].dueDate)} ',
                                         style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                           fontSize: 13,
                                           fontWeight: FontWeight.bold,
-                                          color: Color.fromARGB(255, 184, 48, 7),
+                                           color: Color.fromARGB(255, 111, 238, 8),
                                         ),
                                       ),
                                     ]),

@@ -155,7 +155,7 @@ class ListTransactionsView extends StatelessWidget {
                                       listTrController.transactionAll[index].typeTransaction ==
                                               'input'
                                           ? Text(
-                                              ' Registrado: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].dueDate)} ',
+                                              ' Entrada: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].dueDate)} ',
                                               style: TextStyle(
                                                 fontStyle: FontStyle.italic,
                                                 fontSize: 13,

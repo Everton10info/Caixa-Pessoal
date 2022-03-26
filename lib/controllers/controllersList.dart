@@ -16,8 +16,7 @@ class ListTrController extends GetxController {
   List<Map<String, dynamic>> transactionHellperTimeEnd = [];
   RxBool venceu = false.obs;
 
-  var dueEd;
-  var idEd;
+ 
   TextEditingController? controllerValueEdition = TextEditingController();
   TextEditingController? controllerNameEdition = TextEditingController();
   TextEditingController? controllerTypeEdition = TextEditingController();
@@ -32,6 +31,7 @@ class ListTrController extends GetxController {
 
 
   setEdition(String name, String type, DateTime due, double valor, int id) {
+     getTransactions();
     trUpdate = TransactionM(
       id: id,
       nameTransaction: name,

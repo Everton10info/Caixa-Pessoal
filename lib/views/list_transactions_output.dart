@@ -57,11 +57,11 @@ ListTransactionsOutputs(){
                       child: InkWell(
                          onDoubleTap: () {
                           listTrController.setEdition(
-                            listTrController.transactionAll[index].nameTransaction,
-                            listTrController.transactionAll[index].typeTransaction,
-                            listTrController.transactionAll[index].dueDate,
-                            listTrController.transactionAll[index].valor,
-                            listTrController.transactionAll[index].id!,
+                            listTrController.transactionOutput[index].nameTransaction,
+                            listTrController.transactionOutput[index].typeTransaction,
+                            listTrController.transactionOutput[index].dueDate,
+                            listTrController.transactionOutput[index].valor,
+                            listTrController.transactionOutput[index].id!,
                           );
 
                           showDialog(

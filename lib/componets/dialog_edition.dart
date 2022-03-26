@@ -40,12 +40,9 @@ class DialogEdition extends StatelessWidget {
                     LengthLimitingTextInputFormatter(28),
                   ],
                   controller: listTrController.controllerNameEdition = TextEditingController(
-                    text: listTrController.controllerNameEdition ==
+                    text: 
                             listTrController.trUpdate!.nameTransaction.toString()
-                        ? listTrController.trUpdate!.nameTransaction.toString()
-                        : listTrController.controllerNameEdition!.text == ''
-                            ? listTrController.trUpdate!.nameTransaction.toString()
-                            : listTrController.controllerNameEdition!.text,
+                        
                   ),
                   decoration: InputDecoration(
                     border: UnderlineInputBorder(),
@@ -66,12 +63,9 @@ class DialogEdition extends StatelessWidget {
                   ],
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
                   controller: listTrController.controllerValueEdition = TextEditingController(
-                    text: listTrController.controllerValueEdition ==
+                    text: 
                             listTrController.trUpdate!.valor.toString()
-                        ? listTrController.trUpdate!.valor.toString()
-                        : listTrController.controllerValueEdition!.text == ''
-                            ? listTrController.trUpdate!.valor.toString()
-                            : listTrController.controllerValueEdition!.text,
+                      
                   ),
                   decoration: InputDecoration(
                     border: UnderlineInputBorder(),
@@ -85,16 +79,15 @@ class DialogEdition extends StatelessWidget {
                   title: Text('Receita?'),
                   activeColor: Colors.blue,
                   value: listTrController.trUpdate!.typeTransaction == "input"
-                      ? true
+               ? true
                       : receita.value,
                   onChanged: (bool? value) {
-                    receita.value = value!;
-                    despesa.value = false;
+                    //receita.value = value!;
+                   // despesa.value = false;
                     receita.value
-                        ? listTrController.trUpdate!.typeTransaction = 'input'
-                        : listTrController.trUpdate!.typeTransaction = '';
-                    value = false;
-                  },
+                        ?  listTrController.trUpdate!.typeTransaction = 'input'
+                        : //listTrController.trUpdate!.typeTransaction = '';
+                    value = false;                  },
                 ),
                 CheckboxListTile(
                     selected:
@@ -102,15 +95,17 @@ class DialogEdition extends StatelessWidget {
                     title: Text('Despesa?'),
                     activeColor: Colors.blue,
                     value: listTrController.trUpdate!.typeTransaction == "output"
-                        ? true
+                        
+                      ? true
                         : despesa.value,
                     onChanged: (bool? value) {
-                      despesa.value = value!;
-                      receita.value = false;
+                     // despesa.value = value!;
+                      //receita.value = false;
 
-                      despesa.value
-                          ? listTrController.trUpdate!.typeTransaction = 'output'
-                          : listTrController.trUpdate!.typeTransaction = '';
+                      //despesa.value
+                         /*  ? */ listTrController.trUpdate!.typeTransaction = 'output';
+                         /*  : */// listTrController.trUpdate!.typeTransaction = '';
+                          //value = false; 
                     }),
 
                 TextButton(
@@ -140,7 +135,19 @@ class DialogEdition extends StatelessWidget {
                           nameTransaction: listTrController.controllerNameEdition!.text,
                           dueDate: listTrController.trUpdate!.dueDate,
                           typeTransaction: listTrController.trUpdate!.typeTransaction,
-                          valor: double.parse(listTrController.controllerValueEdition!.text),
+                          valor: double.parse(listTrController.controllerValueEdition!.text) >
+                                      0 &&
+                                  listTrController.trUpdate!.typeTransaction == 'output'
+                              ? double.parse(listTrController.controllerValueEdition!.text) *
+                                  (-1)
+                              : double.parse(listTrController.controllerValueEdition!.text) <
+                                          0 &&
+                                      listTrController.trUpdate!.typeTransaction == 'input'
+                                  ? double.parse(
+                                          listTrController.controllerValueEdition!.text) *
+                                      (1)
+                                  : double.parse(
+                                      listTrController.controllerValueEdition!.text),
                         ),
                       );
                       listTrController.editionUpdate(tr);

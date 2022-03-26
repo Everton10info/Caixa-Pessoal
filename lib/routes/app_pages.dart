@@ -5,18 +5,14 @@ import 'package:cash_book/views/home.dart';
 import 'package:cash_book/views/list_transaction_all.dart';
 import 'package:cash_book/views/list_transactions_input.dart';
 import 'package:cash_book/views/list_transactions_output.dart';
-import 'package:cash_book/views/splash_view.dart';
 
 import 'package:get/get.dart';
+
+import '../views/splash_view.dart';
 
 class AppPage {
   static const INITIAL = Routes.SPLASH_VIEW;
   static final routes = [
-    GetPage(
-        name: Routes.SPLASH_VIEW,
-        page: () => SplashView(),
-        transition: Transition.fade,
-        binding: HomeBindings()),
     GetPage(
         name: Routes.HOME,
         page: () => MyHome(),
@@ -37,9 +33,16 @@ class AppPage {
         page: () => ListTransactionsOutputs(),
         transition: Transition.fade,
         binding: HomeBindings()),
-    GetPage(
+
+        GetPage(
         name: Routes.LIST_TIMEOUTS,
         page: () => ListComingTime(),
+        transition: Transition.fade,
+        binding: HomeBindings()),
+
+           GetPage(
+        name: Routes.SPLASH_VIEW,
+        page: () => SplashView(),
         transition: Transition.fade,
         binding: HomeBindings()),
   ];

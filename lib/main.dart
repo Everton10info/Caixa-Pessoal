@@ -1,3 +1,4 @@
+import 'package:cash_book/controllers/controllersList.dart';
 import 'package:cash_book/views/home.dart';
 
 import '../routes/app_pages.dart';
@@ -7,7 +8,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 //import 'package:page_transition/page_transition.dart';
 void main() async {
-
+ Get.put(ListTrController(),permanent: true);
   runApp(GetMaterialApp(
 
     debugShowCheckedModeBanner: false,
@@ -22,7 +23,7 @@ void main() async {
       // text styling for headlines, titles, bodies of text, and more.
       textTheme: const TextTheme(
         
-        headline1: TextStyle(fontSize: 70.0, fontWeight: FontWeight.bold),
+        headline1: TextStyle(fontSize: 70.0, fontWeight: FontWeight.w600),
         headline6: TextStyle(
             fontSize: 24.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
         bodyText2: TextStyle(

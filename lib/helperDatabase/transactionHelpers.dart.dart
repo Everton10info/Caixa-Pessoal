@@ -147,8 +147,13 @@ class TransactionsHelpers {
     return list;
   }
 
-/*  /*  Future listTimeInputDb() async {
+/*  /*  Future payments() async {
     Database? db = await this.database;
+      await db!.delete(
+      '$nametable',
+      where: "id = ?",
+      whereArgs: [id],
+    );
     String sql =
         "SELECT * FROM $nametable WHERE $dueDate = $date    AND $typeTransaction = 'output'  ";
     List list = await db!.rawQuery(sql);

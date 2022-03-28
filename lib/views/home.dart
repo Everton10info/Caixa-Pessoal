@@ -4,8 +4,8 @@ import 'package:cash_book/controllers/controllersList.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MyHome extends StatelessWidget {
-  MyHome(){
+class Home extends StatelessWidget {
+ Home(){
     listTrController.getTransactions();
   }
   final listTrController = Get.find<ListTrController>();
@@ -28,12 +28,12 @@ class MyHome extends StatelessWidget {
      
       body: Container(
         
-        alignment: Alignment.topCenter,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 243, 239, 239),
+          color: Color.fromARGB(255, 236, 240, 236),
           image: DecorationImage(
             image: AssetImage('assets/images/img5.gif'),
-            fit: BoxFit.contain
+            fit: BoxFit.fitWidth
           ),
         ),
       ),

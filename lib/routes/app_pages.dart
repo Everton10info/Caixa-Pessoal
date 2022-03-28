@@ -1,4 +1,4 @@
-import 'package:cash_book/dependencies/dependencies.dart';
+
 import 'package:cash_book/routes/routes.dart';
 import 'package:cash_book/views/coming_time.dart';
 import 'package:cash_book/views/home.dart';
@@ -15,35 +15,35 @@ class AppPage {
   static final routes = [
     GetPage(
         name: Routes.HOME,
-        page: () => MyHome(),
+        page: () => Home(),
         transition: Transition.fade,
-        binding: HomeBindings()),
+    ),  
     GetPage(
         name: Routes.LIST_TRANSACTIONS,
         page: () => ListTransactionsView(),
         transition: Transition.fade,
-        binding: HomeBindings()),
+      ),
     GetPage(
         name: Routes.LIST_INPUTS,
         page: () => ListTransactionsInput(),
         transition: Transition.fade,
-        binding: HomeBindings()),
+       ),
     GetPage(
         name: Routes.LIST_OUTPUTS,
         page: () => ListTransactionsOutputs(),
         transition: Transition.fade,
-        binding: HomeBindings()),
+     ),
 
         GetPage(
         name: Routes.LIST_TIMEOUTS,
         page: () => ListComingTime(),
         transition: Transition.fade,
-        binding: HomeBindings()),
+   ),
 
            GetPage(
         name: Routes.SPLASH_VIEW,
         page: () => SplashView(),
-        transition: Transition.fade,
-        binding: HomeBindings()),
+        transition: Transition.leftToRightWithFade,
+       ),
   ];
 }

@@ -7,22 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cash_book/controllers/controllersList.dart';
 
-
 class MyDrawer extends StatelessWidget {
-  
-   MyDrawer({Key? key}) : super(key: key);
- final listTrController = Get.find<ListTrController>();
+  MyDrawer({Key? key}) : super(key: key);
+  final listTrController = Get.find<ListTrController>();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(5, 26, 5, 10),
-      child: Drawer(       
-        elevation: 2,
+      child: Drawer(
+        elevation: 1,
         child: Padding(
-          padding: const EdgeInsets.all(5),
+          padding: const EdgeInsets.all(7),
           child: Container(
-            
-            color: Color.fromARGB(255, 245, 254, 255),
+            color: Color.fromARGB(255, 223, 226, 224),
             child: ListView(
               padding: EdgeInsets.all(2),
               children: [
@@ -31,9 +28,12 @@ class MyDrawer extends StatelessWidget {
                   title: Text(
                     'Listas',
                     style: TextStyle(
-                        color: Colors.black, fontSize: 23, ),
+                      color: Color.fromARGB(255, 35, 37, 36),
+                      fontSize: 23,
+                    ),
                   ),
                   onTap: () {
+                    Get.back();
                     Get.to(
                       () => ListTransactionsView(),
                     );
@@ -44,9 +44,12 @@ class MyDrawer extends StatelessWidget {
                   title: Text(
                     'Listas de Entradas',
                     style: TextStyle(
-                        color: Colors.black, fontSize: 20, ),
+                      color: Color.fromARGB(255, 35, 37, 36),
+                      fontSize: 20,
+                    ),
                   ),
                   onTap: () {
+                    Get.back();
                     Get.to(
                       () => ListTransactionsInput(),
                     );
@@ -56,23 +59,25 @@ class MyDrawer extends StatelessWidget {
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                   title: Text(
                     'Listas de Despesas',
-                    style: TextStyle(
-                        color: Colors.black, fontSize:20 ),
+                    style: TextStyle(color: Color.fromARGB(255, 35, 37, 36), fontSize: 20),
                   ),
                   onTap: () {
+                    Get.back();
                     Get.to(
                       () => ListTransactionsOutputs(),
                     );
                   },
                 ),
                 ListTile(
-                  
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
-                
                   title: Text(
                     'Vencendo!! ',
                     style: TextStyle(
-                        color: listTrController.venceu.value==true ?Colors.red:Colors.black , fontSize: 20, ),
+                      color: listTrController.venceu.value == true
+                          ? Colors.red
+                          : Color.fromARGB(255, 35, 37, 36),
+                      fontSize: 20,
+                    ),
                   ),
                   onTap: () {
                     Get.back();
@@ -86,12 +91,14 @@ class MyDrawer extends StatelessWidget {
                   title: Text(
                     'Inicial',
                     style: TextStyle(
-                        color: Colors.black, fontSize: 20, ),
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
                   ),
                   onTap: () {
                     Get.back();
                     Get.to(
-                      () => MyHome(),
+                      () => Home(),
                     );
                   },
                 ),

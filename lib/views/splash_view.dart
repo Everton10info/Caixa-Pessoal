@@ -24,7 +24,7 @@ class SplashView extends StatelessWidget {
             nextScreen:Home(),          
             splashTransition: SplashTransition.rotationTransition,
             splashIconSize: 115.5,
-            pageTransitionType: PageTransitionType.leftToRightWithFade,
+            pageTransitionType: PageTransitionType.fade,
          
         ));}
 }

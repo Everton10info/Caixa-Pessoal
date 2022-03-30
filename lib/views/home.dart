@@ -6,14 +6,14 @@ import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
  Home(){
-  listTrController. storage.getItem('listId');
+ 
     listTrController.getTransactions();
   }
   final listTrController = Get.find<ListTrController>();
 
   @override
   Widget build(BuildContext context) {
-    
+   listTrController.storageItem();
     return Scaffold(
       appBar: AppBar(
         elevation: 3,

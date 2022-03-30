@@ -10,7 +10,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 void main() async {
  Get.put(ListTrController(),permanent: true);
   runApp(GetMaterialApp(
-
+    
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       // Define the default brightness and colors.

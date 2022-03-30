@@ -1,11 +1,9 @@
-
-
 import 'package:cash_book/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../helperDatabase/transactionHelpers.dart.dart';
 import 'package:localstorage/localstorage.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 class ListTrController extends GetxController {
   var db = TransactionsHelpers();
 
@@ -17,7 +15,6 @@ class ListTrController extends GetxController {
   List<Map<String, dynamic>> transactionHellperInput = [];
   List<Map<String, dynamic>> transactionHellperOutput = [];
   List<Map<String, dynamic>> transactionHellperTimeEnd = [];
- 
 
   TextEditingController? controllerValueEdition = TextEditingController();
   TextEditingController? controllerNameEdition = TextEditingController();
@@ -26,11 +23,12 @@ class ListTrController extends GetxController {
   TransactionM? trUpdate;
   RxDouble totalInput = 0.0.obs;
   RxDouble totalOutput = 0.0.obs;
-  RxList<dynamic> payYes = [''].obs;
+  RxList<String> payYes = [''].obs;
 
   RxDouble sumTotal = 0.0.obs;
 
-  final LocalStorage storage = new LocalStorage('listId');
+
+  
   //
 
   setEdition(String name, String type, DateTime due, double valor, int id) {
@@ -58,10 +56,20 @@ class ListTrController extends GetxController {
       print('caregou novo');
     }
   }
-
+void  storageItem()async{
+   
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList('listId', payYes);
+   payYes.value = prefs.getStringList('listId')?? [];
+  // final success = await prefs.remove('listId');
+    
+  
+    }
   getTransactions() async {
     //all render
-
+storageItem();
+   
+    print(payYes.toString());
     Future<List<TransactionM>> listAll() async {
       transactionHellperAll = await db.list();
 
@@ -139,36 +147,31 @@ class ListTrController extends GetxController {
   }
 
   removeTransaction(
+    
     int id,
   ) async {
     await db.delete(id);
     payYes.removeWhere(
       (element) => element == id,
     );
-    storage.setItem('listId', payYes);
+  
     getTransactions();
   }
 
   pay(
     int id,
   ) async {
-   
     String? ids = id.toString();
-    List listTempStorage = (storage.getItem('listId') ?? []);
-    var pay = listTempStorage.toList();
-    pay.map((e) => payYes.add(e));
+ 
 
     if (payYes.contains(ids) == false) {
       payYes.add(ids);
-    
      
     } else {
-      
-     
       payYes.remove(ids);
+     
     }
-
-    await storage.setItem('listId', payYes);
+ 
 
     getTransactions();
   }

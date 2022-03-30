@@ -17,11 +17,11 @@ class ListComingTime extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
       return Scaffold(
         appBar: AppBar(
-          title: Text('FIM DO PRAZOS!'),
+          title: Text('Fim dos prazos..'),
           elevation: 3,
         ),
         body: Container(
-          color: Color.fromARGB(255, 223, 235, 212),
+          color: Color.fromARGB(255, 236, 240, 236),
           child: Obx(
             () => ListView.builder(
               itemCount: listTrController.transactionTimeEnd.length,
@@ -115,7 +115,7 @@ class ListComingTime extends StatelessWidget {
                                   tooltip: 'Pago? ok',
                                   icon: Icon(
                                     Icons.check,
-                                    color:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 41, 236, 142):Color.fromARGB(255, 184, 48, 7),
+                                    color:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 39, 201, 123):Color.fromARGB(255, 184, 48, 7),
                                     size: 34,
                                   ),
                                 ),

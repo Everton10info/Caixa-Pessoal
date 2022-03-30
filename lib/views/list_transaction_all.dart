@@ -151,10 +151,9 @@ class ListTransactionsView extends StatelessWidget {
                                         style: TextStyle(
                                             fontStyle: FontStyle.italic,
                                             fontSize: 13,
-                                            color: listTrController.payYes.contains(
-                                                    '${listTrController.transactionAll[index].id}')
-                                                ? Colors.white
-                                                : Color.fromARGB(255, 133, 32, 1),
+                                            color: 
+                                                 Colors.white,
+                                               
                                             fontWeight: FontWeight.bold),
                                       ),
                                       listTrController.transactionAll[index].typeTransaction ==

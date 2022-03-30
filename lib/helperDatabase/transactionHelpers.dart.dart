@@ -138,33 +138,13 @@ class TransactionsHelpers {
   Future listTimeEndDb() async {
     Database? db = await this.database;
     String sql =
-        "SELECT * FROM $nametable WHERE $dueDate <= $date    AND $typeTransaction = 'output'  ";
+        "SELECT * FROM $nametable WHERE $dueDate >= $date    AND $typeTransaction = 'output'  ";
     List list = await db!.rawQuery(sql);
-    // ignore: unnecessary_null_comparison
-   /*   listTrController.payYes.isNotEmpty
-        ? listTrController.venceu.value = false
-        : listTrController.venceu.value = true;  */
+ 
     
     
     return list;
   }
 
-/*  /*  Future payments() async {
-    Database? db = await this.database;
-      await db!.delete(
-      '$nametable',
-      where: "id = ?",
-      whereArgs: [id],
-    );
-    String sql =
-        "SELECT * FROM $nametable WHERE $dueDate = $date    AND $typeTransaction = 'output'  ";
-    List list = await db!.rawQuery(sql);
-    // ignore: unnecessary_null_comparison
-    list.isNotEmpty
-        ? listTrController.venceu.value = true
-        : listTrController.venceu.value = false;
-  
-    return list; */
-  } */
 
 }

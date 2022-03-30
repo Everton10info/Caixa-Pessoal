@@ -133,7 +133,7 @@ ListTransactionsOutputs(){
                                   tooltip: 'Pago? ok',
                                   icon: Icon(
                                     Icons.check,
-                                    color:listTrController.payYes.contains( listTrController.transactionTimeEnd[index].id)? Color.fromARGB(255, 22, 167, 17):Color.fromARGB(255, 184, 48, 7),
+                                    color:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 22, 167, 17):Color.fromARGB(255, 184, 48, 7),
                                     size: 34,
                                   ),
                                 )
@@ -142,7 +142,7 @@ ListTransactionsOutputs(){
                               Container(
                                   margin: EdgeInsets.only(left: 2.5, right: 2.5),
                                 height: Get.height * 0.045,
-                                color: listTrController.payYes.contains( '${listTrController.transactionOutput[index].id}')?Color.fromARGB(255, 0, 170, 192):Color.fromARGB(255, 250, 159, 23),
+                                color: listTrController.payYes.contains( '${listTrController.transactionOutput[index].id}')?Color.fromARGB(255, 0, 170, 192):Color.fromARGB(255, 241, 168, 58),
                                 child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [

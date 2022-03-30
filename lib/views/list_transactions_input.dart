@@ -64,6 +64,7 @@ class ListTransactionsInput extends StatelessWidget {
                             listTrController.transactionInput[index].dueDate,
                             listTrController.transactionInput[index].valor,
                             listTrController.transactionInput[index].id!,
+                             
                           );
 
                           showDialog(

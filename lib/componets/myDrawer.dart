@@ -26,7 +26,7 @@ class MyDrawer extends StatelessWidget {
                 ListTile(
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                   title: Text(
-                    'Listas',
+                    'Lista Geral',
                     style: TextStyle(
                       color: Color.fromARGB(255, 35, 37, 36),
                       fontSize: 23,
@@ -68,24 +68,25 @@ class MyDrawer extends StatelessWidget {
                     );
                   },
                 ),
-                ListTile(
-                  selectedTileColor: Color.fromARGB(255, 0, 82, 97),
-                  title: Text(
-                    'Vencendo!! ',
-                    style: TextStyle(
-                      color: listTrController.venceu.value == true
-                          ? Colors.red
-                          : Color.fromARGB(255, 35, 37, 36),
-                      fontSize: 20,
+              
+                  ListTile(
+                    selectedTileColor: Color.fromARGB(255, 0, 82, 97),
+                    title: Text(
+                      'Despesas a vencer! ',
+                      style: TextStyle(
+                       
+                            color:Color.fromARGB(255, 35, 37, 36),
+                        fontSize: 20,
+                      ),
                     ),
+                    onTap: () {
+                      Get.back();
+                      Get.to(
+                        () => ListComingTime(),
+                      );
+                    },
                   ),
-                  onTap: () {
-                    Get.back();
-                    Get.to(
-                      () => ListComingTime(),
-                    );
-                  },
-                ),
+             
                 ListTile(
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                   title: Text(

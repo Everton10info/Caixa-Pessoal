@@ -12,6 +12,7 @@ class TransactionM {
   DateTime dueDate;
   double valor;
 
+
   TransactionM({
     required this.id,
     required this.nameTransaction,
@@ -19,6 +20,7 @@ class TransactionM {
     required this.dueDate,
     required this.typeTransaction,
     required this.valor,
+   
   });
 
   Map<String, dynamic> toMap() => {
@@ -27,7 +29,8 @@ class TransactionM {
         'date': DateFormat('yyyy-MM-dd').format(date),
         'dueDate': DateFormat('yyyy-MM-dd').format(dueDate),
         'typeTransaction': typeTransaction,
-        'valor': valor
+        'valor': valor,
+       
       };
  
 }

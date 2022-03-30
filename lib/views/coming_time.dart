@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 // ignore: must_be_immutable
 class ListComingTime extends StatelessWidget {
   final listTrController = Get.find<ListTrController>();
+  var pag = {int:bool}.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +92,7 @@ class ListComingTime extends StatelessWidget {
                                     child: Text(
                                       ' R\$ ' +
                                           listTrController.transactionTimeEnd[index].valor
-                                              .toStringAsFixed(2),
+                                              .toStringAsFixed(2)   ,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.deepOrange[600],
@@ -104,12 +105,17 @@ class ListComingTime extends StatelessWidget {
                                 IconButton(
                                   alignment: Alignment.centerRight,
                                   onPressed: () {
-                                    listTrController.removeTransaction(
-                                        listTrController.transactionTimeEnd[index].id!);
-                                    listTrController.transactionTimeEnd.removeAt(index);
+                                    listTrController.pay(listTrController.transactionTimeEnd[index].id!);
+                              
+                          
+
+                         
+                                  
                                   },
+                                  tooltip: 'Pago? ok',
                                   icon: Icon(
-                                    Icons.delete_sweep_rounded,
+                                    Icons.check,
+                                    color:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 22, 167, 17):Color.fromARGB(255, 184, 48, 7),
                                     size: 34,
                                   ),
                                 ),
@@ -119,7 +125,7 @@ class ListComingTime extends StatelessWidget {
                                 margin: EdgeInsets.only(left: 2.5, right: 2.5),
                               height: Get.height * 0.04,
                              
-                              color: Color.fromARGB(255, 184, 48, 7),
+                              color: listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 22, 167, 17):Color.fromARGB(255, 184, 48, 7),
                               child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

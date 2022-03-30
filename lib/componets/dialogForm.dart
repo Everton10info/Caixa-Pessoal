@@ -1,5 +1,6 @@
 import 'package:cash_book/controllers/controllersList.dart';
 import 'package:cash_book/models/transaction_model.dart';
+import 'package:cash_book/routes/routes.dart';
 import 'package:cash_book/views/list_transaction_all.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,6 +24,7 @@ var setDate = DateTime.now();
   final RxString nameTransaction = ''.obs;
   final RxDouble valor = 0.0.obs;
   var id;
+
 
   RxBool receita = false.obs;
   RxBool despesa = false.obs;
@@ -150,6 +152,7 @@ var setDate = DateTime.now();
                            
                             dueDate: setDate,
                             valor: valor.value,
+                         
                           ),
                         );
     
@@ -157,7 +160,7 @@ var setDate = DateTime.now();
     
                         listTrController.getTransactions();
                       
-                        ;
+               
                         await Get.to(() => ListTransactionsView());
     
                         Get.back();

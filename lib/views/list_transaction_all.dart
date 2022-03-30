@@ -28,6 +28,7 @@ class ListTransactionsView extends StatelessWidget {
           elevation: 3,
         ),
         body: Container(
+          
           color: Color.fromARGB(255, 212, 235, 212),
           child: Obx(
             () => ListView.builder(
@@ -81,6 +82,8 @@ class ListTransactionsView extends StatelessWidget {
                           elevation: 13,
                           child: Column(
                             children: [
+                           
+
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
@@ -95,7 +98,6 @@ class ListTransactionsView extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  
                                 ],
                               ),
                               Row(
@@ -149,7 +151,10 @@ class ListTransactionsView extends StatelessWidget {
                                         style: TextStyle(
                                             fontStyle: FontStyle.italic,
                                             fontSize: 13,
-                                            color: Colors.white,
+                                            color: listTrController.payYes.contains(
+                                                    '${listTrController.transactionAll[index].id}')
+                                                ? Colors.white
+                                                : Color.fromARGB(255, 133, 32, 1),
                                             fontWeight: FontWeight.bold),
                                       ),
                                       listTrController.transactionAll[index].typeTransaction ==
@@ -169,7 +174,7 @@ class ListTransactionsView extends StatelessWidget {
                                                 fontStyle: FontStyle.italic,
                                                 fontSize: 13,
                                                 fontWeight: FontWeight.bold,
-                                                color: Color.fromARGB(255, 184, 48, 7),
+                                                color: Color.fromARGB(255, 170, 40, 1),
                                               ),
                                             )
                                     ]),

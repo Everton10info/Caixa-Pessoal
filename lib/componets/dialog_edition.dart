@@ -136,6 +136,7 @@ class DialogEdition extends StatelessWidget {
                           dueDate: listTrController.trUpdate!.dueDate,
                           typeTransaction: listTrController.trUpdate!.typeTransaction,
                           valor: double.parse(listTrController.controllerValueEdition!.text),
+                         
                         ),
                       );
                       listTrController.editionUpdate(tr);

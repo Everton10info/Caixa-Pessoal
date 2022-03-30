@@ -62,6 +62,7 @@ ListTransactionsOutputs(){
                             listTrController.transactionOutput[index].dueDate,
                             listTrController.transactionOutput[index].valor,
                             listTrController.transactionOutput[index].id!,
+                            
                           );
 
                           showDialog(
@@ -122,24 +123,26 @@ ListTransactionsOutputs(){
                                       ),
                                     ),
                                   ),
-                                  IconButton(
-                                    alignment: Alignment.centerRight,
-                                    onPressed: () {
-                                      listTrController.removeTransaction(
-                                          listTrController.transactionOutput[index].id!);
-                                      listTrController.transactionOutput.removeAt(index);
-                                    },
-                                    icon: Icon(
-                                      Icons.delete_sweep_rounded,
-                                      size: 34,
-                                    ),
+                                   IconButton(
+                                  alignment: Alignment.centerRight,
+                                  onPressed: () {
+                                    listTrController.pay(
+                                        listTrController.transactionOutput[index].id!,);
+                                    
+                                  },
+                                  tooltip: 'Pago? ok',
+                                  icon: Icon(
+                                    Icons.check,
+                                    color:listTrController.payYes.contains( listTrController.transactionTimeEnd[index].id)? Color.fromARGB(255, 22, 167, 17):Color.fromARGB(255, 184, 48, 7),
+                                    size: 34,
                                   ),
+                                )
                                 ],
                               ),
                               Container(
                                   margin: EdgeInsets.only(left: 2.5, right: 2.5),
                                 height: Get.height * 0.045,
-                                color: Color.fromARGB(255, 0, 170, 192),
+                                color: listTrController.payYes.contains( '${listTrController.transactionOutput[index].id}')?Color.fromARGB(255, 0, 170, 192):Color.fromARGB(255, 250, 159, 23),
                                 child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -158,7 +161,7 @@ ListTransactionsOutputs(){
                                           fontStyle: FontStyle.italic,
                                           fontSize: 13,
                                           fontWeight: FontWeight.bold,
-                                          color: Color.fromARGB(255, 184, 48, 7),
+                                          color: listTrController.payYes.contains( '${listTrController.transactionOutput[index].id}')?Colors.white: Color.fromARGB(255, 133, 32, 1),
                                         ),
                                       ),
                                     ]),

@@ -14,6 +14,7 @@ class TransactionsHelpers {
   TransactionsHelpers();
 
 //variáveis usadas para criar a tabela
+ 
   String nametable = 'tbl_transaction';
   String id = 'id';
   String nameTransaction = 'nameTransaction';
@@ -85,6 +86,7 @@ class TransactionsHelpers {
     var valueString = value[0].values.toString();
     String? valueTotal = valueString.substring(1, valueString.length - 1);
     double? doubleTotal = double.tryParse(valueTotal);
+    
     return doubleTotal;
   }
 
@@ -139,11 +141,11 @@ class TransactionsHelpers {
         "SELECT * FROM $nametable WHERE $dueDate <= $date    AND $typeTransaction = 'output'  ";
     List list = await db!.rawQuery(sql);
     // ignore: unnecessary_null_comparison
-    list.isNotEmpty
-        ? listTrController.venceu.value = true
-        : listTrController.venceu.value = false;
-    print('${listTrController.venceu.value}ttttttttttttttttttttttttttttttttt');
-    print('ENDDDDDDDDDDD --$list');
+   /*   listTrController.payYes.isNotEmpty
+        ? listTrController.venceu.value = false
+        : listTrController.venceu.value = true;  */
+    
+    
     return list;
   }
 

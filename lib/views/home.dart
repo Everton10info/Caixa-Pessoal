@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
  Home(){
+  listTrController. storage.getItem('listId');
     listTrController.getTransactions();
   }
   final listTrController = Get.find<ListTrController>();

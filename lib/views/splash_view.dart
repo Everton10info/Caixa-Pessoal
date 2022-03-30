@@ -19,7 +19,7 @@ class SplashView extends StatelessWidget {
    child: AnimatedSplashScreen(
   
      
-            duration: 900,
+            duration: 800,
             splash: Image(image:AssetImage('assets/images/background.png') ),
             nextScreen:Home(),          
             splashTransition: SplashTransition.rotationTransition,

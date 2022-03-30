@@ -25,7 +25,7 @@ ListTransactionsOutputs(){
           elevation: 3,
         ),
         body: Container(
-          color: Color.fromARGB(255, 228, 243, 228),
+          color: Color.fromARGB(255, 236, 240, 236),
           child: Obx(
             () => ListView.builder(
               itemCount: listTrController.transactionOutput.length,

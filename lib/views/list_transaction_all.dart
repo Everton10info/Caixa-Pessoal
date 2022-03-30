@@ -29,7 +29,7 @@ class ListTransactionsView extends StatelessWidget {
         ),
         body: Container(
           
-          color: Color.fromARGB(255, 212, 235, 212),
+          color: Color.fromARGB(255, 236, 240, 236),
           child: Obx(
             () => ListView.builder(
               itemCount: listTrController.transactionAll.length,

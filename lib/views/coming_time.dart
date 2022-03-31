@@ -114,7 +114,7 @@ class ListComingTime extends StatelessWidget {
                                     Get.back();
                                   } ,
                                   buttonColor:Color.fromARGB(255, 241, 200, 137) ,
-                                  backgroundColor:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 0, 192, 128).withOpacity(0.7):Color.fromARGB(255, 212, 178, 27).withOpacity(0.5),
+                                  backgroundColor:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 0, 192, 128).withOpacity(0.7):Color.fromARGB(255, 224, 191, 42).withOpacity(0.8),
                                     titleStyle: TextStyle(fontSize: 17) ,
                                     title: 'Transação modificada..',
                                     middleText:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')?'Pago!' : 'Devendo!',

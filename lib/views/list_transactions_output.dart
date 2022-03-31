@@ -147,7 +147,7 @@ ListTransactionsOutputs(){
                               Container(
                                   margin: EdgeInsets.only(left: 2.5, right: 2.5),
                                 height: Get.height * 0.045,
-                                color: listTrController.payYes.contains( '${listTrController.transactionOutput[index].id}')?Color.fromARGB(255, 0, 192, 128):Color.fromARGB(255, 202, 130, 48),
+                                color: listTrController.payYes.contains( '${listTrController.transactionOutput[index].id}')?Color.fromARGB(255, 0, 192, 128):Color.fromARGB(255, 236, 195, 58),
                                 child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -166,7 +166,7 @@ ListTransactionsOutputs(){
                                           fontStyle: FontStyle.italic,
                                           fontSize: 13,
                                           fontWeight: FontWeight.bold,
-                                          color:  Color.fromARGB(255, 133, 32, 1),
+                                          color:  Color.fromARGB(255, 145, 34, 0),
                                         ),
                                       ),
                                     ]),

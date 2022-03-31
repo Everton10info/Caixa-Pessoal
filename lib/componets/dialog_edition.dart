@@ -82,13 +82,10 @@ class DialogEdition extends StatelessWidget {
                ? true
                       : receita.value,
                   onChanged: (bool? value) {
-                    //receita.value = value!;
-                   // despesa.value = false;
-                    receita.value
-                        ?  listTrController.trUpdate!.typeTransaction = 'input'
-                        : //listTrController.trUpdate!.typeTransaction = '';
-                    value = false;                  },
-                ),
+                   
+                        /* ? */  listTrController.trUpdate!.typeTransaction = 'input';
+                                   
+                  }),
                 CheckboxListTile(
                     selected:
                         listTrController.trUpdate!.typeTransaction == "output" ? true : false,
@@ -99,13 +96,8 @@ class DialogEdition extends StatelessWidget {
                       ? true
                         : despesa.value,
                     onChanged: (bool? value) {
-                     // despesa.value = value!;
-                      //receita.value = false;
-
-                      //despesa.value
-                         /*  ? */ listTrController.trUpdate!.typeTransaction = 'output';
-                         /*  : */// listTrController.trUpdate!.typeTransaction = '';
-                          //value = false; 
+                    listTrController.trUpdate!.typeTransaction = 'output';
+                       
                     }),
 
                 TextButton(

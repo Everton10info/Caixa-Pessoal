@@ -9,10 +9,7 @@ import 'package:get/get.dart';
 
 //import 'package:page_transition/page_transition.dart';
 void main() async {
-   SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.portraitUp,
-    ]);
+   
  Get.put(ListTrController(),permanent: true);
   runApp(GetMaterialApp(
     

@@ -129,8 +129,8 @@ ListTransactionsOutputs(){
                                     alignment: Alignment.center,
                                     onPressed: () {
                                       listTrController.removeTransaction(
-                                          listTrController.transactionAll[index].id!);
-                                      listTrController.transactionAll.removeAt(index);
+                                          listTrController.transactionOutput[index].id!);
+                                      listTrController.transactionOutput.removeAt(index);
                                     },
                                     icon: Icon(
                                       Icons.delete_sweep,

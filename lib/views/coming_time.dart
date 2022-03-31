@@ -17,7 +17,8 @@ class ListComingTime extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
       return Scaffold(
         appBar: AppBar(
-          title: Text('Fim dos prazos..'),
+         
+          title: Text('Despesas !'),
           elevation: 3,
         ),
         body: Container(
@@ -35,7 +36,7 @@ class ListComingTime extends StatelessWidget {
                   },
                   
                    background: Container(
-                    height: Get.height * 0.16,
+                    height: Get.height * 0.18,
             color: Colors.transparent,
                 child: Align( 
                    alignment: Alignment.center, 
@@ -105,7 +106,21 @@ class ListComingTime extends StatelessWidget {
                                 IconButton(
                                   alignment: Alignment.centerRight,
                                   onPressed: () {
+                                    
                                     listTrController.pay(listTrController.transactionTimeEnd[index].id!);
+                                  Get.defaultDialog(
+                                    custom: Container(height: Get.width * 0.9,),
+                                  onConfirm:(){
+                                    Get.back();
+                                  } ,
+                                  buttonColor:Color.fromARGB(255, 241, 200, 137) ,
+                                  backgroundColor:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 0, 192, 128).withOpacity(0.7):Color.fromARGB(255, 212, 178, 27).withOpacity(0.5),
+                                    titleStyle: TextStyle(fontSize: 17) ,
+                                    title: 'Transação modificada..',
+                                    middleText:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')?'Pago!' : 'Devendo!',
+                                      middleTextStyle:TextStyle(fontSize: 20),
+                                      radius: 34
+                                  );
                               
                           
 
@@ -115,7 +130,7 @@ class ListComingTime extends StatelessWidget {
                                   tooltip: 'Pago? ok',
                                   icon: Icon(
                                     Icons.check,
-                                    color:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 39, 201, 123):Color.fromARGB(255, 184, 48, 7),
+                                    color:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 0, 192, 128):Color.fromARGB(255, 212, 70, 27),
                                     size: 34,
                                   ),
                                 ),
@@ -125,7 +140,7 @@ class ListComingTime extends StatelessWidget {
                                 margin: EdgeInsets.only(left: 2.5, right: 2.5),
                               height: Get.height * 0.04,
                              
-                              color: listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 41, 236, 142):Color.fromARGB(255, 184, 48, 7),
+                              color: listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 0, 192, 128):Color.fromARGB(255, 212, 70, 27),
                               child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

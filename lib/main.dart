@@ -1,13 +1,18 @@
 import 'package:cash_book/controllers/controllersList.dart';
-import 'package:cash_book/views/home.dart';
+import 'package:flutter/services.dart';
+
 
 import '../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
+
 
 //import 'package:page_transition/page_transition.dart';
 void main() async {
+   SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
  Get.put(ListTrController(),permanent: true);
   runApp(GetMaterialApp(
     
@@ -25,9 +30,9 @@ void main() async {
         
         headline1: TextStyle(fontSize: 70.0, fontWeight: FontWeight.w600),
         headline6: TextStyle(
-            fontSize: 24.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
+            fontSize: 23.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
         bodyText2: TextStyle(
-            fontSize: 20.0,
+            fontSize: 21.0,
             fontStyle: FontStyle.italic,
             fontWeight: FontWeight.w400),
       ),

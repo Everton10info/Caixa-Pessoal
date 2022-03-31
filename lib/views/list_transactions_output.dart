@@ -11,18 +11,19 @@ import 'package:intl/intl.dart';
 // ignore: must_be_immutable
 class ListTransactionsOutputs extends StatelessWidget {
 ListTransactionsOutputs(){
- // listTrController.populand();
+ 
+
 }
-
+  
   final listTrController = Get.find<ListTrController>();
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
      return Obx(() => Scaffold(
         appBar: AppBar(
-          title: Text('Total: R\$: ${listTrController.totalOutput.value.toStringAsFixed(2)}'),
+          title: Text('Saídas: R\$ ${listTrController.totalOutput.value.toStringAsFixed(2)}'),
           elevation: 3,
+         
         ),
         body: Container(
           color: Color.fromARGB(255, 236, 240, 236),
@@ -31,6 +32,7 @@ ListTransactionsOutputs(){
               itemCount: listTrController.transactionOutput.length,
               itemBuilder: (context, index) {
                 return Dismissible(
+                
                   direction: DismissDirection.horizontal,
                   onDismissed: (direction){
                       listTrController.removeTransaction(
@@ -39,7 +41,7 @@ ListTransactionsOutputs(){
                   },
                   
                    background: Container(
-                     height: Get.height * 0.16,
+                     height: Get.height * 0.18,
                 color: Colors.transparent,
                 child: Align( 
                 alignment: Alignment.center, 
@@ -85,7 +87,7 @@ ListTransactionsOutputs(){
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                            margin: EdgeInsets.all(3),
+                            margin: EdgeInsets.all(1.5),
                                     child: Text(
                                       '${listTrController.transactionOutput[index].nameTransaction}  ',
                                       textAlign: TextAlign.justify,
@@ -124,25 +126,28 @@ ListTransactionsOutputs(){
                                     ),
                                   ),
                                    IconButton(
-                                  alignment: Alignment.centerRight,
-                                  onPressed: () {
-                                    listTrController.pay(
-                                        listTrController.transactionOutput[index].id!,);
-                                    
-                                  },
-                                  tooltip: 'Pago? ok',
-                                  icon: Icon(
-                                    Icons.check,
-                                    color:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 22, 167, 17):Color.fromARGB(255, 184, 48, 7),
-                                    size: 34,
-                                  ),
-                                )
+                                    alignment: Alignment.center,
+                                    onPressed: () {
+                                      listTrController.removeTransaction(
+                                          listTrController.transactionAll[index].id!);
+                                      listTrController.transactionAll.removeAt(index);
+                                    },
+                                    icon: Icon(
+                                      Icons.delete_sweep,
+                                      size: 35,
+                                    ),
+                                  ), 
+                           
+   
+    
+                               
+                                       
                                 ],
                               ),
                               Container(
                                   margin: EdgeInsets.only(left: 2.5, right: 2.5),
                                 height: Get.height * 0.045,
-                                color: listTrController.payYes.contains( '${listTrController.transactionOutput[index].id}')?Color.fromARGB(255, 0, 170, 192):Color.fromARGB(255, 241, 168, 58),
+                                color: listTrController.payYes.contains( '${listTrController.transactionOutput[index].id}')?Color.fromARGB(255, 0, 192, 128):Color.fromARGB(255, 202, 130, 48),
                                 child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -161,7 +166,7 @@ ListTransactionsOutputs(){
                                           fontStyle: FontStyle.italic,
                                           fontSize: 13,
                                           fontWeight: FontWeight.bold,
-                                          color: listTrController.payYes.contains( '${listTrController.transactionOutput[index].id}')?Colors.white: Color.fromARGB(255, 133, 32, 1),
+                                          color:  Color.fromARGB(255, 133, 32, 1),
                                         ),
                                       ),
                                     ]),

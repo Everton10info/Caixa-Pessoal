@@ -58,7 +58,7 @@ class MyDrawer extends StatelessWidget {
                 ListTile(
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                   title: Text(
-                    'Listas de Despesas',
+                    'Listas de Saídas',
                     style: TextStyle(color: Color.fromARGB(255, 35, 37, 36), fontSize: 20),
                   ),
                   onTap: () {
@@ -72,7 +72,7 @@ class MyDrawer extends StatelessWidget {
                   ListTile(
                     selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                     title: Text(
-                      'Despesas a vencer! ',
+                      'Saídas a vencer! ',
                       style: TextStyle(
                        
                             color:Color.fromARGB(255, 35, 37, 36),

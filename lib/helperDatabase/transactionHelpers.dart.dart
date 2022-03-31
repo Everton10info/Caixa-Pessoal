@@ -14,7 +14,7 @@ class TransactionsHelpers {
   TransactionsHelpers();
 
 //variáveis usadas para criar a tabela
- 
+
   String nametable = 'tbl_transaction';
   String id = 'id';
   String nameTransaction = 'nameTransaction';
@@ -59,8 +59,8 @@ class TransactionsHelpers {
     var result = await db!.insert(nametable, tr.value.toMap());
     return result;
   }
+
   Future<int> updateTr(Rx<TransactionM> up) async {
-   
     final db = await database;
     return await db!.update(
       "$nametable",
@@ -86,7 +86,7 @@ class TransactionsHelpers {
     var valueString = value[0].values.toString();
     String? valueTotal = valueString.substring(1, valueString.length - 1);
     double? doubleTotal = double.tryParse(valueTotal);
-    
+
     return doubleTotal;
   }
 
@@ -114,7 +114,7 @@ class TransactionsHelpers {
     Database? db = await this.database;
     String sql = "SELECT * FROM $nametable";
     List list = await db!.rawQuery(sql);
-    print('allllllllllllllllllllllllllllllllllll --$list');
+
     return list;
   }
 
@@ -123,7 +123,6 @@ class TransactionsHelpers {
     String sql = "SELECT * FROM $nametable WHERE $typeTransaction = 'input' ";
     List list = await db!.rawQuery(sql);
 
-    print('input--$list');
     return list;
   }
 
@@ -138,13 +137,9 @@ class TransactionsHelpers {
   Future listTimeEndDb() async {
     Database? db = await this.database;
     String sql =
-        "SELECT * FROM $nametable WHERE $dueDate >= $date    AND $typeTransaction = 'output'  ";
+        "SELECT * FROM $nametable WHERE  $date >= $dueDate  AND $typeTransaction = 'output'  ";
     List list = await db!.rawQuery(sql);
- 
-    
-    
+
     return list;
   }
-
-
 }

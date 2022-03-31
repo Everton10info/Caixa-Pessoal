@@ -24,7 +24,7 @@ class ListTransactionsView extends StatelessWidget {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          title: Text('Total: R\$: ${listTrController.sumTotal.value.toStringAsFixed(2)}'),
+          title: Text('TOTAL: R\$ ${listTrController.sumTotal.value.toStringAsFixed(2)}'),
           elevation: 3,
         ),
         body: Container(
@@ -42,7 +42,7 @@ class ListTransactionsView extends StatelessWidget {
                     listTrController.transactionAll.removeAt(index);
                   },
                   background: Container(
-                    height: Get.height * 0.16,
+                    height: Get.height * 0.18,
                     color: Colors.transparent,
                     child: Align(
                       alignment: Alignment.center,
@@ -150,7 +150,7 @@ class ListTransactionsView extends StatelessWidget {
                                         ' Cadastro:\n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionAll[index].date)} ',
                                         style: TextStyle(
                                             fontStyle: FontStyle.italic,
-                                            fontSize: 13,
+                                            fontSize: 14,
                                             color: 
                                                  Colors.white,
                                                

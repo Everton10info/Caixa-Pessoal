@@ -13,7 +13,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   listTrController.storageItem();
+  
     return Scaffold(
       appBar: AppBar(
         elevation: 3,

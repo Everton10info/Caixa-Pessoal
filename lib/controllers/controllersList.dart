@@ -1,9 +1,11 @@
+
 import 'package:cash_book/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../helperDatabase/transactionHelpers.dart.dart';
-import 'package:localstorage/localstorage.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
+
 class ListTrController extends GetxController {
   var db = TransactionsHelpers();
 
@@ -23,14 +25,11 @@ class ListTrController extends GetxController {
   TransactionM? trUpdate;
   RxDouble totalInput = 0.0.obs;
   RxDouble totalOutput = 0.0.obs;
-  RxList<String> payYes = [''].obs;
-
+  RxList<String> payYes =[''].obs;
   RxDouble sumTotal = 0.0.obs;
 
-
-  
   //
-
+  
   setEdition(String name, String type, DateTime due, double valor, int id) {
     getTransactions();
     trUpdate = TransactionM(
@@ -45,7 +44,7 @@ class ListTrController extends GetxController {
   editionUpdate(tr) async {
     int result = await db.updateTr(tr);
     if (!result.isNaN) {
-      print('carregou editado ');
+    
     }
     getTransactions();
   }
@@ -53,23 +52,33 @@ class ListTrController extends GetxController {
   void addTransaction(Rx<TransactionM> tr) async {
     int result = await db.insertTransaction(tr);
     if (!result.isNaN) {
-      print('caregou novo');
+      
     }
   }
-void  storageItem()async{
-   
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList('listId', payYes);
-   payYes.value = prefs.getStringList('listId')?? [];
-  // final success = await prefs.remove('listId');
+
+  getItemPref() async {
     
-  
+    final _prefs = await SharedPreferences.getInstance();
+    if (_prefs != null) {
+      print('pegou');
+      payYes.value = _prefs.getStringList('listId')?? [];
+    } else {
+      payYes.value += payYes;
     }
+    
+
+    
+  }
+
+   setItemPref() async {
+    final _prefs = await SharedPreferences.getInstance();
+       _prefs.setStringList('listId',payYes);
+  }
+
   getTransactions() async {
-    //all render
-storageItem();
-   
-    print(payYes.toString());
+    getItemPref();
+
+   ;
     Future<List<TransactionM>> listAll() async {
       transactionHellperAll = await db.list();
 
@@ -98,7 +107,7 @@ storageItem();
           id: transactionHellperInput[i]['id'],
           nameTransaction: transactionHellperInput[i]['nameTransaction'],
           typeTransaction: transactionHellperInput[i]['typeTransaction'],
-          dueDate: DateTime.parse(transactionHellperAll[i]['dueDate']),
+          dueDate: DateTime.parse(transactionHellperInput[i]['dueDate']),
           valor: transactionHellperInput[i]['valor'],
         );
       });
@@ -118,7 +127,7 @@ storageItem();
           id: transactionHellperOutput[i]['id'],
           nameTransaction: transactionHellperOutput[i]['nameTransaction'],
           typeTransaction: transactionHellperOutput[i]['typeTransaction'],
-          dueDate: DateTime.parse(transactionHellperAll[i]['dueDate']),
+          dueDate: DateTime.parse(transactionHellperOutput[i]['dueDate']),
           valor: transactionHellperOutput[i]['valor'],
         );
       });
@@ -143,18 +152,17 @@ storageItem();
     }
 
     transactionTimeEnd.value = await listTimeEnd();
-    print('$transactionTimeEnd');
+  
   }
 
   removeTransaction(
-    
     int id,
   ) async {
     await db.delete(id);
     payYes.removeWhere(
       (element) => element == id,
     );
-  
+  setItemPref();
     getTransactions();
   }
 
@@ -162,17 +170,17 @@ storageItem();
     int id,
   ) async {
     String? ids = id.toString();
- 
 
     if (payYes.contains(ids) == false) {
       payYes.add(ids);
-     
     } else {
-      payYes.remove(ids);
-     
+     payYes.removeWhere(
+      (element) => element == ids,
+    );
+      print('removeu $ids');
     }
- 
 
+      setItemPref();
     getTransactions();
   }
 }

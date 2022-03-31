@@ -23,7 +23,7 @@ class ListTransactionsInput extends StatelessWidget {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          title: Text('Total: R\$: ${listTrController.totalInput.value.toStringAsFixed(2)}'),
+          title: Text('Entradas: R\$ ${listTrController.totalInput.value.toStringAsFixed(2)}'),
           elevation: 3,
         ),
         body: Container(
@@ -41,7 +41,7 @@ class ListTransactionsInput extends StatelessWidget {
                   },
                   
                    background: Container(
-                       height: Get.height * 0.16,
+                       height: Get.height * 0.18,
                 color: Colors.transparent,
                 child: Align( 
                  alignment: Alignment.center, 
@@ -87,7 +87,7 @@ class ListTransactionsInput extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                   margin: EdgeInsets.all(3),
+                                   margin: EdgeInsets.all(1.5),
                                     child: Text(
                                       '${listTrController.transactionInput[index].nameTransaction}  ',
                                       textAlign: TextAlign.justify,

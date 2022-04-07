@@ -128,9 +128,26 @@ ListTransactionsOutputs(){
                                    IconButton(
                                     alignment: Alignment.center,
                                     onPressed: () {
-                                      listTrController.removeTransaction(
+                                           Get.defaultDialog(
+                                    custom: Container(height:  0.1,),
+                                    onCancel:(){},
+                                  onConfirm:(){
+                                    listTrController.removeTransaction(
                                           listTrController.transactionOutput[index].id!);
                                       listTrController.transactionOutput.removeAt(index);
+                                    Get.back();
+                                  } ,
+                                  buttonColor:Color.fromARGB(255, 218, 46, 40) ,
+                                  backgroundColor:Color.fromARGB(255, 236, 195, 58).withOpacity(0.8),
+                                    titleStyle: TextStyle(fontSize: 17) ,
+                                    title: '',
+                                      middleTextStyle:TextStyle(fontSize: 20),
+                                      middleText:'Excluir Transação?',
+                                      radius: 34
+                                  );
+
+                                      
+                                      
                                     },
                                     icon: Icon(
                                       Icons.delete_sweep,

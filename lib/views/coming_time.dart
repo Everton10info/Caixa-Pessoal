@@ -109,7 +109,7 @@ class ListComingTime extends StatelessWidget {
                                     
                                     listTrController.pay(listTrController.transactionTimeEnd[index].id!);
                                   Get.defaultDialog(
-                                    custom: Container(height: Get.width * 0.9,),
+                                    custom: Container(height: Get.width * 0.6,),
                                   onConfirm:(){
                                     Get.back();
                                   } ,

@@ -138,8 +138,8 @@ class ListTransactionsView extends StatelessWidget {
                                       listTrController.transactionAll.removeAt(index);
                                    
                                   } ,
-                                buttonColor:Color.fromARGB(255, 218, 46, 40) ,
-                                  backgroundColor:Color.fromARGB(255, 236, 195, 58).withOpacity(0.8),
+                                //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
+                                  backgroundColor:Color.fromARGB(255, 236, 195, 58).withOpacity(0.5),
                                     titleStyle: TextStyle(fontSize: 17) ,
                                     title: '',
                                       middleTextStyle:TextStyle(fontSize: 20),

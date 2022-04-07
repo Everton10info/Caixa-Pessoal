@@ -129,7 +129,7 @@ ListTransactionsOutputs(){
                                     alignment: Alignment.center,
                                     onPressed: () {
                                            Get.defaultDialog(
-                                    custom: Container(height:  0.1,),
+                                    custom: Container(width: 5,),
                                     onCancel:(){},
                                   onConfirm:(){
                                     listTrController.removeTransaction(
@@ -137,8 +137,8 @@ ListTransactionsOutputs(){
                                       listTrController.transactionOutput.removeAt(index);
                                     Get.back();
                                   } ,
-                                  buttonColor:Color.fromARGB(255, 218, 46, 40) ,
-                                  backgroundColor:Color.fromARGB(255, 236, 195, 58).withOpacity(0.8),
+                                  //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
+                                  backgroundColor:Color.fromARGB(255, 236, 195, 58).withOpacity(0.5),
                                     titleStyle: TextStyle(fontSize: 17) ,
                                     title: '',
                                       middleTextStyle:TextStyle(fontSize: 20),

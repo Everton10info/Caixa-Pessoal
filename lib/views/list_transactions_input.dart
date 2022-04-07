@@ -137,8 +137,8 @@ class ListTransactionsInput extends StatelessWidget {
                                       listTrController.transactionInput.removeAt(index);
                                     Get.back();
                                   } ,
-                                  buttonColor:Color.fromARGB(255, 218, 46, 40) ,
-                                  backgroundColor:Color.fromARGB(255, 236, 195, 58).withOpacity(0.8),
+                                  //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
+                                  backgroundColor:Color.fromARGB(255, 236, 195, 58).withOpacity(0.5),
                                     titleStyle: TextStyle(fontSize: 17) ,
                                     title: '',
                                       middleTextStyle:TextStyle(fontSize: 20),

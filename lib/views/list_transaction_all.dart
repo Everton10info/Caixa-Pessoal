@@ -143,10 +143,10 @@ class ListTransactionsView extends StatelessWidget {
                                    
                                   } ,
                                 //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
-                                  backgroundColor:Color.fromARGB(255, 247, 201, 52).withOpacity(0.5),
+                                  backgroundColor:Color.fromARGB(255, 224, 190, 34).withOpacity(0.8),
                                     titleStyle: TextStyle(fontSize: 17) ,
-                                    title: 'Excluir Transação?',
-                                    middleText:'',
+                                    title: 'Excluir',
+                                    middleText:'Tem certeza?',
                                       middleTextStyle:TextStyle(fontSize: 20),
                                       radius: 34
                                   );
@@ -184,7 +184,7 @@ class ListTransactionsView extends StatelessWidget {
                                                 fontStyle: FontStyle.italic,
                                                 fontSize: 13,
                                                 fontWeight: FontWeight.bold,
-                                                color: Color.fromARGB(255, 111, 238, 8),
+                                                color: Color.fromARGB(255, 235, 96, 3),
                                               ),
                                             )
                                           : Text(

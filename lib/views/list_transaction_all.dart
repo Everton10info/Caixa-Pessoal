@@ -143,7 +143,7 @@ class ListTransactionsView extends StatelessWidget {
                                    
                                   } ,
                                 //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
-                                  backgroundColor:Color.fromARGB(255, 236, 195, 58).withOpacity(0.5),
+                                  backgroundColor:Color.fromARGB(255, 247, 201, 52).withOpacity(0.5),
                                     titleStyle: TextStyle(fontSize: 17) ,
                                     title: 'Excluir Transação?',
                                     middleText:'',

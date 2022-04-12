@@ -167,8 +167,8 @@ class ListTransactionsInput extends StatelessWidget {
                                                 .format(DateTime.now()))
                                             .isAfter(listTrController
                                                 .transactionInput[index].dueDate)
-                                    ? Color.fromARGB(255, 0, 192, 128)
-                                    : Color.fromARGB(255, 0, 170, 192),
+                                    ? Color.fromARGB(255, 0, 170, 192)
+                                    : Color.fromARGB(255, 1, 180, 121),
                                 child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -186,7 +186,7 @@ class ListTransactionsInput extends StatelessWidget {
                                           fontStyle: FontStyle.italic,
                                           fontSize: 13,
                                           fontWeight: FontWeight.bold,
-                                          color: Color.fromARGB(255, 114, 245, 6),
+                                          color: Color.fromARGB(255, 235, 173, 3),
                                         ),
                                       ),
                                     ]),

@@ -138,7 +138,7 @@ ListTransactionsOutputs(){
                                     Navigator.pop(context);
                                   } ,
                                   //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
-                                  backgroundColor:Color.fromARGB(255, 236, 195, 58).withOpacity(0.5),
+                                  backgroundColor:Color.fromARGB(255, 236, 191, 41).withOpacity(0.5),
                                     titleStyle: TextStyle(fontSize: 17) ,
                                     title: 'Excluir Transação?',
                                     middleText: '',

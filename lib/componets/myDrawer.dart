@@ -23,13 +23,29 @@ class MyDrawer extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.all(2),
               children: [
+                 ListTile(
+                  selectedTileColor: Color.fromARGB(255, 0, 82, 97),
+                  title: Text(
+                    'Inicial',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 23,
+                    ),
+                  ),
+                  onTap: () {
+                    Get.back();
+                    Get.to(
+                      () => Home(),
+                    );
+                  },
+                ),
                 ListTile(
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                   title: Text(
-                    'Lista Total e Valor',
+                    'Total ',
                     style: TextStyle(
                       color: Color.fromARGB(255, 35, 37, 36),
-                      fontSize: 23,
+                      fontSize: 21,
                     ),
                   ),
                   onTap: () {
@@ -42,10 +58,10 @@ class MyDrawer extends StatelessWidget {
                 ListTile(
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                   title: Text(
-                    'Lista de Entradas',
+                    'Receitas',
                     style: TextStyle(
                       color: Color.fromARGB(255, 35, 37, 36),
-                      fontSize: 20,
+                      fontSize: 21,
                     ),
                   ),
                   onTap: () {
@@ -58,8 +74,8 @@ class MyDrawer extends StatelessWidget {
                 ListTile(
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                   title: Text(
-                    'Listas de Saídas',
-                    style: TextStyle(color: Color.fromARGB(255, 35, 37, 36), fontSize: 20),
+                    'Despesas',
+                    style: TextStyle(color: Color.fromARGB(255, 35, 37, 36), fontSize: 21),
                   ),
                   onTap: () {
                     Get.back();
@@ -87,22 +103,7 @@ class MyDrawer extends StatelessWidget {
                     },
                   ),
              
-                ListTile(
-                  selectedTileColor: Color.fromARGB(255, 0, 82, 97),
-                  title: Text(
-                    'Inicial',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
-                  ),
-                  onTap: () {
-                    Get.back();
-                    Get.to(
-                      () => Home(),
-                    );
-                  },
-                ),
+               
               ],
             ),
           ),

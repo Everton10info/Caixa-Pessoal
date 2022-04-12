@@ -21,7 +21,7 @@ ListTransactionsOutputs(){
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
      return Obx(() => Scaffold(
         appBar: AppBar(
-          title:Text('${DateFormat('dd/MM/yy').format(DateTime.now())}       Saídas:(R\$ ${listTrController.totalOutput.value.toStringAsFixed(2)})', ) ,
+          title:Text('${DateFormat('dd/MM/yy').format(DateTime.now())}    Despesa:(R\$ ${listTrController.totalOutput.value.toStringAsFixed(2)})', ) ,
           elevation: 3,
          
         ),

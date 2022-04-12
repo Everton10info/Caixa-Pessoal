@@ -212,7 +212,7 @@ class ListTransactionsView extends StatelessWidget {
         drawer: MyDrawer(),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 41, 236, 142),
-          child: Icon(Icons.add_task),
+          child: Icon(Icons.add_task_rounded),
           focusElevation: 50,
           onPressed: () {
             showDialog(

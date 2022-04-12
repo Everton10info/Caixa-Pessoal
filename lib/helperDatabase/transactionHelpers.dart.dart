@@ -81,7 +81,7 @@ class TransactionsHelpers {
 
   Future<double?> sumTotal() async {
     final db = await database;
-    String sql = "SELECT SUM($valor) FROM $nametable WHERE  datetime('now','localtime') >= $dueDate  AND $typeTransaction = 'input' OR $typeTransaction = 'payment' ";
+    String sql = "SELECT SUM($valor) FROM $nametable WHERE  datetime('now','localtime') >= $dueDate  AND $typeTransaction == 'input' OR datetime('now','localtime') >= $dueDate AND $typeTransaction == 'payment'  ";
     var value = await db!.rawQuery(sql);
     var valueString = value[0].values.toString();
     String? valueTotal = valueString.substring(1, valueString.length - 1);
@@ -92,7 +92,7 @@ class TransactionsHelpers {
 
   Future<double?> outputTotal() async {
     final db = await database;
-    String sql = "SELECT SUM($valor) FROM $nametable WHERE datetime('now','localtime') >= $dueDate  AND $typeTransaction = 'payment' ";
+    String sql = "SELECT SUM($valor) FROM $nametable WHERE datetime('now','localtime') >= $dueDate  AND $typeTransaction == 'payment' ";
     var value = await db!.rawQuery(sql);
     var valueString = value[0].values.toString();
     String? valueTotal = valueString.substring(1, valueString.length - 1);
@@ -102,7 +102,7 @@ class TransactionsHelpers {
 
   Future<double?> inputTotal() async {
     final db = await database;
-    String sql = "SELECT SUM($valor) FROM $nametable WHERE  datetime('now','localtime') >= $dueDate  AND $typeTransaction = 'input' ";
+    String sql = "SELECT SUM($valor) FROM $nametable WHERE  datetime('now','localtime') >= $dueDate  AND $typeTransaction == 'input' ";
     var value = await db!.rawQuery(sql);
     var valueString = value[0].values.toString();
     String? valueTotal = valueString.substring(1, valueString.length - 1);
@@ -128,7 +128,7 @@ class TransactionsHelpers {
 
   Future listOutputDb() async {
     Database? db = await this.database;
-    String sql = "SELECT * FROM $nametable WHERE $typeTransaction = 'output' OR $typeTransaction = 'payment' ";
+    String sql = "SELECT * FROM $nametable WHERE $typeTransaction == 'output' OR $typeTransaction == 'payment' ";
     List list = await db!.rawQuery(sql);
     print('outpu --$list');
     return list;
@@ -137,7 +137,7 @@ class TransactionsHelpers {
   Future listTimeEndDb() async {
     Database? db = await this.database;
     String sql =
-        "SELECT * FROM $nametable WHERE datetime('now','localtime') >= $dueDate  AND $typeTransaction = 'output' OR  $typeTransaction = 'payment'";
+        "SELECT * FROM $nametable WHERE datetime('now','localtime') >= $dueDate  AND $typeTransaction == 'output' OR  $typeTransaction == 'payment'";
     List list = await db!.rawQuery(sql);
 
     return list;
@@ -146,7 +146,7 @@ class TransactionsHelpers {
    Future listPayment() async {
     Database? db = await this.database;
     String sql =
-        "SELECT * FROM $nametable WHERE  $typeTransaction = 'payment'  ";
+        "SELECT * FROM $nametable WHERE  $typeTransaction =='payment'  ";
     List list = await db!.rawQuery(sql);
 
     return list;

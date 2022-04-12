@@ -143,9 +143,9 @@ class ListTransactionsInput extends StatelessWidget {
                                           backgroundColor: Color.fromARGB(255, 236, 195, 58)
                                               .withOpacity(0.5),
                                           titleStyle: TextStyle(fontSize: 17),
-                                          title: 'Excluir Transação?',
+                                          title: 'Excluir',
                                          
-                                    middleText:'',
+                                    middleText:'Tem certeza?',
                                           middleTextStyle: TextStyle(fontSize: 20),
                                           radius: 34);
                                     },

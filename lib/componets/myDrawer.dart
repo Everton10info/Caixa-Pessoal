@@ -26,7 +26,7 @@ class MyDrawer extends StatelessWidget {
                 ListTile(
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                   title: Text(
-                    'Lista Geral',
+                    'Lista Total e Valor',
                     style: TextStyle(
                       color: Color.fromARGB(255, 35, 37, 36),
                       fontSize: 23,
@@ -42,7 +42,7 @@ class MyDrawer extends StatelessWidget {
                 ListTile(
                   selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                   title: Text(
-                    'Listas de Entradas',
+                    'Lista de Entradas',
                     style: TextStyle(
                       color: Color.fromARGB(255, 35, 37, 36),
                       fontSize: 20,
@@ -72,7 +72,7 @@ class MyDrawer extends StatelessWidget {
                   ListTile(
                     selectedTileColor: Color.fromARGB(255, 0, 82, 97),
                     title: Text(
-                      'Saídas a vencer! ',
+                      'Débitos e Pagamentos ',
                       style: TextStyle(
                        
                             color:Color.fromARGB(255, 35, 37, 36),

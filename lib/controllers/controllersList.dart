@@ -1,4 +1,3 @@
-
 import 'package:cash_book/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,13 +22,45 @@ class ListTrController extends GetxController {
   TextEditingController? controllerTypeEdition = TextEditingController();
   TextEditingController? controllerDueEdition = TextEditingController();
   TransactionM? trUpdate;
+  // RxList<TransactionM>? trPay;
   RxDouble totalInput = 0.0.obs;
   RxDouble totalOutput = 0.0.obs;
-  RxList<String> payYes =[''].obs;
+  RxList<String> payYes = [''].obs;
   RxDouble sumTotal = 0.0.obs;
 
-  //
-  
+//edição de pagamento
+  editionPay(trPay) async {
+    int result = await db.updateTr(trPay);
+    if (!result.isNaN) {}
+    getTransactions();
+  }
+
+  // pega dados para edição de pagamento
+  setPay(String name, String type, DateTime due, double valor, int id) {
+    getTransactions();
+    Rx<TransactionM> trPay = Rx(TransactionM(
+      id: id,
+      nameTransaction: name,
+      dueDate: due,
+      typeTransaction: type = 'payment',
+      valor: valor,
+    ));
+    editionPay(trPay);
+  }
+
+  setNotPay(String name, String type, DateTime due, double valor, int id) {
+    getTransactions();
+    Rx<TransactionM> trPay = Rx(TransactionM(
+      id: id,
+      nameTransaction: name,
+      dueDate: due,
+      typeTransaction: type = 'output',
+      valor: valor,
+    ));
+
+    editionPay(trPay);
+  }
+
   setEdition(String name, String type, DateTime due, double valor, int id) {
     getTransactions();
     trUpdate = TransactionM(
@@ -43,42 +74,34 @@ class ListTrController extends GetxController {
 
   editionUpdate(tr) async {
     int result = await db.updateTr(tr);
-    if (!result.isNaN) {
-    
-    }
+    if (!result.isNaN) {}
     getTransactions();
   }
 
   void addTransaction(Rx<TransactionM> tr) async {
     int result = await db.insertTransaction(tr);
-    if (!result.isNaN) {
-      
-    }
+    if (!result.isNaN) {}
   }
 
   getItemPref() async {
-    
     final _prefs = await SharedPreferences.getInstance();
     if (_prefs != null) {
       print('pegou');
-      payYes.value = _prefs.getStringList('listId')?? [];
+      payYes.value = _prefs.getStringList('listId') ?? [];
     } else {
       payYes.value += payYes;
     }
-    
-
-    
   }
 
-   setItemPref() async {
+  setItemPref() async {
     final _prefs = await SharedPreferences.getInstance();
-       _prefs.setStringList('listId',payYes);
+    _prefs.setStringList('listId', payYes);
   }
 
   getTransactions() async {
     getItemPref();
 
-   ;
+    ;
     Future<List<TransactionM>> listAll() async {
       transactionHellperAll = await db.list();
 
@@ -152,7 +175,6 @@ class ListTrController extends GetxController {
     }
 
     transactionTimeEnd.value = await listTimeEnd();
-  
   }
 
   removeTransaction(
@@ -162,7 +184,7 @@ class ListTrController extends GetxController {
     payYes.removeWhere(
       (element) => element == id,
     );
-  setItemPref();
+    setItemPref();
     getTransactions();
   }
 
@@ -174,13 +196,13 @@ class ListTrController extends GetxController {
     if (payYes.contains(ids) == false) {
       payYes.add(ids);
     } else {
-     payYes.removeWhere(
-      (element) => element == ids,
-    );
+      payYes.removeWhere(
+        (element) => element == ids,
+      );
       print('removeu $ids');
     }
 
-      setItemPref();
+    setItemPref();
     getTransactions();
   }
 }

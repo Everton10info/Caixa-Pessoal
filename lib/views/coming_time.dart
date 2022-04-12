@@ -18,7 +18,7 @@ class ListComingTime extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
          
-          title: Text('Despesas !'),
+          title: Text('Débitos e pagamentos'),
           elevation: 3,
         ),
         body: Container(
@@ -106,20 +106,42 @@ class ListComingTime extends StatelessWidget {
                                 IconButton(
                                   alignment: Alignment.centerRight,
                                   onPressed: () {
-                                    
+                                     
                                     listTrController.pay(listTrController.transactionTimeEnd[index].id!);
                                   Get.defaultDialog(
                                     custom: Container(height: Get.width * 0.6,),
                                   onConfirm:(){
+                                    if(listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')){
+                                           listTrController.setPay(
+                            listTrController.transactionTimeEnd[index].nameTransaction,
+                            listTrController.transactionTimeEnd[index].typeTransaction,
+                            listTrController.transactionTimeEnd[index].dueDate,
+                            listTrController.transactionTimeEnd[index].valor,
+                            listTrController.transactionTimeEnd[index].id!,
+                          );
+                         
+                                    }else{
+                                      listTrController.setNotPay(
+                            listTrController.transactionTimeEnd[index].nameTransaction,
+                            listTrController.transactionTimeEnd[index].typeTransaction,
+                            listTrController.transactionTimeEnd[index].dueDate,
+                            listTrController.transactionTimeEnd[index].valor,
+                            listTrController.transactionTimeEnd[index].id!,
+                          );
+                         
+                                    }
+
+                                  
                                     Get.back();
                                   } ,
                                   buttonColor:Color.fromARGB(255, 241, 200, 137) ,
-                                  backgroundColor:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 0, 192, 128).withOpacity(0.7):Color.fromARGB(255, 224, 190, 34).withOpacity(0.8),
+                                  backgroundColor:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 0, 192, 128).withOpacity(0.7)  :Color.fromARGB(255, 224, 190, 34).withOpacity(0.8),
                                     titleStyle: TextStyle(fontSize: 17) ,
                                     title: 'Transação modificada..',
                                     middleText:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')?'Pago!' : 'Devendo!',
                                       middleTextStyle:TextStyle(fontSize: 20),
                                       radius: 34
+                                      
                                   );
                               
                           
@@ -128,8 +150,8 @@ class ListComingTime extends StatelessWidget {
                                   
                                   },
                                   tooltip: 'Pago? ok',
-                                  icon: Icon(
-                                    Icons.check,
+                                  icon: Icon(listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')?
+                                    Icons.check: Icons.attach_money,
                                     color:listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 0, 192, 128):Color.fromARGB(255, 212, 70, 27),
                                     size: 34,
                                   ),
@@ -142,18 +164,19 @@ class ListComingTime extends StatelessWidget {
                              
                               color: listTrController.payYes.contains( '${listTrController.transactionTimeEnd[index].id}')? Color.fromARGB(255, 0, 192, 128):Color.fromARGB(255, 212, 70, 27),
                               child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
+                                   Text(
+                                        ' Data de vencimento : ${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)}   ',
+                                        style: TextStyle(
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                        ),
+                                                                    ),
+                                                                    Icon(Icons.arrow_upward)
                                    
-                                    Text(
-                                      ' Data de vencimento : ${DateFormat('dd/MM/yyyy').format(listTrController.transactionTimeEnd[index].dueDate)} ',
-                                      style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
                                   ]),
                             ),
                           ],

@@ -10,20 +10,21 @@ import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class ListTransactionsInput extends StatelessWidget {
-
-  ListTransactionsInput(){
- 
-;   // listTrController.populand();
+  ListTransactionsInput() {
+    ; // listTrController.populand();
   }
   final listTrController = Get.find<ListTrController>();
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          title: Text('Entradas: R\$ ${listTrController.totalInput.value.toStringAsFixed(2)}'),
+          title: Text('${DateFormat('dd/MM/yy').format(DateTime.now())}      Entradas:(R\$ ${listTrController.totalInput.value.toStringAsFixed(2)})', ) ,
           elevation: 3,
         ),
         body: Container(
@@ -34,37 +35,36 @@ class ListTransactionsInput extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Dismissible(
                   direction: DismissDirection.horizontal,
-                  onDismissed: (direction){
-                      listTrController.removeTransaction(
-                                        listTrController.transactionInput[index].id!);
-                                    listTrController.transactionInput.removeAt(index);
+                  onDismissed: (direction) {
+                    listTrController
+                        .removeTransaction(listTrController.transactionInput[index].id!);
+                    listTrController.transactionInput.removeAt(index);
                   },
-                  
-                   background: Container(
-                       height: Get.height * 0.18,
-                color: Colors.transparent,
-                child: Align( 
-                 alignment: Alignment.center, 
-                   child: Icon(Icons.delete, color: Colors.red,size: 50,),
-                 ),
-                ),
+                  background: Container(
+                    height: Get.height * 0.18,
+                    color: Colors.transparent,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                        size: 50,
+                      ),
+                    ),
+                  ),
                   key: ValueKey(listTrController.transactionInput[index]),
                   child: ListTile(
                     title: Container(
-                    
-                width: Get.width *10,
+                      width: Get.width * 10,
                       height: Get.height * 0.16,
-                      
-            
                       child: InkWell(
-                         onDoubleTap: () {
+                        onDoubleTap: () {
                           listTrController.setEdition(
                             listTrController.transactionInput[index].nameTransaction,
                             listTrController.transactionInput[index].typeTransaction,
                             listTrController.transactionInput[index].dueDate,
                             listTrController.transactionInput[index].valor,
                             listTrController.transactionInput[index].id!,
-                             
                           );
 
                           showDialog(
@@ -75,7 +75,6 @@ class ListTransactionsInput extends StatelessWidget {
                           );
                         },
                         child: Card(
-                         
                           shape: RoundedRectangleBorder(
                               borderRadius: const BorderRadius.all(
                             Radius.circular(18.0),
@@ -87,14 +86,13 @@ class ListTransactionsInput extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                   margin: EdgeInsets.all(1.5),
+                                    margin: EdgeInsets.all(1.5),
                                     child: Text(
                                       '${listTrController.transactionInput[index].nameTransaction}  ',
                                       textAlign: TextAlign.justify,
                                       style: TextStyle(
                                         fontStyle: FontStyle.italic,
                                         color: Colors.white,
-                                    
                                       ),
                                     ),
                                   ),
@@ -128,25 +126,28 @@ class ListTransactionsInput extends StatelessWidget {
                                   IconButton(
                                     alignment: Alignment.centerRight,
                                     onPressed: () {
-                                           Get.defaultDialog(
-                                    custom: Container(height: Get.width * 0.6,),
-                                    onCancel:(){},
-                                  onConfirm:(){
-                                    listTrController.removeTransaction(
-                                          listTrController.transactionInput[index].id!);
-                                      listTrController.transactionInput.removeAt(index);
-                                    Get.back();
-                                  } ,
-                                  //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
-                                  backgroundColor:Color.fromARGB(255, 236, 195, 58).withOpacity(0.5),
-                                    titleStyle: TextStyle(fontSize: 17) ,
-                                    title: '',
-                                      middleTextStyle:TextStyle(fontSize: 20),
-                                      middleText:'Excluir Transação?',
-                                      radius: 34
-                                  );
-
-                                      
+                                      Get.defaultDialog(
+                                          custom: Container(
+                                            height: Get.width * 0.6,
+                                          ),
+                                          onCancel: () {
+                                            Navigator.pop(context);
+                                          },
+                                          onConfirm: () {
+                                            listTrController.removeTransaction(
+                                                listTrController.transactionInput[index].id!);
+                                            listTrController.transactionInput.removeAt(index);
+                                            Navigator.pop(context);
+                                          },
+                                          //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
+                                          backgroundColor: Color.fromARGB(255, 236, 195, 58)
+                                              .withOpacity(0.5),
+                                          titleStyle: TextStyle(fontSize: 17),
+                                          title: 'Excluir Transação?',
+                                         
+                                    middleText:'',
+                                          middleTextStyle: TextStyle(fontSize: 20),
+                                          radius: 34);
                                     },
                                     icon: Icon(
                                       Icons.delete_sweep_rounded,
@@ -156,20 +157,28 @@ class ListTransactionsInput extends StatelessWidget {
                                 ],
                               ),
                               Container(
-                                 margin: EdgeInsets.only(left: 2.5, right: 2.5),
+                                margin: EdgeInsets.only(left: 2.5, right: 2.5),
                                 height: Get.height * 0.045,
-                                color: Color.fromARGB(255, 0, 170, 192),
+                                color: DateTime.parse(DateFormat('yyyy-MM-dd')
+                                                .format(DateTime.now()))
+                                            .isAtSameMomentAs(listTrController
+                                                .transactionInput[index].dueDate) ||
+                                        DateTime.parse(DateFormat('yyyy-MM-dd')
+                                                .format(DateTime.now()))
+                                            .isAfter(listTrController
+                                                .transactionInput[index].dueDate)
+                                    ? Color.fromARGB(255, 0, 192, 128)
+                                    : Color.fromARGB(255, 0, 170, 192),
                                 child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         ' Registrado:\n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionInput[index].date)} ',
                                         style: TextStyle(
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: 13,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold
-                                        ),
+                                            fontStyle: FontStyle.italic,
+                                            fontSize: 13,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       Text(
                                         ' Entrada: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionInput[index].dueDate)} ',
@@ -177,7 +186,7 @@ class ListTransactionsInput extends StatelessWidget {
                                           fontStyle: FontStyle.italic,
                                           fontSize: 13,
                                           fontWeight: FontWeight.bold,
-                                           color: Color.fromARGB(255, 111, 238, 8),
+                                          color: Color.fromARGB(255, 114, 245, 6),
                                         ),
                                       ),
                                     ]),
@@ -195,9 +204,9 @@ class ListTransactionsInput extends StatelessWidget {
         ),
         drawer: MyDrawer(),
         floatingActionButton: FloatingActionButton(
-       backgroundColor: Color.fromARGB(255, 41, 236, 142),
+          backgroundColor: Color.fromARGB(255, 41, 236, 142),
           child: Icon(Icons.add_task),
-        focusElevation: 50,
+          focusElevation: 50,
           onPressed: () {
             showDialog(
                 context: context,

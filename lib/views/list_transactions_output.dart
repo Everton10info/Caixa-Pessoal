@@ -21,7 +21,7 @@ ListTransactionsOutputs(){
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
      return Obx(() => Scaffold(
         appBar: AppBar(
-          title: Text('Saídas: R\$ ${listTrController.totalOutput.value.toStringAsFixed(2)}'),
+          title:Text('${DateFormat('dd/MM/yy').format(DateTime.now())}       Saídas:(R\$ ${listTrController.totalOutput.value.toStringAsFixed(2)})', ) ,
           elevation: 3,
          
         ),
@@ -130,19 +130,19 @@ ListTransactionsOutputs(){
                                     onPressed: () {
                                            Get.defaultDialog(
                                     custom: Container(width: 5,),
-                                    onCancel:(){},
+                                    onCancel:(){Navigator.pop(context);},
                                   onConfirm:(){
                                     listTrController.removeTransaction(
                                           listTrController.transactionOutput[index].id!);
                                       listTrController.transactionOutput.removeAt(index);
-                                    Get.back();
+                                    Navigator.pop(context);
                                   } ,
                                   //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
                                   backgroundColor:Color.fromARGB(255, 236, 195, 58).withOpacity(0.5),
                                     titleStyle: TextStyle(fontSize: 17) ,
-                                    title: '',
+                                    title: 'Excluir Transação?',
+                                    middleText: '',
                                       middleTextStyle:TextStyle(fontSize: 20),
-                                      middleText:'Excluir Transação?',
                                       radius: 34
                                   );
 

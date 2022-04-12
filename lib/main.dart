@@ -27,9 +27,9 @@ void main() async {
         
         headline1: TextStyle(fontSize: 70.0, fontWeight: FontWeight.w600),
         headline6: TextStyle(
-            fontSize: 23.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
+            fontSize: 18.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.normal),
         bodyText2: TextStyle(
-            fontSize: 21.0,
+            fontSize: 20.0,
             fontStyle: FontStyle.italic,
             fontWeight: FontWeight.w400),
       ),

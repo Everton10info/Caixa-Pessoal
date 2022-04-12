@@ -7,6 +7,7 @@ import 'package:cash_book/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -24,7 +25,9 @@ class ListTransactionsView extends StatelessWidget {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          title: Text('TOTAL: R\$ ${listTrController.sumTotal.value.toStringAsFixed(2)}'),
+          
+          
+          title: Text('${DateFormat('dd/MM/yy').format(DateTime.now())}       Total: (R\$ ${listTrController.sumTotal.value.toStringAsFixed(2)})', ) ,
           elevation: 3,
         ),
         body: Container(
@@ -131,19 +134,20 @@ class ListTransactionsView extends StatelessWidget {
                                      
                                      Get.defaultDialog(
                                     custom: Container(height: Get.width * 0.6,),
-                                    onCancel:(){},
+                                    onCancel:(){Navigator.pop(context);},
                                   onConfirm:(){
                                      listTrController.removeTransaction(
                                           listTrController.transactionAll[index].id!);
                                       listTrController.transactionAll.removeAt(index);
+                                      Navigator.pop(context);
                                    
                                   } ,
                                 //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
                                   backgroundColor:Color.fromARGB(255, 236, 195, 58).withOpacity(0.5),
                                     titleStyle: TextStyle(fontSize: 17) ,
-                                    title: '',
+                                    title: 'Excluir Transação?',
+                                    middleText:'',
                                       middleTextStyle:TextStyle(fontSize: 20),
-                                      middleText:'Excluir Transação?',
                                       radius: 34
                                   );
                                      

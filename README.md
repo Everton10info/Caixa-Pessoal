@@ -3,7 +3,7 @@ Projeto pessoal construido para auxiliar no gerenciamento de finanças pessoais,
 ## Tecnologias
 Linguagem Dart com Flutter, utilizando MVVM, persistindo dados com SQLite e o gerenciamento de rotas e estado da aplicação feitos com Getx.  
 ## Descrição
-Armazena transações financeiras que o usuário inseri manualmente, despesas, receitas, podendo setar datas de vencimento ou editar valores e datas após a inserção de entradas ou saídas, sendo assim ele calcula receita e despesa na data marcada, podendo marcar como débito ou pagamento. 
+Armazena transações financeiras que o usuário inseri manualmente, podendo setar datas de vencimento ou editar valores e datas após a inserção de entradas ou saídas, sendo assim ele calcula receitas e despesas, podendo marcar como débito, pagamento ou lançamento na data marcada.
 
 
 ![scr](https://user-images.githubusercontent.com/64455494/163285588-4c617b83-9da4-451d-8458-5c39139fd07c.jpg)

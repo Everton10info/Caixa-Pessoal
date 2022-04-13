@@ -1,5 +1,5 @@
 # Caixa Pessoal 
-Projeto pessoal construido para auxiliar no gerenciamento de finanças pessoais, aplicação para dispositivos Android.
+Projeto pessoal construido para auxiliar no gerenciamento de finanças pessoais, versão 1.0.0.
 ## Tecnologias
 Feito utilizando a linguagem Dart com Flutter, utilizando MVVM, persistindo dados com SQLite, e gerenciado rotas e estado da aplicação com Getx.  
 ## Descrição

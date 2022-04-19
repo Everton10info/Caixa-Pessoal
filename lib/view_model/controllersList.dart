@@ -5,7 +5,7 @@ import '../helperDatabase/transactionHelpers.dart.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ListTrController extends GetxController {
+class ListViewModel extends GetxController {
   var db = TransactionsHelpers();
 
   RxList<TransactionM> transactionInput = RxList<TransactionM>();

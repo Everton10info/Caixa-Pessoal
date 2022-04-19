@@ -12,7 +12,7 @@ class DialogEdition extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   final trKey = GlobalKey<FormFieldState>();
   final valueKey = GlobalKey<FormFieldState>();
-  final listTrController = Get.find<ListTrController>();
+  final listViewModel = Get.find<ListViewModel>();
 
   RxBool receita = false.obs;
   RxBool despesa = false.obs;
@@ -39,9 +39,9 @@ class DialogEdition extends StatelessWidget {
                   inputFormatters: [
                     LengthLimitingTextInputFormatter(28),
                   ],
-                  controller: listTrController.controllerNameEdition = TextEditingController(
+                  controller: listViewModel.controllerNameEdition = TextEditingController(
                     text: 
-                            listTrController.trUpdate!.nameTransaction.toString()
+                            listViewModel.trUpdate!.nameTransaction.toString()
                         
                   ),
                   decoration: InputDecoration(
@@ -62,9 +62,9 @@ class DialogEdition extends StatelessWidget {
                     LengthLimitingTextInputFormatter(7),
                   ],
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  controller: listTrController.controllerValueEdition = TextEditingController(
+                  controller: listViewModel.controllerValueEdition = TextEditingController(
                     text: 
-                            listTrController.trUpdate!.valor.toString()
+                            listViewModel.trUpdate!.valor.toString()
                       
                   ),
                   decoration: InputDecoration(
@@ -75,28 +75,28 @@ class DialogEdition extends StatelessWidget {
 
                 CheckboxListTile(
                   selected:
-                      listTrController.trUpdate!.typeTransaction == "input" ? true : false,
+                      listViewModel.trUpdate!.typeTransaction == "input" ? true : false,
                   title: Text('Receita?'),
                   activeColor: Colors.blue,
-                  value: listTrController.trUpdate!.typeTransaction == "input"
+                  value: listViewModel.trUpdate!.typeTransaction == "input"
                ? true
                       : receita.value,
                   onChanged: (bool? value) {
                    
-                        /* ? */  listTrController.trUpdate!.typeTransaction = 'input';
+                        /* ? */  listViewModel.trUpdate!.typeTransaction = 'input';
                                    
                   }),
                 CheckboxListTile(
                     selected:
-                        listTrController.trUpdate!.typeTransaction == "output" ? true : false,
+                        listViewModel.trUpdate!.typeTransaction == "output" ? true : false,
                     title: Text('Despesa?'),
                     activeColor: Colors.blue,
-                    value: listTrController.trUpdate!.typeTransaction == "output"
+                    value: listViewModel.trUpdate!.typeTransaction == "output"
                         
                       ? true
                         : despesa.value,
                     onChanged: (bool? value) {
-                    listTrController.trUpdate!.typeTransaction = 'output';
+                    listViewModel.trUpdate!.typeTransaction = 'output';
                        
                     }),
 
@@ -104,9 +104,9 @@ class DialogEdition extends StatelessWidget {
                     onPressed: () {
                       DatePicker.showDatePicker(context,
                           showTitleActions: true,
-                          currentTime: listTrController.trUpdate!.dueDate, onConfirm: (date) {
+                          currentTime: listViewModel.trUpdate!.dueDate, onConfirm: (date) {
                         print('confirm $date');
-                        listTrController.trUpdate!.dueDate = date;
+                        listViewModel.trUpdate!.dueDate = date;
                       }, locale: LocaleType.pt);
                     },
                     child: Text(
@@ -118,22 +118,22 @@ class DialogEdition extends StatelessWidget {
                   onPressed: () async {
                     trKey.currentState?.validate();
                     valueKey.currentState?.validate();
-                    if (listTrController.trUpdate!.typeTransaction == '') {
+                    if (listViewModel.trUpdate!.typeTransaction == '') {
                       Get.snackbar('Escolha uma opção ', 'RECEITA OU DESPESA?');
                     } else {
                       Rx<TransactionM> tr = Rx(
                         TransactionM(
-                          id: listTrController.trUpdate!.id,
-                          nameTransaction: listTrController.controllerNameEdition!.text,
-                          dueDate: listTrController.trUpdate!.dueDate,
-                          typeTransaction: listTrController.trUpdate!.typeTransaction,
-                          valor: double.parse(listTrController.controllerValueEdition!.text),
+                          id: listViewModel.trUpdate!.id,
+                          nameTransaction: listViewModel.controllerNameEdition!.text,
+                          dueDate: listViewModel.trUpdate!.dueDate,
+                          typeTransaction: listViewModel.trUpdate!.typeTransaction,
+                          valor: double.parse(listViewModel.controllerValueEdition!.text),
                          
                         ),
                       );
-                      listTrController.editionUpdate(tr);
+                      listViewModel.editionUpdate(tr);
 
-                      listTrController.getTransactions();
+                      listViewModel.getTransactions();
 
                       Get.back();
                     }

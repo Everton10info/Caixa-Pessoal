@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-final listTrController = Get.find<ListTrController>();
+final listViewModel = Get.find<ListViewModel>();
 
 class TransactionsHelpers {
   TransactionsHelpers.ensureInitialized();

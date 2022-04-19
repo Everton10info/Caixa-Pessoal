@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 //import 'package:page_transition/page_transition.dart';
 void main() async {
    
- Get.put(ListTrController(),permanent: true);
+ Get.put(ListViewModel(),permanent: true);
   runApp(GetMaterialApp(
     
     debugShowCheckedModeBanner: false,

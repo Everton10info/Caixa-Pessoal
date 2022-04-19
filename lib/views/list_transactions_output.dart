@@ -15,13 +15,13 @@ ListTransactionsOutputs(){
 
 }
   
-  final listTrController = Get.find<ListTrController>();
+  final listViewModel = Get.find<ListViewModel>();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
      return Obx(() => Scaffold(
         appBar: AppBar(
-          title:Text('${DateFormat('dd/MM/yy').format(DateTime.now())}    Despesa:(R\$ ${listTrController.totalOutput.value.toStringAsFixed(2)})', ) ,
+          title:Text('${DateFormat('dd/MM/yy').format(DateTime.now())}    Despesa:(R\$ ${listViewModel.totalOutput.value.toStringAsFixed(2)})', ) ,
           elevation: 3,
          
         ),
@@ -29,15 +29,15 @@ ListTransactionsOutputs(){
           color: Color.fromARGB(255, 236, 240, 236),
           child: Obx(
             () => ListView.builder(
-              itemCount: listTrController.transactionOutput.length,
+              itemCount: listViewModel.transactionOutput.length,
               itemBuilder: (context, index) {
                 return Dismissible(
                 
                   direction: DismissDirection.horizontal,
                   onDismissed: (direction){
-                      listTrController.removeTransaction(
-                                        listTrController.transactionOutput[index].id!);
-                                    listTrController.transactionOutput.removeAt(index);
+                      listViewModel.removeTransaction(
+                                        listViewModel.transactionOutput[index].id!);
+                                    listViewModel.transactionOutput.removeAt(index);
                   },
                   
                    background: Container(
@@ -48,7 +48,7 @@ ListTransactionsOutputs(){
                    child: Icon(Icons.delete, color: Colors.red,size: 50,),
                  ),
                 ),
-                  key: ValueKey(listTrController.transactionOutput[index]),
+                  key: ValueKey(listViewModel.transactionOutput[index]),
                   child: ListTile(
                     title: Container(
                      
@@ -58,12 +58,12 @@ ListTransactionsOutputs(){
                 
                       child: InkWell(
                          onDoubleTap: () {
-                          listTrController.setEdition(
-                            listTrController.transactionOutput[index].nameTransaction,
-                            listTrController.transactionOutput[index].typeTransaction,
-                            listTrController.transactionOutput[index].dueDate,
-                            listTrController.transactionOutput[index].valor,
-                            listTrController.transactionOutput[index].id!,
+                          listViewModel.setEdition(
+                            listViewModel.transactionOutput[index].nameTransaction,
+                            listViewModel.transactionOutput[index].typeTransaction,
+                            listViewModel.transactionOutput[index].dueDate,
+                            listViewModel.transactionOutput[index].valor,
+                            listViewModel.transactionOutput[index].id!,
                             
                           );
 
@@ -89,7 +89,7 @@ ListTransactionsOutputs(){
                                   Container(
                             margin: EdgeInsets.all(1.5),
                                     child: Text(
-                                      '${listTrController.transactionOutput[index].nameTransaction}  ',
+                                      '${listViewModel.transactionOutput[index].nameTransaction}  ',
                                       textAlign: TextAlign.justify,
                                       style: TextStyle(
                                         fontStyle: FontStyle.italic,
@@ -114,7 +114,7 @@ ListTransactionsOutputs(){
                                       padding: const EdgeInsets.all(4.0),
                                       child: Text(
                                         ' R\$ ' +
-                                            listTrController.transactionOutput[index].valor
+                                            listViewModel.transactionOutput[index].valor
                                                 .toStringAsFixed(2),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
@@ -132,9 +132,9 @@ ListTransactionsOutputs(){
                                     custom: Container(width: 5,),
                                     onCancel:(){Navigator.pop(context);},
                                   onConfirm:(){
-                                    listTrController.removeTransaction(
-                                          listTrController.transactionOutput[index].id!);
-                                      listTrController.transactionOutput.removeAt(index);
+                                    listViewModel.removeTransaction(
+                                          listViewModel.transactionOutput[index].id!);
+                                      listViewModel.transactionOutput.removeAt(index);
                                     Navigator.pop(context);
                                   } ,
                                   //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
@@ -164,12 +164,12 @@ ListTransactionsOutputs(){
                               Container(
                                   margin: EdgeInsets.only(left: 2.5, right: 2.5),
                                 height: Get.height * 0.045,
-                                color: listTrController.payYes.contains( '${listTrController.transactionOutput[index].id}')?Color.fromARGB(255, 0, 192, 128):Color.fromARGB(255, 236, 195, 58),
+                                color: listViewModel.payYes.contains( '${listViewModel.transactionOutput[index].id}')?Color.fromARGB(255, 0, 192, 128):Color.fromARGB(255, 236, 195, 58),
                                 child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        ' Registrado:\n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionOutput[index].date)} ',
+                                        ' Registrado:\n ${DateFormat('dd/MM/yyyy').format(listViewModel.transactionOutput[index].date)} ',
                                         style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                           fontSize: 13,
@@ -178,7 +178,7 @@ ListTransactionsOutputs(){
                                         ),
                                       ),
                                       Text(
-                                        ' Vencimento: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionOutput[index].dueDate)} ',
+                                        ' Vencimento: \n ${DateFormat('dd/MM/yyyy').format(listViewModel.transactionOutput[index].dueDate)} ',
                                         style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                           fontSize: 13,

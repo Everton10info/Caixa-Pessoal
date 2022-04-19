@@ -11,9 +11,9 @@ import 'package:intl/intl.dart';
 // ignore: must_be_immutable
 class ListTransactionsInput extends StatelessWidget {
   ListTransactionsInput() {
-    ; // listTrController.populand();
+    ; // listViewModel.populand();
   }
-  final listTrController = Get.find<ListTrController>();
+  final listViewModel = Get.find<ListViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,21 +24,21 @@ class ListTransactionsInput extends StatelessWidget {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          title: Text('${DateFormat('dd/MM/yy').format(DateTime.now())}     Receitas:(R\$ ${listTrController.totalInput.value.toStringAsFixed(2)})', ) ,
+          title: Text('${DateFormat('dd/MM/yy').format(DateTime.now())}     Receitas:(R\$ ${listViewModel.totalInput.value.toStringAsFixed(2)})', ) ,
           elevation: 3,
         ),
         body: Container(
           color: Color.fromARGB(255, 236, 240, 236),
           child: Obx(
             () => ListView.builder(
-              itemCount: listTrController.transactionInput.length,
+              itemCount: listViewModel.transactionInput.length,
               itemBuilder: (context, index) {
                 return Dismissible(
                   direction: DismissDirection.horizontal,
                   onDismissed: (direction) {
-                    listTrController
-                        .removeTransaction(listTrController.transactionInput[index].id!);
-                    listTrController.transactionInput.removeAt(index);
+                    listViewModel
+                        .removeTransaction(listViewModel.transactionInput[index].id!);
+                    listViewModel.transactionInput.removeAt(index);
                   },
                   background: Container(
                     height: Get.height * 0.18,
@@ -52,19 +52,19 @@ class ListTransactionsInput extends StatelessWidget {
                       ),
                     ),
                   ),
-                  key: ValueKey(listTrController.transactionInput[index]),
+                  key: ValueKey(listViewModel.transactionInput[index]),
                   child: ListTile(
                     title: Container(
                       width: Get.width * 10,
                       height: Get.height * 0.16,
                       child: InkWell(
                         onDoubleTap: () {
-                          listTrController.setEdition(
-                            listTrController.transactionInput[index].nameTransaction,
-                            listTrController.transactionInput[index].typeTransaction,
-                            listTrController.transactionInput[index].dueDate,
-                            listTrController.transactionInput[index].valor,
-                            listTrController.transactionInput[index].id!,
+                          listViewModel.setEdition(
+                            listViewModel.transactionInput[index].nameTransaction,
+                            listViewModel.transactionInput[index].typeTransaction,
+                            listViewModel.transactionInput[index].dueDate,
+                            listViewModel.transactionInput[index].valor,
+                            listViewModel.transactionInput[index].id!,
                           );
 
                           showDialog(
@@ -88,7 +88,7 @@ class ListTransactionsInput extends StatelessWidget {
                                   Container(
                                     margin: EdgeInsets.all(1.5),
                                     child: Text(
-                                      '${listTrController.transactionInput[index].nameTransaction}  ',
+                                      '${listViewModel.transactionInput[index].nameTransaction}  ',
                                       textAlign: TextAlign.justify,
                                       style: TextStyle(
                                         fontStyle: FontStyle.italic,
@@ -112,7 +112,7 @@ class ListTransactionsInput extends StatelessWidget {
                                       padding: const EdgeInsets.all(4.0),
                                       child: Text(
                                         ' R\$ ' +
-                                            listTrController.transactionInput[index].valor
+                                            listViewModel.transactionInput[index].valor
                                                 .toStringAsFixed(2),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
@@ -134,9 +134,9 @@ class ListTransactionsInput extends StatelessWidget {
                                             Navigator.pop(context);
                                           },
                                           onConfirm: () {
-                                            listTrController.removeTransaction(
-                                                listTrController.transactionInput[index].id!);
-                                            listTrController.transactionInput.removeAt(index);
+                                            listViewModel.removeTransaction(
+                                                listViewModel.transactionInput[index].id!);
+                                            listViewModel.transactionInput.removeAt(index);
                                             Navigator.pop(context);
                                           },
                                           //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
@@ -161,11 +161,11 @@ class ListTransactionsInput extends StatelessWidget {
                                 height: Get.height * 0.045,
                                 color: DateTime.parse(DateFormat('yyyy-MM-dd')
                                                 .format(DateTime.now()))
-                                            .isAtSameMomentAs(listTrController
+                                            .isAtSameMomentAs(listViewModel
                                                 .transactionInput[index].dueDate) ||
                                         DateTime.parse(DateFormat('yyyy-MM-dd')
                                                 .format(DateTime.now()))
-                                            .isAfter(listTrController
+                                            .isAfter(listViewModel
                                                 .transactionInput[index].dueDate)
                                     ? Color.fromARGB(255, 0, 170, 192)
                                     : Color.fromARGB(255, 1, 180, 121),
@@ -173,7 +173,7 @@ class ListTransactionsInput extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        ' Registrado:\n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionInput[index].date)} ',
+                                        ' Registrado:\n ${DateFormat('dd/MM/yyyy').format(listViewModel.transactionInput[index].date)} ',
                                         style: TextStyle(
                                             fontStyle: FontStyle.italic,
                                             fontSize: 13,
@@ -181,7 +181,7 @@ class ListTransactionsInput extends StatelessWidget {
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        ' Entrada: \n ${DateFormat('dd/MM/yyyy').format(listTrController.transactionInput[index].dueDate)} ',
+                                        ' Entrada: \n ${DateFormat('dd/MM/yyyy').format(listViewModel.transactionInput[index].dueDate)} ',
                                         style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                           fontSize: 13,

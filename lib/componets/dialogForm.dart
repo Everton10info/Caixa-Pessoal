@@ -16,7 +16,7 @@ class DialogFrom extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   final trKey = GlobalKey<FormFieldState>();
   final valueKey = GlobalKey<FormFieldState>();
-  final listTrController = Get.find<ListTrController>();
+  final listViewModel = Get.find<ListViewModel>();
   TextEditingController controllerName = TextEditingController();
   TextEditingController controllerValue = TextEditingController();
 var setDate = DateTime.now();
@@ -156,9 +156,9 @@ var setDate = DateTime.now();
                           ),
                         );
     
-                        listTrController.addTransaction(transaction);
+                        listViewModel.addTransaction(transaction);
     
-                        listTrController.getTransactions();
+                        listViewModel.getTransactions();
                       
                
                         await Get.to(() => ListTransactionsView());

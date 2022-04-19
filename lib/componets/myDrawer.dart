@@ -9,7 +9,7 @@ import 'package:cash_book/view_model/controllersList.dart';
 
 class MyDrawer extends StatelessWidget {
   MyDrawer({Key? key}) : super(key: key);
-  final listTrController = Get.find<ListTrController>();
+  final listViewModel = Get.find<ListViewModel>();
   @override
   Widget build(BuildContext context) {
     return Padding(

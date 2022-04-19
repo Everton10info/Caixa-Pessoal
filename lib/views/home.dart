@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 class Home extends StatelessWidget {
  Home(){
  
-    listTrController.getTransactions();
+    listViewModel.getTransactions();
   }
-  final listTrController = Get.find<ListTrController>();
+  final listViewModel = Get.find<ListViewModel>();
 
   @override
   Widget build(BuildContext context) {

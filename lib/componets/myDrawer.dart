@@ -5,7 +5,7 @@ import 'package:cash_book/views/list_transactions_input.dart';
 import 'package:cash_book/views/list_transactions_output.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:cash_book/controllers/controllersList.dart';
+import 'package:cash_book/view_model/controllersList.dart';
 
 class MyDrawer extends StatelessWidget {
   MyDrawer({Key? key}) : super(key: key);

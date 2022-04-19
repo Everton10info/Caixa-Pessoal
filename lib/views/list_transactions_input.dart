@@ -1,7 +1,7 @@
 import 'package:cash_book/componets/dialogForm.dart';
 import 'package:cash_book/componets/dialog_edition.dart';
 import 'package:cash_book/componets/myDrawer.dart';
-import 'package:cash_book/view_model/controllersList.dart';
+import 'package:cash_book/view_model/view_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

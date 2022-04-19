@@ -1,4 +1,4 @@
-import 'package:cash_book/view_model/controllersList.dart';
+import 'package:cash_book/view_model/view_model.dart';
 import '../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

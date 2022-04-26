@@ -40,10 +40,7 @@ class DialogEdition extends StatelessWidget {
                     LengthLimitingTextInputFormatter(28),
                   ],
                   controller: listViewModel.controllerNameEdition = TextEditingController(
-                    text: 
-                            listViewModel.trUpdate!.nameTransaction.toString()
-                        
-                  ),
+                      text: listViewModel.trUpdate!.nameTransaction.toString()),
                   decoration: InputDecoration(
                     border: UnderlineInputBorder(),
                     hintText: 'Nome da transação',
@@ -62,43 +59,32 @@ class DialogEdition extends StatelessWidget {
                     LengthLimitingTextInputFormatter(7),
                   ],
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  controller: listViewModel.controllerValueEdition = TextEditingController(
-                    text: 
-                            listViewModel.trUpdate!.valor.toString()
-                      
-                  ),
+                  controller: listViewModel.controllerValueEdition =
+                      TextEditingController(text: listViewModel.trUpdate!.valor.toString()),
                   decoration: InputDecoration(
                     border: UnderlineInputBorder(),
                     hintText: 'Valor da transação',
                   ),
                 ),
-                
+
                 CheckboxListTile(
-                  selected:
-                      listViewModel.trUpdate!.typeTransaction == "input" ? true : false,
-                  title: Text('Receita?'),
-                  activeColor: Colors.blue,
-                  value: listViewModel.trUpdate!.typeTransaction == "input"
-               ? true
-                      : receita.value,
-                  onChanged: (bool? value) {
-                   
-                        /* ? */ // listViewModel.trUpdate!.typeTransaction = 'input';
-                                   
-                  }),
+                    selected:
+                        listViewModel.trUpdate!.typeTransaction == "input" ? true : false,
+                    title: Text('Receita?'),
+                    activeColor: Colors.blue,
+                    value: listViewModel.trUpdate!.typeTransaction == "input"
+                        ? true
+                        : receita.value,
+                    onChanged: (bool? value) {}),
                 CheckboxListTile(
                     selected:
                         listViewModel.trUpdate!.typeTransaction == "output" ? true : false,
                     title: Text('Despesa?'),
                     activeColor: Colors.blue,
                     value: listViewModel.trUpdate!.typeTransaction == "output"
-                        
-                      ? true
+                        ? true
                         : despesa.value,
-                    onChanged: (bool? value) {
-                   // listViewModel.trUpdate!.typeTransaction = 'output';
-                       
-                    }),
+                    onChanged: (bool? value) {}),
 
                 TextButton(
                     onPressed: () {
@@ -128,7 +114,6 @@ class DialogEdition extends StatelessWidget {
                           dueDate: listViewModel.trUpdate!.dueDate,
                           typeTransaction: listViewModel.trUpdate!.typeTransaction,
                           valor: double.parse(listViewModel.controllerValueEdition!.text),
-                         
                         ),
                       );
                       listViewModel.editionUpdate(tr);

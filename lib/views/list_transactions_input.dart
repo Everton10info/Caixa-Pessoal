@@ -24,7 +24,9 @@ class ListTransactionsInput extends StatelessWidget {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
-          title: Text('${DateFormat('dd/MM/yy').format(DateTime.now())}     Receitas:(R\$ ${listViewModel.totalInput.value.toStringAsFixed(2)})', ) ,
+          title: Text(
+            '${DateFormat('dd/MM/yy').format(DateTime.now())}     Receitas:(R\$ ${listViewModel.totalInput.value.toStringAsFixed(2)})',
+          ),
           elevation: 3,
         ),
         body: Container(
@@ -36,8 +38,7 @@ class ListTransactionsInput extends StatelessWidget {
                 return Dismissible(
                   direction: DismissDirection.horizontal,
                   onDismissed: (direction) {
-                    listViewModel
-                        .removeTransaction(listViewModel.transactionInput[index].id!);
+                    listViewModel.removeTransaction(listViewModel.transactionInput[index].id!);
                     listViewModel.transactionInput.removeAt(index);
                   },
                   background: Container(
@@ -139,13 +140,11 @@ class ListTransactionsInput extends StatelessWidget {
                                             listViewModel.transactionInput.removeAt(index);
                                             Navigator.pop(context);
                                           },
-                                          //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
-                                          backgroundColor: Color.fromARGB(255, 236, 195, 58)
-                                              .withOpacity(0.5),
+                                          backgroundColor: Color.fromARGB(255, 224, 190, 34)
+                                              .withOpacity(0.6),
                                           titleStyle: TextStyle(fontSize: 17),
                                           title: 'Excluir',
-                                         
-                                    middleText:'Tem certeza?',
+                                          middleText: 'Tem certeza?',
                                           middleTextStyle: TextStyle(fontSize: 20),
                                           radius: 34);
                                     },
@@ -165,8 +164,8 @@ class ListTransactionsInput extends StatelessWidget {
                                                 .transactionInput[index].dueDate) ||
                                         DateTime.parse(DateFormat('yyyy-MM-dd')
                                                 .format(DateTime.now()))
-                                            .isAfter(listViewModel
-                                                .transactionInput[index].dueDate)
+                                            .isAfter(
+                                                listViewModel.transactionInput[index].dueDate)
                                     ? Color.fromARGB(255, 0, 170, 192)
                                     : Color.fromARGB(255, 1, 180, 121),
                                 child: Row(

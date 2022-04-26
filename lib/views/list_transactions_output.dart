@@ -137,8 +137,7 @@ ListTransactionsOutputs(){
                                       listViewModel.transactionOutput.removeAt(index);
                                     Navigator.pop(context);
                                   } ,
-                                  //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
-                                  backgroundColor:Color.fromARGB(255, 180, 125, 24).withOpacity(0.5),
+                                 backgroundColor:Color.fromARGB(255, 224, 190, 34).withOpacity(0.6),
                                     titleStyle: TextStyle(fontSize: 17) ,
                                     title: 'Excluir',
                                  middleText:'Tem certeza?',

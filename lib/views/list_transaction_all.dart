@@ -142,8 +142,8 @@ class ListTransactionsView extends StatelessWidget {
                                       Navigator.pop(context);
                                    
                                   } ,
-                                //buttonColor:Color.fromARGB(255, 218, 46, 40) ,
-                                  backgroundColor:Color.fromARGB(255, 224, 190, 34).withOpacity(0.8),
+                             
+                                  backgroundColor:Color.fromARGB(255, 224, 190, 34).withOpacity(0.6),
                                     titleStyle: TextStyle(fontSize: 17) ,
                                     title: 'Excluir',
                                     middleText:'Tem certeza?',

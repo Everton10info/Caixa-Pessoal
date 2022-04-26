@@ -186,7 +186,7 @@ class ListTransactionsInput extends StatelessWidget {
                                           fontStyle: FontStyle.italic,
                                           fontSize: 13,
                                           fontWeight: FontWeight.bold,
-                                          color: Color.fromARGB(255, 235, 96, 3),
+                                          color: Color.fromARGB(255, 245, 64, 9),
                                         ),
                                       ),
                                     ]),

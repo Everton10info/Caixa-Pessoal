@@ -51,7 +51,7 @@ class DialogEdition extends StatelessWidget {
                   textCapitalization: TextCapitalization.sentences,
                   key: valueKey,
                   validator: (String? value) {
-                    if (value!.length < 1) {
+                    if (value!.length < 1 || double.parse(value)<1 ) {
                       return 'Valor inválido';
                     }
                   },
@@ -121,11 +121,15 @@ class DialogEdition extends StatelessWidget {
                           valor: double.parse(listViewModel.controllerValueEdition!.text),
                         ),
                       );
-                      listViewModel.editionUpdate(tr);
 
-                      listViewModel.getTransactions();
-
-                      Get.back();
+                      if (listViewModel.controllerNameEdition!.text.length < 3 == false &&
+                          double.parse(listViewModel.controllerValueEdition!.text) < 1 ==
+                              false &&
+                          listViewModel.controllerValueEdition!.text.length < 1 == false) {
+                        listViewModel.editionUpdate(tr);
+                        listViewModel.getTransactions();
+                        Get.back();
+                      }
                     }
                   },
                   child: Text(

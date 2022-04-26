@@ -77,11 +77,16 @@ class DialogEdition extends StatelessWidget {
                         : receita.value,
                     onChanged: (bool? value) {}),
                 CheckboxListTile(
-                    selected:
-                        listViewModel.trUpdate!.typeTransaction == "output" ? true : false,
-                    title: Text('Despesa?'),
+                    selected: listViewModel.trUpdate!.typeTransaction == "output" ||
+                            listViewModel.payYes.contains('${listViewModel.trUpdate!.id}')
+                        ? true
+                        : false,
+                    title: listViewModel.payYes.contains('${listViewModel.trUpdate!.id}')
+                        ? Text('PAGO!')
+                        : Text('Despesa?'),
                     activeColor: Colors.blue,
-                    value: listViewModel.trUpdate!.typeTransaction == "output"
+                    value: listViewModel.trUpdate!.typeTransaction == "output" ||
+                            listViewModel.payYes.contains('${listViewModel.trUpdate!.id}')
                         ? true
                         : despesa.value,
                     onChanged: (bool? value) {}),

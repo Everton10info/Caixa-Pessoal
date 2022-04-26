@@ -72,7 +72,7 @@ class DialogEdition extends StatelessWidget {
                     hintText: 'Valor da transação',
                   ),
                 ),
-
+                
                 CheckboxListTile(
                   selected:
                       listViewModel.trUpdate!.typeTransaction == "input" ? true : false,
@@ -83,7 +83,7 @@ class DialogEdition extends StatelessWidget {
                       : receita.value,
                   onChanged: (bool? value) {
                    
-                        /* ? */  listViewModel.trUpdate!.typeTransaction = 'input';
+                        /* ? */ // listViewModel.trUpdate!.typeTransaction = 'input';
                                    
                   }),
                 CheckboxListTile(
@@ -96,7 +96,7 @@ class DialogEdition extends StatelessWidget {
                       ? true
                         : despesa.value,
                     onChanged: (bool? value) {
-                    listViewModel.trUpdate!.typeTransaction = 'output';
+                   // listViewModel.trUpdate!.typeTransaction = 'output';
                        
                     }),
 

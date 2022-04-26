@@ -123,9 +123,9 @@ class DialogEdition extends StatelessWidget {
                       );
 
                       if (listViewModel.controllerNameEdition!.text.length < 3 == false &&
-                          double.parse(listViewModel.controllerValueEdition!.text) < 1 ==
+                          (double.parse(listViewModel.controllerValueEdition!.text) == 0 )==
                               false &&
-                          listViewModel.controllerValueEdition!.text.length < 1 == false) {
+                          listViewModel.controllerValueEdition!.text.length <1 == false) {
                         listViewModel.editionUpdate(tr);
                         listViewModel.getTransactions();
                         Get.back();

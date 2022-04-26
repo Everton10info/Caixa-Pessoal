@@ -18,8 +18,7 @@ void main() async {
       // Define the default font family.
       fontFamily: 'Georgia',
 
-      // Define the default `TextTheme`. Use this to specify the default
-      // text styling for headlines, titles, bodies of text, and more.
+     
       textTheme: const TextTheme(
         
         headline1: TextStyle(fontSize: 70.0, fontWeight: FontWeight.w600),

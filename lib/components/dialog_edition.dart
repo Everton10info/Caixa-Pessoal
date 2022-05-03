@@ -118,12 +118,14 @@ class DialogEdition extends StatelessWidget {
                           nameTransaction: listViewModel.controllerNameEdition!.text,
                           dueDate: listViewModel.trUpdate!.dueDate,
                           typeTransaction: listViewModel.trUpdate!.typeTransaction,
-                          valor: double.parse(listViewModel.controllerValueEdition!.text) > 0
+                          valor: double.parse(listViewModel.controllerValueEdition!.text) >
+                                      0 &&
+                                  listViewModel.trUpdate!.typeTransaction != 'input'
                               ? double.parse(listViewModel.controllerValueEdition!.text) * (-1)
                               : double.parse(listViewModel.controllerValueEdition!.text),
                         ),
                       );
-                     
+
                       if (listViewModel.controllerNameEdition!.text.length < 3 == false &&
                           (double.parse(listViewModel.controllerValueEdition!.text) == 0) ==
                               false &&

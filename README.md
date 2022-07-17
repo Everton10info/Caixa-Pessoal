@@ -1,7 +1,7 @@
 # Caixa Pessoal 
 Projeto pessoal construído para auxiliar no gerenciamento de finanças pessoais, versão 1.0.0.
 ## Tecnologias
-Linguagem Dart com Flutter, utilizando conceitos MVVM, persistindo dados com SQLite e no gerenciamento de rotas e estado da aplicação utilizado Getx.  
+Linguagem Dart com Flutter, utilizando conceitos MVC, persistindo dados com SQLite e no gerenciamento de rotas e estado da aplicação utilizado Getx.  
 ## Descrição
 Armazena transações financeiras que o usuário insere manualmente, podendo setar datas de vencimento ou editar valores e datas após a inserção de entradas ou saídas, calculando receitas e despesas, podendo marcar como débito, pagamento ou lançamento na data marcada.
 

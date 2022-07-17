@@ -1,4 +1,4 @@
-import 'package:cash_book/view_model/view_model.dart';
+import 'package:cash_book/Controllers/controller_list.dart';
 import '../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 //import 'package:page_transition/page_transition.dart';
 void main() async {
    
- Get.put(ListViewModel(),permanent: true);
+ Get.put(ControllerLists(),permanent: true);
   runApp(GetMaterialApp(
     
     debugShowCheckedModeBanner: false,

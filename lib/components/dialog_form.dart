@@ -1,21 +1,19 @@
-import 'package:cash_book/view_model/view_model.dart';
+import 'package:cash_book/Controllers/controller_list.dart';
 import 'package:cash_book/models/transaction_model.dart';
-import 'package:cash_book/routes/routes.dart';
 import 'package:cash_book/views/list_transaction_all.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:intl/intl.dart';
 
-enum Types { input, output }
+
 
 // ignore: must_be_immutable
 class DialogFrom extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   final trKey = GlobalKey<FormFieldState>();
   final valueKey = GlobalKey<FormFieldState>();
-  final listViewModel = Get.find<ListViewModel>();
+  final controller = Get.find<ControllerLists>();
   TextEditingController controllerName = TextEditingController();
   TextEditingController controllerValue = TextEditingController();
   var setDate = DateTime.now();
@@ -146,8 +144,8 @@ class DialogFrom extends StatelessWidget {
                       );
                       if (nameTransaction.value.length < 3 == false &&
                           valor.value.toString().length < 1 == false && valor.value !=0 ){
-                        listViewModel.addTransaction(transaction);
-                        listViewModel.getTransactions();
+                        controller.addTransaction(transaction);
+                        controller.getTransactions();
                         await Get.to(() => ListTransactionsView());
                         Get.back();
                       }

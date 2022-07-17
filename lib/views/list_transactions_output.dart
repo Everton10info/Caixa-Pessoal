@@ -1,8 +1,7 @@
-import 'package:cash_book/components/dialogForm.dart';
+import 'package:cash_book/Controllers/controller_list.dart';
+import 'package:cash_book/components/dialog_form.dart';
 import 'package:cash_book/components/dialog_edition.dart';
 import 'package:cash_book/components/myDrawer.dart';
-import 'package:cash_book/view_model/view_model.dart';
-import 'package:cash_book/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -15,13 +14,13 @@ ListTransactionsOutputs(){
 
 }
   
-  final listViewModel = Get.find<ListViewModel>();
+  final controller = Get.find<ControllerLists>();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
      return Obx(() => Scaffold(
         appBar: AppBar(
-          title:Text('${DateFormat('dd/MM/yy').format(DateTime.now())}   Despesas:(R\$ ${listViewModel.totalOutput.value.toStringAsFixed(2)})', ) ,
+          title:Text('${DateFormat('dd/MM/yy').format(DateTime.now())}   Despesas:(R\$ ${controller.totalOutput.value.toStringAsFixed(2)})', ) ,
           elevation: 3,
          
         ),
@@ -29,15 +28,15 @@ ListTransactionsOutputs(){
           color: Color.fromARGB(255, 236, 240, 236),
           child: Obx(
             () => ListView.builder(
-              itemCount: listViewModel.transactionOutput.length,
+              itemCount: controller.transactionOutput.length,
               itemBuilder: (context, index) {
                 return Dismissible(
                 
                   direction: DismissDirection.horizontal,
                   onDismissed: (direction){
-                      listViewModel.removeTransaction(
-                                        listViewModel.transactionOutput[index].id!);
-                                    listViewModel.transactionOutput.removeAt(index);
+                      controller.removeTransaction(
+                                        controller.transactionOutput[index].id!);
+                                    controller.transactionOutput.removeAt(index);
                   },
                   
                    background: Container(
@@ -48,7 +47,7 @@ ListTransactionsOutputs(){
                    child: Icon(Icons.delete, color: Colors.red,size: 50,),
                  ),
                 ),
-                  key: ValueKey(listViewModel.transactionOutput[index]),
+                  key: ValueKey(controller.transactionOutput[index]),
                   child: ListTile(
                     title: Container(
                      
@@ -58,12 +57,12 @@ ListTransactionsOutputs(){
                 
                       child: InkWell(
                          onDoubleTap: () {
-                          listViewModel.setEdition(
-                            listViewModel.transactionOutput[index].nameTransaction,
-                            listViewModel.transactionOutput[index].typeTransaction,
-                            listViewModel.transactionOutput[index].dueDate,
-                            listViewModel.transactionOutput[index].valor,
-                            listViewModel.transactionOutput[index].id!,
+                          controller.setEdition(
+                            controller.transactionOutput[index].nameTransaction,
+                            controller.transactionOutput[index].typeTransaction,
+                            controller.transactionOutput[index].dueDate,
+                            controller.transactionOutput[index].valor,
+                            controller.transactionOutput[index].id!,
                             
                           );
 
@@ -89,7 +88,7 @@ ListTransactionsOutputs(){
                                   Container(
                             margin: EdgeInsets.all(1.5),
                                     child: Text(
-                                      '${listViewModel.transactionOutput[index].nameTransaction}  ',
+                                      '${controller.transactionOutput[index].nameTransaction}  ',
                                       textAlign: TextAlign.justify,
                                       style: TextStyle(
                                         fontStyle: FontStyle.italic,
@@ -114,7 +113,7 @@ ListTransactionsOutputs(){
                                       padding: const EdgeInsets.all(4.0),
                                       child: Text(
                                         ' R\$ ' +
-                                            listViewModel.transactionOutput[index].valor
+                                            controller.transactionOutput[index].valor
                                                 .toStringAsFixed(2),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
@@ -132,9 +131,9 @@ ListTransactionsOutputs(){
                                     custom: Container(width: 5,),
                                     onCancel:(){Navigator.pop(context);},
                                   onConfirm:(){
-                                    listViewModel.removeTransaction(
-                                          listViewModel.transactionOutput[index].id!);
-                                      listViewModel.transactionOutput.removeAt(index);
+                                    controller.removeTransaction(
+                                          controller.transactionOutput[index].id!);
+                                      controller.transactionOutput.removeAt(index);
                                     Navigator.pop(context);
                                   } ,
                                  backgroundColor:Color.fromARGB(255, 224, 190, 34).withOpacity(0.6),
@@ -163,12 +162,12 @@ ListTransactionsOutputs(){
                               Container(
                                   margin: EdgeInsets.only(left: 2.5, right: 2.5),
                                 height: Get.height * 0.045,
-                                color: listViewModel.payYes.contains( '${listViewModel.transactionOutput[index].id}')?Color.fromARGB(255, 0, 192, 128):Color.fromARGB(255, 236, 195, 58),
+                                color: controller.payYes.contains( '${controller.transactionOutput[index].id}')?Color.fromARGB(255, 0, 192, 128):Color.fromARGB(255, 236, 195, 58),
                                 child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        ' Registrado:\n ${DateFormat('dd/MM/yyyy').format(listViewModel.transactionOutput[index].date)} ',
+                                        ' Registrado:\n ${DateFormat('dd/MM/yyyy').format(controller.transactionOutput[index].date)} ',
                                         style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                           fontSize: 13,
@@ -177,7 +176,7 @@ ListTransactionsOutputs(){
                                         ),
                                       ),
                                       Text(
-                                        ' Vencimento: \n ${DateFormat('dd/MM/yyyy').format(listViewModel.transactionOutput[index].dueDate)} ',
+                                        ' Vencimento: \n ${DateFormat('dd/MM/yyyy').format(controller.transactionOutput[index].dueDate)} ',
                                         style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                           fontSize: 13,

@@ -1,3 +1,4 @@
+import 'package:cash_book/Controllers/controller_list.dart';
 import 'package:cash_book/views/coming_time.dart';
 import 'package:cash_book/views/home.dart';
 import 'package:cash_book/views/list_transaction_all.dart';
@@ -5,11 +6,11 @@ import 'package:cash_book/views/list_transactions_input.dart';
 import 'package:cash_book/views/list_transactions_output.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:cash_book/view_model/view_model.dart';
+
 
 class MyDrawer extends StatelessWidget {
   MyDrawer({Key? key}) : super(key: key);
-  final listViewModel = Get.find<ListViewModel>();
+  final controller = Get.find<ControllerLists>();
   @override
   Widget build(BuildContext context) {
     return Padding(

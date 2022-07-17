@@ -1,13 +1,9 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:cash_book/view_model/view_model.dart';
-
 import 'package:cash_book/models/transaction_model.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-
-final listViewModel = Get.find<ListViewModel>();
 
 class TransactionsHelpers {
   TransactionsHelpers.ensureInitialized();

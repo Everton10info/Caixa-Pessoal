@@ -1,20 +1,16 @@
-import 'package:cash_book/components/dialogForm.dart';
+import 'package:cash_book/Controllers/controller_list.dart';
+import 'package:cash_book/components/dialog_form.dart';
 import 'package:cash_book/components/dialog_edition.dart';
 
 import 'package:cash_book/components/myDrawer.dart';
-import 'package:cash_book/view_model/view_model.dart';
-import 'package:cash_book/models/transaction_model.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class ListTransactionsView extends StatelessWidget {
-  final listViewModel = Get.find<ListViewModel>();
+  final controller = Get.find<ControllerLists>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +23,7 @@ class ListTransactionsView extends StatelessWidget {
         appBar: AppBar(
           
           
-          title: Text('${DateFormat('dd/MM/yy').format(DateTime.now())}       Total: (R\$ ${listViewModel.sumTotal.value.toStringAsFixed(2)})', ) ,
+          title: Text('${DateFormat('dd/MM/yy').format(DateTime.now())}       Total: (R\$ ${controller.sumTotal.value.toStringAsFixed(2)})', ) ,
           elevation: 3,
         ),
         body: Container(
@@ -35,14 +31,14 @@ class ListTransactionsView extends StatelessWidget {
           color: Color.fromARGB(255, 236, 240, 236),
           child: Obx(
             () => ListView.builder(
-              itemCount: listViewModel.transactionAll.length,
+              itemCount: controller.transactionAll.length,
               itemBuilder: (context, index) {
                 return Dismissible(
                   direction: DismissDirection.horizontal,
                   onDismissed: (direction) {
-                    listViewModel
-                        .removeTransaction(listViewModel.transactionAll[index].id!);
-                    listViewModel.transactionAll.removeAt(index);
+                    controller
+                        .removeTransaction(controller.transactionAll[index].id!);
+                    controller.transactionAll.removeAt(index);
                   },
                   background: Container(
                     height: Get.height * 0.18,
@@ -56,18 +52,18 @@ class ListTransactionsView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  key: ValueKey(listViewModel.transactionAll[index]),
+                  key: ValueKey(controller.transactionAll[index]),
                   child: ListTile(
                     title: Container(
                       height: Get.height * 0.16,
                       child: InkWell(
                         onDoubleTap: () {
-                          listViewModel.setEdition(
-                            listViewModel.transactionAll[index].nameTransaction,
-                            listViewModel.transactionAll[index].typeTransaction,
-                            listViewModel.transactionAll[index].dueDate,
-                            listViewModel.transactionAll[index].valor,
-                            listViewModel.transactionAll[index].id!,
+                          controller.setEdition(
+                            controller.transactionAll[index].nameTransaction,
+                            controller.transactionAll[index].typeTransaction,
+                            controller.transactionAll[index].dueDate,
+                            controller.transactionAll[index].valor,
+                            controller.transactionAll[index].id!,
                           );
 
                           showDialog(
@@ -93,7 +89,7 @@ class ListTransactionsView extends StatelessWidget {
                                   Container(
                                     margin: EdgeInsets.all(1.5),
                                     child: Text(
-                                      '${listViewModel.transactionAll[index].nameTransaction}  ',
+                                      '${controller.transactionAll[index].nameTransaction}  ',
                                       textAlign: TextAlign.justify,
                                       style: TextStyle(
                                         fontStyle: FontStyle.italic,
@@ -117,7 +113,7 @@ class ListTransactionsView extends StatelessWidget {
                                       padding: const EdgeInsets.all(4.0),
                                       child: Text(
                                         ' R\$ ' +
-                                            listViewModel.transactionAll[index].valor
+                                            controller.transactionAll[index].valor
                                                 .toStringAsFixed(2),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
@@ -136,9 +132,9 @@ class ListTransactionsView extends StatelessWidget {
                                     custom: Container(height: Get.width * 0.6,),
                                     onCancel:(){Navigator.pop(context);},
                                   onConfirm:(){
-                                     listViewModel.removeTransaction(
-                                          listViewModel.transactionAll[index].id!);
-                                      listViewModel.transactionAll.removeAt(index);
+                                     controller.removeTransaction(
+                                          controller.transactionAll[index].id!);
+                                      controller.transactionAll.removeAt(index);
                                       Navigator.pop(context);
                                    
                                   } ,
@@ -167,7 +163,7 @@ class ListTransactionsView extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        ' Cadastro:\n ${DateFormat('dd/MM/yyyy').format(listViewModel.transactionAll[index].date)} ',
+                                        ' Cadastro:\n ${DateFormat('dd/MM/yyyy').format(controller.transactionAll[index].date)} ',
                                         style: TextStyle(
                                             fontStyle: FontStyle.italic,
                                             fontSize: 14,
@@ -176,10 +172,10 @@ class ListTransactionsView extends StatelessWidget {
                                                
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      listViewModel.transactionAll[index].typeTransaction ==
+                                      controller.transactionAll[index].typeTransaction ==
                                               'input'
                                           ? Text(
-                                              ' Entrada: \n ${DateFormat('dd/MM/yyyy').format(listViewModel.transactionAll[index].dueDate)} ',
+                                              ' Entrada: \n ${DateFormat('dd/MM/yyyy').format(controller.transactionAll[index].dueDate)} ',
                                               style: TextStyle(
                                                 fontStyle: FontStyle.italic,
                                                 fontSize: 13,
@@ -188,7 +184,7 @@ class ListTransactionsView extends StatelessWidget {
                                               ),
                                             )
                                           : Text(
-                                              ' Vencimento: \n ${DateFormat('dd/MM/yyyy').format(listViewModel.transactionAll[index].dueDate)} ',
+                                              ' Vencimento: \n ${DateFormat('dd/MM/yyyy').format(controller.transactionAll[index].dueDate)} ',
                                               style: TextStyle(
                                                 fontStyle: FontStyle.italic,
                                                 fontSize: 13,

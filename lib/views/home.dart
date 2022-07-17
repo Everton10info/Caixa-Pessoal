@@ -1,15 +1,9 @@
-import 'package:cash_book/components/dialogForm.dart';
+import 'package:cash_book/components/dialog_form.dart';
 import 'package:cash_book/components/myDrawer.dart';
-import 'package:cash_book/view_model/view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
- Home(){
- 
-    listViewModel.getTransactions();
-  }
-  final listViewModel = Get.find<ListViewModel>();
+
 
   @override
   Widget build(BuildContext context) {

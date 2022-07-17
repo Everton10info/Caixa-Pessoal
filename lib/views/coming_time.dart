@@ -1,7 +1,6 @@
-import 'package:cash_book/components/dialogForm.dart';
+import 'package:cash_book/Controllers/controller_list.dart';
+import 'package:cash_book/components/dialog_form.dart';
 import 'package:cash_book/components/myDrawer.dart';
-import 'package:cash_book/view_model/view_model.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -9,7 +8,7 @@ import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class ListComingTime extends StatelessWidget {
-  final listViewModel = Get.find<ListViewModel>();
+  final listViewModel = Get.find<ControllerLists>();
   var pag = {int:bool}.obs;
 
   @override

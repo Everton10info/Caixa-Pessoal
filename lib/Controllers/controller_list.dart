@@ -1,11 +1,11 @@
 import 'package:cash_book/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../helperDatabase/transactionHelpers.dart.dart';
+import '../helper-database/transaction_helper.dart.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ListViewModel extends GetxController {
+class ControllerLists extends GetxController {
   var db = TransactionsHelpers();
 
   RxList<TransactionM> transactionInput = RxList<TransactionM>();

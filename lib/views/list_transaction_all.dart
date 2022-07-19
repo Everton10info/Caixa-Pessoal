@@ -14,6 +14,7 @@ class ListTransactionsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.getTransactions();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,

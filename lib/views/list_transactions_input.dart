@@ -9,13 +9,12 @@ import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class ListTransactionsInput extends StatelessWidget {
-  ListTransactionsInput() {
-    ; // controller.populand();
-  }
+ 
   final controller = Get.find<ControllerLists>();
 
   @override
   Widget build(BuildContext context) {
+    controller.getTransactions();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,

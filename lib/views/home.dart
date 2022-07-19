@@ -1,13 +1,17 @@
+import 'package:cash_book/Controllers/controller_list.dart';
 import 'package:cash_book/components/dialog_form.dart';
 import 'package:cash_book/components/my_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
-
+ControllerLists controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
-  
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
+   controller.getTransactions();
     return Scaffold(
       appBar: AppBar(
         elevation: 3,

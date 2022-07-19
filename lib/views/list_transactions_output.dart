@@ -18,7 +18,7 @@ class ListTransactionsOutputs extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp,]);
      return Obx(() => Scaffold(
         appBar: AppBar(
-          title:Text('${DateFormat('dd/MM/yy').format(DateTime.now())}   Despesas:(R\$ ${controller.totalOutput.value.toStringAsFixed(2)})', ) ,
+          title:Text('${DateFormat('dd/MM/yy').format(DateTime.now())} - Despesas:(R\$ ${controller.totalOutput.value.toStringAsFixed(2)})', ) ,
           elevation: 3,
          
         ),

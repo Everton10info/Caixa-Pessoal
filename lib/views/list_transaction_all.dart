@@ -24,7 +24,7 @@ class ListTransactionsView extends StatelessWidget {
         appBar: AppBar(
           
           
-          title: Text('${DateFormat('dd/MM/yy').format(DateTime.now())}       Total: (R\$ ${controller.sumTotal.value.toStringAsFixed(2)})', ) ,
+          title: Text('${DateFormat('dd/MM/yy').format(DateTime.now())} - Total: (R\$ ${controller.sumTotal.value.toStringAsFixed(2)})', ) ,
           elevation: 3,
         ),
         body: Container(

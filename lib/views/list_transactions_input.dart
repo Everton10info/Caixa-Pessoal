@@ -23,7 +23,7 @@ class ListTransactionsInput extends StatelessWidget {
       () => Scaffold(
         appBar: AppBar(
           title: Text(
-            '${DateFormat('dd/MM/yy').format(DateTime.now())}     Receitas:(R\$ ${controller.totalInput.value.toStringAsFixed(2)})',
+            '${DateFormat('dd/MM/yy').format(DateTime.now())} - Receitas:(R\$ ${controller.totalInput.value.toStringAsFixed(2)})',
           ),
           elevation: 3,
         ),
